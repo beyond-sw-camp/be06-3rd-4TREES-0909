@@ -29,6 +29,12 @@ import SearchResultPage from "@/pages/User/SearchResultPage.vue";
 import GroupBuyDetailPage from "@/pages/User/GroupBuyDetailPage.vue";
 import ProductDetailPage from "@/pages/User/ProductDetailPage.vue";
 import SellerCompanyModifyComponent from "@/components/Seller/SellerCompanyModifyComponent.vue";
+import UserMypageCouponListComponent from "@/components/User/UserMypageCouponListComponent.vue";
+import UserMypageInfoDetailComponent from "@/components/User/UserMypageInfoDetailComponent.vue";
+import UserMypageInfoEditComponent from "@/components/User/UserMypageInfoEditComponent.vue";
+import UserMypageLikesListComponent from "@/components/User/UserMypageLikesListComponent.vue";
+import UserMypageManageAddressComponent from "@/components/User/UserMypageManageAddressComponent.vue";
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -43,7 +49,15 @@ const router = createRouter({
                 { path: "seller", component: SellerSignupComponent },
             ]
         },
-        { path: '/user/mypage', component: UserMypage },
+        { path: '/user/mypage', component: UserMypage,
+            children:[
+                {path: "detail", component: UserMypageInfoDetailComponent},
+                {path: "edit", component: UserMypageInfoEditComponent},
+                {path: "manage/address", component: UserMypageManageAddressComponent},
+                {path: "coupon/list", component: UserMypageCouponListComponent},
+                {path: "likes/list", component: UserMypageLikesListComponent},
+            ]
+         },
 
 
         {

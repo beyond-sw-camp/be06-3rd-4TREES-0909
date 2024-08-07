@@ -1,5 +1,5 @@
 <template>
-    <div :key="componentKey" class="frame-right">
+    <div class="frame-right">
         <div class="frame-cnt-inner">
             <div class="list-title-area">
                 <h3 class="title-list">관심 공구 목록</h3>
@@ -8,7 +8,8 @@
             <div class="order-list-slide">
                 <div
                     class="swiper-container order-swiper-list swiper-container-initialized swiper-container-horizontal">
-                    <ul v-for="(likes, index) in groupbuyStore.gpbuyLikesList" :key="index" class="swiper-wrapper"
+                    <div v-if="isLoading"></div>
+                    <ul  v-else v-for="(likes, index) in groupbuyStore.gpbuyLikesList" :key="index" class="swiper-wrapper"
                         style="transform: translate3d(0px, 0px, 0px);">
                         <li class="swiper-slide swiper-slide-active" style="width: 820px; margin-right: 10px;">
                             <!--// list-head -->
@@ -78,9 +79,13 @@ import { mapStores } from 'pinia';
 export default {
     name: "UserMypageLikesListComponent",
     data() {
-        return { componentKey: 0,
-
-        }
+        return {  isLoading: true}
+    },
+    beforeRouteUpdate(to, from, next) {
+        console.log("test");
+        console.log(to);
+        console.log(from);
+        console.log(next);
     },
     computed: {
         ...mapStores(userBasicStore, groupbuyStore)
@@ -93,8 +98,9 @@ export default {
             alert("준비중인 기능입니다.")
         },
 
-        setData() {
-            this.groupbuyStore.myLikesList();
+        async setData() {
+            await this.groupbuyStore.myLikesList();
+            this.isLoading = false;
         },
         formatDateTime(dateTimeString) {
             const date = new Date(dateTimeString);
@@ -112,7 +118,6 @@ export default {
         cancleLikes(gpbuyIdx){
             this.groupbuyStore.cancleLikes(gpbuyIdx);
             alert("취소되었습니다.");
-            this.componentKey += 1;
     
         },
 
