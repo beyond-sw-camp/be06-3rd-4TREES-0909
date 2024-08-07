@@ -152,7 +152,9 @@ export default {
         updateRemainingTime() {
             this.remainingTime = this.calculateRemainingTime(this.groupbuyStore.progressGroupbuy.gpbuyEndedAt);
         },
-
+        joinGroupbuy() {
+            this.$router.push({ path: '/order', query: { quantity: this.quantity, gpbuyIdx: this.groupbuyStore.progressGroupbuy.gpbuyIdx } });
+        }
     },
     computed: {
       ...mapStores(useGroupbuyStore)
