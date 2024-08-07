@@ -515,6 +515,9 @@ export default {
         },
         gpbuyIdx() {
             return this.$route.query.gpbuyIdx;
+        },
+        bidIdx() {
+            return this.$route.query.bidIdx;
         }
     },
     mounted() {

@@ -36,7 +36,7 @@
                         </label></div>
                 </div>
                 <div class="buttonWrap">
-                    <button type="button" class="btnReserve">입찰 선정
+                    <button type="button" class="btnReserve" @click="selectBid">입찰 선정
                     </button>
                 </div>
             </div>
@@ -62,6 +62,9 @@ export default {
             if (newValue >= this.minQuantity && newValue <= this.maxQuantity) {
                 this.quantity = newValue;
             }
+        },
+        selectBid() {
+            this.$router.push({ path: '/order', query: { quantity: this.quantity, gpbuyIdx: this.groupbuyStore.waitGroupbuy.gpbuyIdx, bidIdx: this.bid.bidIdx } });
         }
     },
     computed: {
