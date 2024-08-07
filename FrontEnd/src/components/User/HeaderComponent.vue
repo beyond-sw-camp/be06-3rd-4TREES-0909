@@ -67,17 +67,17 @@
                     <div id="test_area" @mouseover="categoryHover" @mouseleave="categoryMouseLeave">
                         <ul id="test_cates" ref="test_cates">
                             <h2>전체 카테고리<span> ></span></h2>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 1, categoryName: '전자 제품'} }"><li class="category" data-value=1><a>전자 제품</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 2, categoryName: '도서/티켓'} }"><li class="category" data-value=2><a>도서/티켓</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 3, categoryName: '의류'} }"><li class="category" data-value=3><a>의류</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 4, categoryName: '가전 제품'} }"><li class="category" data-value=4><a>가전 제품</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 5, categoryName: '유아동/출산'} }"><li class="category" data-value=5><a>유아동/출산</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 6, categoryName: '스포츠 용품'} }"><li class="category" data-value=6><a>스포츠 용품</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 7, categoryName: '뷰티'} }"><li class="category" data-value=7><a>뷰티</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 8, categoryName: '가구'} }"><li class="category" data-value=8><a>가구</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 9, categoryName: '식품'} }"><li class="category" data-value=9><a>식품</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 10, categoryName: '농수산물'} }"><li class="category" data-value=10><a>농수산물</a></li></router-link>
-                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 11, categoryName: '반려동물용품'} }"><li class="category" data-value=11><a>반려동물용품</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 1} }"><li class="category" data-value=1><a>전자 제품</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 2} }"><li class="category" data-value=2><a>도서/티켓</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 3} }"><li class="category" data-value=3><a>의류</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 4} }"><li class="category" data-value=4><a>가전 제품</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 5} }"><li class="category" data-value=5><a>유아동/출산</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 6} }"><li class="category" data-value=6><a>스포츠 용품</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 7} }"><li class="category" data-value=7><a>뷰티</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 8} }"><li class="category" data-value=8><a>가구</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 9} }"><li class="category" data-value=9><a>식품</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 10} }"><li class="category" data-value=10><a>농수산물</a></li></router-link>
+                                <router-link :to="{name:'searchGroupbuy', query: {categoryIdx: 11} }"><li class="category" data-value=11><a>반려동물용품</a></li></router-link>
                         </ul>
                     </div>
                 </div>
