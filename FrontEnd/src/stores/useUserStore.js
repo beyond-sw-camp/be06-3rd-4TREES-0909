@@ -18,12 +18,16 @@ export const useUserStore = defineStore('user', {
                 return false;
             }
         },
+        logout() {
+            this.isLoggedIn = false;
+            this.roles = [];
+        },
         async userSignup(user) {
             console.log(user);
             let response = await axios.post(backend + "/user/signup", user);
             console.log(response);
             if (response.status === 200) {
-                if(response.data.isSuccess) {
+                if (response.data.isSuccess) {
                     return true;
                 } else {
                     return false;
@@ -37,7 +41,7 @@ export const useUserStore = defineStore('user', {
             let response = await axios.post(backend + "/company-reg/verify", compayRegverify);
             console.log(response);
             if (response.status === 200) {
-                if(response.data.isSuccess) {
+                if (response.data.isSuccess) {
                     // uuid 저장
                     this.uuid = response.data.result.uuid;
                     return true;
@@ -53,7 +57,7 @@ export const useUserStore = defineStore('user', {
             let response = await axios.post(backend + "/seller/signup", seller);
             console.log(response);
             if (response.status === 200) {
-                if(response.data.isSuccess) {
+                if (response.data.isSuccess) {
                     return true;
                 } else {
                     return false;

@@ -12,76 +12,78 @@
       </div>
       <!-- <form id="loginFrm" name="loginFrm" method="post" action="/login/submit" data-onsubmit="return false;"
         onsubmit="return false;" autocomplete="off" data-method="ajax"> -->
-        <div class="loginInner">
-          <div class="loginForm">
-            <div class="buttonGroup">
-              <button type="button" :class="{ active: activeOption === 'user' }" @click="setActive('user')">일반</button>
-              <button type="button" :class="{ active: activeOption === 'seller' }" @click="setActive('seller')">업체</button>
+      <div class="loginInner">
+        <div class="loginForm">
+          <div class="buttonGroup">
+            <button type="button" :class="{ active: activeOption === 'user' }" @click="setActive('user')">일반</button>
+            <button type="button" :class="{ active: activeOption === 'seller' }"
+              @click="setActive('seller')">업체</button>
+          </div>
+          <div class="inputBox">
+            <div class="inputStyle inputId">
+              <label>
+                <input v-model="user.email" value="" autofocus="" type="text" class="inputText id" name="userId"
+                  id="userId" placeholder="아이디">
+                <span class="focusLine"></span>
+                <i>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                    <path stroke="#999" stroke-linecap="round"
+                      d="M7.789 9.867A4.444 4.444 0 0 1 12 4a4.444 4.444 0 1 1 0 8.885c-.947 0-1.945-.167-2.667-.672">
+                    </path>
+                    <path fill="#999"
+                      d="M9.489 12.685a.5.5 0 1 0-.311-.95l.31.95Zm10.378 5.822.492-.088-.492.088ZM5.5 20.5h13v-1h-13v1Zm-.885-1.912c.463-2.81 2.293-5.058 4.874-5.903l-.311-.95c-2.965.97-5.031 3.545-5.55 6.69l.987.163Zm9.671-5.903c2.597.85 4.584 3.113 5.089 5.911l.984-.177c-.57-3.156-2.811-5.718-5.762-6.684l-.31.95ZM5.5 19.5c-.58 0-.96-.456-.885-.912l-.987-.163C3.434 19.603 4.423 20.5 5.5 20.5v-1Zm13 1c1.075 0 2.073-.898 1.86-2.081l-.985.177c.08.448-.293.904-.875.904v1Z">
+                    </path>
+                  </svg>
+                </i>
+              </label>
             </div>
-            <div class="inputBox">
-              <div class="inputStyle inputId">
-                <label>
-                  <input v-model="user.email" value="" autofocus="" type="text" class="inputText id" name="userId" id="userId"
-                    placeholder="아이디">
-                  <span class="focusLine"></span>
-                  <i>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
-                      <path stroke="#999" stroke-linecap="round"
-                        d="M7.789 9.867A4.444 4.444 0 0 1 12 4a4.444 4.444 0 1 1 0 8.885c-.947 0-1.945-.167-2.667-.672">
-                      </path>
-                      <path fill="#999"
-                        d="M9.489 12.685a.5.5 0 1 0-.311-.95l.31.95Zm10.378 5.822.492-.088-.492.088ZM5.5 20.5h13v-1h-13v1Zm-.885-1.912c.463-2.81 2.293-5.058 4.874-5.903l-.311-.95c-2.965.97-5.031 3.545-5.55 6.69l.987.163Zm9.671-5.903c2.597.85 4.584 3.113 5.089 5.911l.984-.177c-.57-3.156-2.811-5.718-5.762-6.684l-.31.95ZM5.5 19.5c-.58 0-.96-.456-.885-.912l-.987-.163C3.434 19.603 4.423 20.5 5.5 20.5v-1Zm13 1c1.075 0 2.073-.898 1.86-2.081l-.985.177c.08.448-.293.904-.875.904v1Z">
-                      </path>
-                    </svg>
-                  </i>
-                </label>
-              </div>
-              <div class="inputStyle inputPw">
-                <label>
-                  <input v-model="user.password" type="password" class="inputText pw" name="userPwd" id="userPwd" placeholder="비밀번호">
-                  <span class="focusLine"></span>
-                  <i>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
-                      <path stroke="#999" stroke-linecap="round"
-                        d="M19.5 15.6V11A1.5 1.5 0 0 0 18 9.5H6A1.5 1.5 0 0 0 4.5 11v8A1.5 1.5 0 0 0 6 20.5h12a1.5 1.5 0 0 0 1.5-1.5v-.75">
-                      </path>
-                      <circle cx="12" cy="14" r="1" fill="#999"></circle>
-                      <path fill="#999" d="M11.5 14h1l.5 3h-2l.5-3Z" class="pathFill"></path>
-                      <path stroke="#999" d="M16.5 9.5V8a4.5 4.5 0 0 0-9 0v1.5"></path>
-                    </svg>
-                  </i>
-                  <button type="button" class="inputBtn btnShowToggle">
-                    <span class="blind">비밀번호 노출상태 변경버튼</span>
-                  </button>
-                </label>
-              </div>
+            <div class="inputStyle inputPw">
+              <label>
+                <input v-model="user.password" type="password" class="inputText pw" name="userPwd" id="userPwd"
+                  placeholder="비밀번호">
+                <span class="focusLine"></span>
+                <i>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+                    <path stroke="#999" stroke-linecap="round"
+                      d="M19.5 15.6V11A1.5 1.5 0 0 0 18 9.5H6A1.5 1.5 0 0 0 4.5 11v8A1.5 1.5 0 0 0 6 20.5h12a1.5 1.5 0 0 0 1.5-1.5v-.75">
+                    </path>
+                    <circle cx="12" cy="14" r="1" fill="#999"></circle>
+                    <path fill="#999" d="M11.5 14h1l.5 3h-2l.5-3Z" class="pathFill"></path>
+                    <path stroke="#999" d="M16.5 9.5V8a4.5 4.5 0 0 0-9 0v1.5"></path>
+                  </svg>
+                </i>
+                <button type="button" class="inputBtn btnShowToggle">
+                  <span class="blind">비밀번호 노출상태 변경버튼</span>
+                </button>
+              </label>
             </div>
-
-          </div>
-
-          <div class="loginButtonBox">
-            <button @click="login" type="button" class="loginBtn" id="btn_login">
-              <span>로그인</span>
-            </button>
-          </div>
-          <div class="findList">
-            <ul>
-              <li>
-                <router-link to="signup/common" id="join">회원가입</router-link>
-              </li>
-            </ul>
-          </div>
-          <div id="snsLogin" class="snsLogin" v-if="activeOption === 'user'" style="display: flex;">
-            <ul>
-              <li id="kakao_li">
-                <a href="/api/oauth2/authorization/kakao" class="kakao" id="openid_kakao">
-                  <span>카카오톡</span>
-                </a>
-              </li>
-            </ul>
           </div>
 
         </div>
+
+        <div class="loginButtonBox">
+          <button @click="login" type="button" class="loginBtn" id="btn_login">
+            <span>로그인</span>
+          </button>
+        </div>
+        <div class="findList">
+          <ul>
+            <li>
+              <router-link to="signup/common" id="join">회원가입</router-link>
+            </li>
+          </ul>
+        </div>
+        <div id="snsLogin" class="snsLogin" v-if="activeOption === 'user'" style="display: flex;">
+          <ul>
+            <li id="kakao_li">
+              <a href="/api/oauth2/authorization/kakao" class="kakao" id="openid_kakao">
+                <span>카카오톡</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
       <!-- </form> -->
     </div>
   </div>
@@ -94,47 +96,47 @@ import { useUserStore } from '@/stores/useUserStore';
 import { mapStores } from 'pinia';
 
 export default {
-    name: "LoginPage",
-    data() {
-        return {
-            activeOption: 'user',
-            user: {
-              email: null,
-              password: null
-            },
-            originalFontSize: '',
-        }
-    },
-    methods: {
-      setActive(option) {
-          this.activeOption = option;
+  name: "LoginPage",
+  data() {
+    return {
+      activeOption: 'user',
+      user: {
+        email: null,
+        password: null
       },
-      login() {
-        const result = this.userStore.login(this.user);
-        if(result) {
-          this.$router.push("/");
-        }
+      originalFontSize: '',
+    }
+  },
+  methods: {
+    setActive(option) {
+      this.activeOption = option;
+    },
+    async login() {
+      const result = await this.userStore.login(this.user);
+      if (result) {
+        this.$router.push("/");
       }
-    },
-    computed: {
-      ...mapStores(useUserStore)
-    },
-    mounted() {
+    }
+  },
+  computed: {
+    ...mapStores(useUserStore)
+  },
+  mounted() {
     this.originalFontSize = document.documentElement.style.fontSize;
     document.documentElement.style.fontSize = '62.5%';
-    },
-    beforeUnmount() {
-        document.documentElement.style.fontSize = this.originalFontSize;
-    }
+  },
+  beforeUnmount() {
+    document.documentElement.style.fontSize = this.originalFontSize;
+  }
 }
 </script>
 
 <style scoped>
-
 ul {
   padding-left: 0;
   list-style: none;
 }
+
 input,
 button {
   -webkit-margin-before: 0;
@@ -161,16 +163,19 @@ input[type="text"]::-ms-reveal {
   height: 0;
 }
 
-input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-results-button, input[type="search"]::-webkit-search-results-decoration {
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
 html {
-    text-size-adjust: none;
-    font-size: 62.5%;
+  text-size-adjust: none;
+  font-size: 62.5%;
 }
 
-  
+
 /*!
   로그인 페이지 css
 */
@@ -180,6 +185,7 @@ html {
   justify-content: center;
   margin: 20px 0;
 }
+
 .buttonGroup button {
   padding: 10px 20px;
   margin: 5px;
@@ -190,15 +196,16 @@ html {
   cursor: pointer;
   border-radius: 5px;
 }
+
 .buttonGroup button.active {
   background-color: #007BFF;
   color: #fff;
 }
 
 #commonHeaderDom {
-    display: none;
-  }
-  
+  display: none;
+}
+
 .loginContainer * {
   line-height: 1.5;
   font-family: "Pretendard", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
@@ -314,7 +321,7 @@ html {
   box-sizing: border-box;
 }
 
-.loginInner .loginForm .inputBox .inputStyle + .inputStyle {
+.loginInner .loginForm .inputBox .inputStyle+.inputStyle {
   border-top: .1rem solid #ddd;
 }
 
@@ -339,7 +346,7 @@ html {
   order: 2;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText:focus + .focusLine {
+.loginInner .loginForm .inputBox .inputStyle .inputText:focus+.focusLine {
   display: block;
   position: absolute;
   left: -.1rem;
@@ -352,44 +359,44 @@ html {
   z-index: 1;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.id:focus + .focusLine {
+.loginInner .loginForm .inputBox .inputStyle .inputText.id:focus+.focusLine {
   border-radius: 1.2rem 1.2rem 0 0;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.id:focus:not(:placeholder-shown) ~ .btnDel {
+.loginInner .loginForm .inputBox .inputStyle .inputText.id:focus:not(:placeholder-shown)~.btnDel {
   opacity: 1;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.id:focus ~ i path:first-child {
+.loginInner .loginForm .inputBox .inputStyle .inputText.id:focus~i path:first-child {
   stroke: #1c1c1e;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.id:focus ~ i path:last-child {
+.loginInner .loginForm .inputBox .inputStyle .inputText.id:focus~i path:last-child {
   fill: #1c1c1e;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.pw:focus + .focusLine {
+.loginInner .loginForm .inputBox .inputStyle .inputText.pw:focus+.focusLine {
   border-radius: 0 0 1.2rem 1.2rem;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.pw:focus ~ i path {
+.loginInner .loginForm .inputBox .inputStyle .inputText.pw:focus~i path {
   stroke: #1c1c1e;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.pw:focus ~ i path.pathFill {
+.loginInner .loginForm .inputBox .inputStyle .inputText.pw:focus~i path.pathFill {
   stroke: transparent;
   fill: #1c1c1e;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.pw:focus ~ i circle {
+.loginInner .loginForm .inputBox .inputStyle .inputText.pw:focus~i circle {
   fill: #1c1c1e;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.pw[type="password"] ~ .btnShowToggle {
+.loginInner .loginForm .inputBox .inputStyle .inputText.pw[type="password"]~.btnShowToggle {
   background: url("//openimage.interpark.com/UI/login/icon_eye_on.svg") center center no-repeat;
 }
 
-.loginInner .loginForm .inputBox .inputStyle .inputText.pw[type="text"] ~ .btnShowToggle {
+.loginInner .loginForm .inputBox .inputStyle .inputText.pw[type="text"]~.btnShowToggle {
   background: url("//openimage.interpark.com/UI/login/icon_eye_off.svg") center center no-repeat;
 }
 
@@ -517,7 +524,7 @@ html {
   border: .1rem solid #666;
 }
 
-.loginInner .loginForm .capchaCodeWrap .iInput:focus:not(:placeholder-shown) ~ .btnDel {
+.loginInner .loginForm .capchaCodeWrap .iInput:focus:not(:placeholder-shown)~.btnDel {
   opacity: 1;
 }
 
@@ -568,7 +575,7 @@ html {
   opacity: .00001;
 }
 
-.loginInner .signinStay .checkbox input[type="checkbox"]:checked + label {
+.loginInner .signinStay .checkbox input[type="checkbox"]:checked+label {
   background: url("//openimage.interpark.com/UI/login/mobile/icon_checkbox_on.svg") no-repeat;
   background-size: 2.1rem 2.1rem;
 }
@@ -633,7 +640,7 @@ html {
   color: #666;
 }
 
-.loginInner .tooltip .layerTooltip li + li {
+.loginInner .tooltip .layerTooltip li+li {
   margin-top: .8rem;
 }
 
@@ -704,7 +711,7 @@ html {
   box-sizing: border-box;
 }
 
-.loginInner .findList li + li:before {
+.loginInner .findList li+li:before {
   content: "";
   position: absolute;
   top: .4rem;
@@ -847,29 +854,33 @@ html {
 }
 
 .applicationProfile {
-  text-align:center;
+  text-align: center;
   width: 60px;
   height: 20px;
   border: 2px dotted white;
-  margin-bottom:5px;
-  color:white;
+  margin-bottom: 5px;
+  color: white;
 }
 
 @media screen and (min-width: 1024px) {
   .login header {
     display: none;
   }
+
   .loginWrap {
     max-width: 40rem;
     margin: 0 auto;
   }
+
   .loginLogo {
     margin-top: 6.8rem;
   }
+
   .loginLogo h1 {
     width: 18.6rem;
     height: 15rem;
   }
+
   .loginInner {
     padding: 0 0 2.5rem;
   }
@@ -880,5 +891,4 @@ html {
     width: calc(100% - 1rem);
   }
 }
-  
 </style>
