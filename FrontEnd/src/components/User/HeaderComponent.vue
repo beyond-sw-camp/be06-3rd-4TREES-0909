@@ -14,7 +14,7 @@
                                     </router-link>
                                 </div>
                                 <div class="col-4">
-                                    <router-link to="/user/mypage">
+                                    <router-link to="/user/mypage/detail">
                                         마이페이지
                                     </router-link>
                                 </div>
