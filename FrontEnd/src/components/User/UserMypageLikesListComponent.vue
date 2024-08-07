@@ -1,5 +1,5 @@
 <template>
-    <div class="frame-right">
+    <div :key="componentKey" class="frame-right">
         <div class="frame-cnt-inner">
             <div class="list-title-area">
                 <h3 class="title-list">관심 공구 목록</h3>
@@ -79,13 +79,13 @@ import { mapStores } from 'pinia';
 export default {
     name: "UserMypageLikesListComponent",
     data() {
-        return {  isLoading: true}
+        return { componentKey: 0, isLoading: true}
     },
-    beforeRouteUpdate(to, from, next) {
+    beforeRouteUpdate(to, from) {
         console.log("test");
         console.log(to);
         console.log(from);
-        console.log(next);
+        console.log("test");
     },
     computed: {
         ...mapStores(userBasicStore, groupbuyStore)
@@ -118,6 +118,7 @@ export default {
         cancleLikes(gpbuyIdx){
             this.groupbuyStore.cancleLikes(gpbuyIdx);
             alert("취소되었습니다.");
+            this.componentKey += 1;
     
         },
 

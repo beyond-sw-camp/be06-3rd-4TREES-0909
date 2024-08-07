@@ -114,7 +114,11 @@ export default {
     async login() {
       const result = await this.userStore.login(this.user);
       if (result) {
-        this.$router.push("/");
+        const redirect = this.$route.query.redirect || '/';
+        this.$router.push(redirect); // 로그인 후 리다이렉트
+      }else{
+        alert("로그인에 실패했습니다.");
+        this.$router.push('/login');
       }
     }
   },

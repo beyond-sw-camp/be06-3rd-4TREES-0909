@@ -10,7 +10,8 @@ export const useUserStore = defineStore('user', {
     },
     actions: {
         async login(user) {
-            let response = await axios.post(backend + "/user/login", user);
+            try {
+                let response = await axios.post(backend + "/user/login", user);
             console.log(response.data.result);
             if (response.status === 200) {
                 this.isLoggedIn = true;
@@ -23,6 +24,11 @@ export const useUserStore = defineStore('user', {
             } else {
                 return false;
             }
+            } catch (error) {
+                console.error("로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요")
+                return false;
+            }
+            
         },
         logout() {
             this.isLoggedIn = false;
@@ -60,7 +66,7 @@ export const useUserStore = defineStore('user', {
         },
         async sellerSignup(seller) {
             console.log(seller);
-            let response = await axios.post(backend + "/seller/signup", seller);
+            const response = await axios.post(backend + "/seller/signup", seller);
             console.log(response);
             if (response.status === 200) {
                 if (response.data.isSuccess) {

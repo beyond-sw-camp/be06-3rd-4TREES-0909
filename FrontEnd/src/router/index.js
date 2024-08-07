@@ -1,7 +1,6 @@
 
 import { createRouter, createWebHistory } from "vue-router";
 import { useUserStore} from "@/stores/useUserStore";
-import LoginPage2 from "@/login/LoginPage.vue";
 import LoginPage from "@/pages/Common/LoginPage.vue";
 
 import SignupPage from "@/pages/Common/SignupPage.vue";
@@ -97,7 +96,7 @@ router.beforeEach(async (to, from, next) => {
   
     if (requiresAuth) {
       if (!isAuthenticated) {
-        next('/login'); // 로그인 페이지로 리다이렉트
+        next({ path: '/login', query: { redirect: to.fullPath } }); // 리다이렉트 경로 저장
       } else if (!requiredRoles.some(role => userRoles.includes(role))) {
         alert("접근 권한이 없습니다.");
         next('/'); // 권한 없음 페이지로 리다이렉트
