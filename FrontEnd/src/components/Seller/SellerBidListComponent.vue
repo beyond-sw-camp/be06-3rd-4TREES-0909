@@ -5,8 +5,8 @@
                 <h3 class="css-9fmo7n">입찰 조회/수정</h3>
                 <p class="css-17ti8g7">등록한 모든 입찰 손쉽게 조회/수정할 수 있어요.</p>
             </header>
-            <div v-if="selected || selectedBidIdx == null || gpbuyStatus!=='대기' " class="css-8knsro"><button type="button" class="css-16iku8x"
-                    style="background-color: gray;">입찰 수정하기</button></div>
+            <div v-if="selected || selectedBidIdx == null || gpbuyStatus !== '대기'" class="css-8knsro"><button
+                    type="button" class="css-16iku8x" style="background-color: gray;">입찰 수정하기</button></div>
             <div v-else class="css-8knsro"><router-link
                     :to="{ name: 'BidModifyPage', query: { gpbuyTitle: gpbuyTitle, bidIdx: selectedBidIdx } }"><button
                         type="button" class="css-16iku8x">입찰
@@ -18,7 +18,7 @@
                             <div class="css-ga3b11">
                                 <div class="css-1og3vwv">
                                     <div class="css-1oxv28r">&nbsp;&nbsp;총 <span class="css-w4x83i">{{
-                                            sellerStore.bidInfoList.length }}</span>개</div>
+                                        sellerStore.bidInfoList.length }}</span>개</div>
                                     <div class="css-1peezc1"></div>
                                     <div id="select-12" class="css-bjn8wh">
                                         <div id="trigger-12" aria-controls="option-list-12" aria-haspopup="true"
@@ -146,7 +146,7 @@ export default {
     data() {
         return {
             page: 0,
-            selected: true,
+            selected: this.$route.query.selectedBid == "true",
             checkboxSelect: "",
             checkboxNotSelect: "",
             selectFill: "",
@@ -164,31 +164,24 @@ export default {
     },
     methods: {
         updateSelect() {
-            if (this.selected==="true" || this.selected===true) {
+            if (this.selected === "true" || this.selected === true) {
                 this.checkboxSelect = "M14.546 8A6.553 6.553 0 0 0 8 1.455 6.553 6.553 0 0 0 1.455 8 6.553 6.553 0 0 0 8 14.546 6.553 6.553 0 0 0 14.546 8ZM16 8c0 4.411-3.589 8-8 8s-8-3.589-8-8 3.589-8 8-8 8 3.589 8 8Zm-4.768 0a3.232 3.232 0 1 1-6.465 0 3.232 3.232 0 0 1 6.465 0Z";
                 this.checkboxNotSelect = "M8 1.455A6.553 6.553 0 0 1 14.546 8 6.553 6.553 0 0 1 8 14.546 6.553 6.553 0 0 1 1.455 8 6.553 6.553 0 0 1 8 1.455ZM8 16c4.411 0 8-3.589 8-8s-3.589-8-8-8-8 3.589-8 8 3.589 8 8 8Z";
                 this.selectFill = "#027AFF";
                 this.notSelectFill = "#E5E5E5";
 
-            } else if(this.selected==="false" || this.selected===false){
+            } else if (this.selected === "false" || this.selected === false) {
                 this.checkboxSelect = "M8 1.455A6.553 6.553 0 0 1 14.546 8 6.553 6.553 0 0 1 8 14.546 6.553 6.553 0 0 1 1.455 8 6.553 6.553 0 0 1 8 1.455ZM8 16c4.411 0 8-3.589 8-8s-3.589-8-8-8-8 3.589-8 8 3.589 8 8 8Z";
                 this.checkboxNotSelect = "M14.546 8A6.553 6.553 0 0 0 8 1.455 6.553 6.553 0 0 0 1.455 8 6.553 6.553 0 0 0 8 14.546 6.553 6.553 0 0 0 14.546 8ZM16 8c0 4.411-3.589 8-8 8s-8-3.589-8-8 3.589-8 8-8 8 3.589 8 8Zm-4.768 0a3.232 3.232 0 1 1-6.465 0 3.232 3.232 0 0 1 6.465 0Z";
                 this.selectFill = "#E5E5E5";
                 this.notSelectFill = "#027AFF";
-            } else{
-                window.location.href = "/seller/bid?selectedBid=true";
             }
         },
         clickSelect() {
-            this.selected = true;
-            this.updateSelect();
-            window.location.href = "/seller/bid?selectedBid=true";
-
+            this.$router.push("/seller/bid?selectedBid=true");
         },
         clickNotSelect() {
-            this.selected = false;
-            this.updateSelect();
-            window.location.href = "/seller/bid?selectedBid=false";
+            this.$router.push("/seller/bid?selectedBid=false");
         },
         getBidInfoList() {
             this.sellerStore.getBidInfoList(this.page, this.selected);
@@ -198,13 +191,25 @@ export default {
             this.gpbuyTitle = groupbuyTitle;
             this.gpbuyStatus = gpbuyStatus;
 
+        },
+        refreshPage() {
+            this.getBidInfoList();
+            this.updateSelect();
         }
     },
     mounted() {
-        this.selected = this.$route.query.selectedBid=="true";
+        if (this.$route.query.selectedBid != "true" && this.$route.query.selectedBid != "false") {
+            this.$router.push("/seller/bid?selectedBid=true");
+        }
         this.updateSelect();
         this.getBidInfoList();
-    }
+    },
+    watch: {
+        '$route.query.selectedBid'(newValue) {
+            this.selected = newValue == "true";
+            this.refreshPage();
+        }
+    },
 }
 </script>
 
