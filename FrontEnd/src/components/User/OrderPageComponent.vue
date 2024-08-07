@@ -11,13 +11,13 @@
         <div class="content-wrap frame-sm">
             <div class="page-title-area">
                 <h2 class="title-page">
-                    ¡÷πÆ/∞·¡¶</h2>
+                    Ï£ºÎ¨∏/Í≤∞Ï†ú</h2>
             </div><!--// page-title-area -->
 
             <div class="order-payment-area">
                 <input type="hidden" id="holidayDlvFlag" value="N">
                 <form id="ordFrm" name="ordFrm" action="/order/order" method="post" data-gtm-form-interact-id="0">
-                    <!-- πËº€¡ˆ ¡§∫∏ ¿‘∑¬ø©∫Œ -->
+                    <!-- Î∞∞ÏÜ°ÏßÄ Ï†ïÎ≥¥ ÏûÖÎ†•Ïó¨Î∂Ä -->
                     <input type="hidden" id="addrWriteYn" name="addrWriteYn">
 
                     <input type="hidden" id="addCouponCd" name="addCouponCd" value="">
@@ -35,32 +35,32 @@
                             <input type="hidden" name="receiverPostCode" :value="receiverPostCode">
                             <input type="hidden" name="receiverPhoneNumber" :value="receiverPhoneNumber">
 
-                            <!-- ∫£º€¡ˆ ¡§∫∏∞° ¿÷¿ª ∂ß -->
+                            <!-- Î≤†ÏÜ°ÏßÄ Ï†ïÎ≥¥Í∞Ä ÏûàÏùÑ Îïå -->
                             <div class="list-head-sub">
-                                <h3 class="title-list">πËº€¡ˆ ¡§∫∏</h3>
+                                <h3 class="title-list">Î∞∞ÏÜ°ÏßÄ Ï†ïÎ≥¥</h3>
                                 <div id="orderAddressHeadBtn"><a href="javascript:void(0);"
                                         class="btn-basic-sm2 btn-default" onclick="openUserDeliveryListPop();"
                                         style="border-radius: 4px;">
-                                        <span>∫Ø∞Ê</span>
+                                        <span>Î≥ÄÍ≤Ω</span>
                                     </a></div>
                             </div>
                             <div id="addressInfoDiv">
-                                <span>ºˆ∑…¿Œ ¿Ã∏ß</span><br>
+                                <span>ÏàòÎ†πÏù∏ Ïù¥Î¶Ñ</span><br>
                                 <input type="text" style="width:20%; height: 30px; border:1px solid #ccc"
                                     v-model="receiverName">
-                                <em class="badge-point2" style="margin-left:6px;display:inline-block;">±‚∫ªπËº€¡ˆ</em>
+                                <em class="badge-point2" style="margin-left:6px;display:inline-block;">Í∏∞Î≥∏Î∞∞ÏÜ°ÏßÄ</em>
                                 <br><br>
-                                <span>øÏ∆Ìπ¯»£</span><br>
+                                <span>Ïö∞Ìé∏Î≤àÌò∏</span><br>
                                 <input type="text" style="border: 1px solid #ccc; height: 30px; margin-bottom:12px;"
                                     v-model="receiverPostCode"><br>
-                                <span>¡÷º“</span> <br>
+                                <span>Ï£ºÏÜå</span> <br>
                                 <input type="text"
                                     style="margin-bottom:12px; background-color: white; width:100%; height:35px; border: 1px solid #ccc;"
                                     v-model="receiverAddress"><br>
 
                                 <ul class="order-order-info">
                                     <li>
-                                        ¿¸»≠π¯»£<br>
+                                        Ï†ÑÌôîÎ≤àÌò∏<br>
                                         <input
                                             style="background-color: white; width:20%; height: 30px; border: 1px solid #ccc;"
                                             v-model="receiverPhoneNumber">
@@ -87,19 +87,19 @@
                                                 value="F000009972">
                                             <div class="inner">
                                                 <div class="column img"> <a href="javascript:void(0);"> <img
-                                                            :src="orderPageInfo.productThumbnailUrl" alt="ªÛ«∞¿ÃπÃ¡ˆ"> </a>
+                                                            :src="orderPageInfo.productThumbnailUrl" alt="ÏÉÅÌíàÏù¥ÎØ∏ÏßÄ"> </a>
                                                 </div>
                                                 <div class="column tit">
                                                     <p class="tit">{{ orderPageInfo.productName }}
                                                     </p>
                                                     <p class="desc"></p>
                                                     <ul class="price-item">
-                                                        <li><span class="num">{{ orderPageInfo.bidPrice }}</span>ø¯</li>
-                                                        <li><span class="num">{{ orderPageInfo.quantity }}</span>∞≥</li>
+                                                        <li><span class="num">{{ orderPageInfo.bidPrice }}</span>Ïõê</li>
+                                                        <li><span class="num">{{ orderPageInfo.quantity }}</span>Í∞ú</li>
                                                     </ul>
                                                 </div>
                                                 <div class="column price w70"> <span class="num">{{
-                                                    orderPageInfo.bidPrice * orderPageInfo.quantity }}</span>ø¯
+                                                    orderPageInfo.bidPrice * orderPageInfo.quantity }}</span>Ïõê
                                                 </div>
                                             </div>
                                         </div>
@@ -114,16 +114,16 @@
                     <div class="order-info">
                         <!--// list-head -->
                         <div class="lineless-table type1">
-                            <h3 class="title-list">ƒÌ∆˘</h3>
+                            <h3 class="title-list">Ïø†Ìè∞</h3>
                             <table>
-                                <caption>ƒÌ∆˘ ªÁøÎ</caption>
+                                <caption>Ïø†Ìè∞ ÏÇ¨Ïö©</caption>
                                 <colgroup>
                                     <col style="width:190px">
                                     <col>
                                 </colgroup>
                                 <tbody>
                                     <tr>
-                                        <th scope="row"><span class="tit">ƒÌ∆˘ ªÁøÎ</span></th>
+                                        <th scope="row"><span class="tit">Ïø†Ìè∞ ÏÇ¨Ïö©</span></th>
                                         <td>
                                             <div class="order-point">
                                                 <div class="input-group-wrap box-type">
@@ -137,11 +137,11 @@
                                                 </div><!--// input-group-wrap -->
                                                 <span class="input-group-btn">
                                                     <button type="button" @click="couponSelectModal()"
-                                                        class="btn-ex-grey cpn_select_btn"><span>ƒÌ∆˘º±≈√</span></button>
+                                                        class="btn-ex-grey cpn_select_btn"><span>Ïø†Ìè∞ÏÑ†ÌÉù</span></button>
                                                 </span>
-                                                <p class="point-guide">ªÁøÎ ∞°¥…«— ƒÌ∆˘
+                                                <p class="point-guide">ÏÇ¨Ïö© Í∞ÄÎä•Ìïú Ïø†Ìè∞
                                                     <em class="text-num-bold" id="userCouponCount">{{
-                                                        orderStore.orderPageInfo.userCouponResponseList.length }}</em>∞≥
+                                                        orderStore.orderPageInfo.userCouponResponseList.length }}</em>Í∞ú
                                                 </p>
                                             </div><!--// order-point -->
                                         </td>
@@ -152,26 +152,26 @@
                         </div><!--// lineless-table -->
                     </div>
                     <!--// order-info -->
-                    <!-- ƒÌ∆˘ º±≈√ ∏¥ﬁ ∂ÁøÏ¥¬ script -->
+                    <!-- Ïø†Ìè∞ ÏÑ†ÌÉù Î™®Îã¨ ÎùÑÏö∞Îäî script -->
 
 
                     <div class="order-info" style="border-top:1px solid #333;padding-top:30px;">
                         <div class="lineless-table type1">
-                            <h3 class="title-list">∆˜¿Œ∆Æ</h3>
+                            <h3 class="title-list">Ìè¨Ïù∏Ìä∏</h3>
                             <table>
-                                <caption>∆˜¿Œ∆Æ ªÁøÎ</caption>
+                                <caption>Ìè¨Ïù∏Ìä∏ ÏÇ¨Ïö©</caption>
                                 <colgroup>
                                     <col style="width:190px">
                                     <col>
                                 </colgroup>
                                 <tbody>
                                     <tr>
-                                        <th scope="row"><span class="tit">∆˜¿Œ∆Æ ªÁøÎ</span></th>
+                                        <th scope="row"><span class="tit">Ìè¨Ïù∏Ìä∏ ÏÇ¨Ïö©</span></th>
                                         <td>
                                             <div class="order-point">
                                                 <div class="input-group-wrap box-type">
                                                     <div class="input-group">
-                                                        <!-- «ˆ¿Á ∫∏¿Ø ∆˜¿Œ∆Æ -->
+                                                        <!-- ÌòÑÏû¨ Î≥¥Ïú† Ìè¨Ïù∏Ìä∏ -->
                                                         <input type="hidden" id="currentPoint" name="currentPoint"
                                                             :value="orderPageInfo.point">
                                                         <input type="hidden" id="usePoint" name="usePoint"
@@ -184,9 +184,9 @@
                                                 </div><!--// input-group-wrap -->
                                                 <span class="input-group-btn">
                                                     <button type="button" class="btn-ex-grey"
-                                                        @click="fnUseAllPoint()"><span>¿¸æ◊ªÁøÎ</span></button>
+                                                        @click="fnUseAllPoint()"><span>Ï†ÑÏï°ÏÇ¨Ïö©</span></button>
                                                 </span>
-                                                <p class="point-guide">ªÁøÎ ∞°¥… ∆˜¿Œ∆Æ <em class="text-num-bold">{{
+                                                <p class="point-guide">ÏÇ¨Ïö© Í∞ÄÎä• Ìè¨Ïù∏Ìä∏ <em class="text-num-bold">{{
                                                     orderPageInfo.point }}</em>
                                                 </p>
                                             </div><!--// order-point -->
@@ -200,7 +200,7 @@
 
                     <div class="order-info">
                         <div class="list-head">
-                            <h3 class="title-list">∞·¡¶πÊπ˝</h3>
+                            <h3 class="title-list">Í≤∞Ï†úÎ∞©Î≤ï</h3>
                         </div><!--// list-head -->
 
                         <div class="payment-select">
@@ -212,7 +212,7 @@
                                                 <input type="radio" id="radio-grid-4" class="radio-box-grid"
                                                     name="payType" value="CARD" data-card-type="GE" checked="">
                                                 <label for="radio-grid-4"><em class="txt"><i
-                                                            class="ico-pay-creditcard"></i>Ω≈øÎƒ´µÂ</em></label>
+                                                            class="ico-pay-creditcard"></i>Ïã†Ïö©Ïπ¥Îìú</em></label>
                                             </div>
                                         </li>
                                         <li>
@@ -220,8 +220,8 @@
                                                 <input type="radio" id="radio-grid-8" class="radio-box-grid"
                                                     name="payType" value="KAKAOPAY" v-model="selectedPayMethod">
                                                 <label for="radio-grid-8"><em class="txt"><i class="ico-pay-kakao"
-                                                            title="ƒ´ƒ´ø¿∆‰¿Ã"></i><span
-                                                            class="blind">ƒ´ƒ´ø¿∆‰¿Ã</span></em></label>
+                                                            title="Ïπ¥Ïπ¥Ïò§ÌéòÏù¥"></i><span
+                                                            class="blind">Ïπ¥Ïπ¥Ïò§ÌéòÏù¥</span></em></label>
                                             </div>
                                         </li>
                                     </ul>
@@ -231,14 +231,14 @@
                     </div>
                     <div class="side-fix-area">
                         <div class="payment-info-box ui-box-fix">
-                            <h3 class="tit">¡÷πÆ∞·¡¶ ±›æ◊</h3>
+                            <h3 class="tit">Ï£ºÎ¨∏Í≤∞Ï†ú Í∏àÏï°</h3>
                             <div class="order-price">
                                 <ul class="div-price">
                                     <li>
                                         <div class="list-inner">
-                                            <span class="tit">ªÛ«∞±›æ◊</span>
+                                            <span class="tit">ÏÉÅÌíàÍ∏àÏï°</span>
                                             <p class="price"><strong class="num resetOrderPaySide" id="txt_tot_price">{{
-                                                orderPageInfo.bidPrice }}</strong> ø¯
+                                                orderPageInfo.bidPrice }}</strong> Ïõê
                                             </p>
                                             <input type="hidden" name="tot_price" class="resetOrderPaySide"
                                                 v-model="orderPageInfo.bidPrice">
@@ -246,10 +246,10 @@
                                     </li>
                                     <li>
                                         <div class="list-inner">
-                                            <span class="tit">«“¿Œ±›æ◊</span>
+                                            <span class="tit">Ìï†Ïù∏Í∏àÏï°</span>
                                             <p class="price"><strong class="num resetOrderPaySide"
                                                     id="totalDiscountPrice">{{ Number(useCouponPrice) +
-                                                        Number(usePoint) }}</strong> ø¯</p>
+                                                        Number(usePoint) }}</strong> Ïõê</p>
                                         </div>
                                         <ul class="list-sub-inner">
 
@@ -259,10 +259,10 @@
                                 </ul>
                                 <div class="total-price" style="padding:20px 0;">
                                     <div class="list-inner">
-                                        <span class="tit">√÷¡æ ∞·¡¶±›æ◊</span>
+                                        <span class="tit">ÏµúÏ¢Ö Í≤∞Ï†úÍ∏àÏï°</span>
                                         <div class="price">
                                             <strong class="num text-primary resetOrderPaySide" id="txt_tot_pg_price">{{
-                                                orderPrice }}</strong> ø¯
+                                                orderPrice }}</strong> Ïõê
                                             <input type="hidden" name="tot_pg_price" class="resetOrderPaySide"
                                                 :value="orderPrice">
                                         </div>
@@ -273,21 +273,21 @@
                             <ul class="terms-view">
                                 <li>
                                     <a href="#popup-terms-type-04" class="ui-open-pop" onclick="return false;">
-                                        <span class="txt">√≥∏Æ¿ß≈π π◊ 3¿⁄ ¡¶∞¯ µø¿«</span>
-                                        <span class="view">≥ªøÎ∫∏±‚<i class="ico-arrfill-right"></i></span>
+                                        <span class="txt">Ï≤òÎ¶¨ÏúÑÌÉÅ Î∞è 3Ïûê Ï†úÍ≥µ ÎèôÏùò</span>
+                                        <span class="view">ÎÇ¥Ïö©Î≥¥Í∏∞<i class="ico-arrfill-right"></i></span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#popup-terms-type-02" class="ui-open-pop" onclick="return false;">
-                                        <span class="txt">∞·¡¶¥Î«‡º≠∫ÒΩ∫ ¿ÃøÎ µø¿«</span>
-                                        <span class="view">≥ªøÎ∫∏±‚<i class="ico-arrfill-right"></i></span>
+                                        <span class="txt">Í≤∞Ï†úÎåÄÌñâÏÑúÎπÑÏä§ Ïù¥Ïö© ÎèôÏùò</span>
+                                        <span class="view">ÎÇ¥Ïö©Î≥¥Í∏∞<i class="ico-arrfill-right"></i></span>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="#popup-terms-type-14" class="ui-open-pop" onclick="return false;">
-                                        <span class="txt">∞≥¿Œ¡§∫∏ ºˆ¡˝ π◊ ¿ÃøÎ µø¿«</span>
-                                        <span class="view">≥ªøÎ∫∏±‚<i class="ico-arrfill-right"></i></span>
+                                        <span class="txt">Í∞úÏù∏Ï†ïÎ≥¥ ÏàòÏßë Î∞è Ïù¥Ïö© ÎèôÏùò</span>
+                                        <span class="view">ÎÇ¥Ïö©Î≥¥Í∏∞<i class="ico-arrfill-right"></i></span>
                                     </a>
                                 </li>
                             </ul><!--// terms-view -->
@@ -295,13 +295,13 @@
                                 <div class="custom-checkbox">
                                     <input type="checkbox" id="checkTerms" class="checkbox" name="check_terms"
                                         data-nonmember-yn="N" @click="checkTerms">
-                                    <label for="checkTerms">ªÛ±‚ « ºˆæ‡∞¸¿ª »Æ¿Œ«œø¥¿∏∏Á<br>∞·¡¶ø° µø¿««’¥œ¥Ÿ.</label>
+                                    <label for="checkTerms">ÏÉÅÍ∏∞ ÌïÑÏàòÏïΩÍ¥ÄÏùÑ ÌôïÏù∏ÌïòÏòÄÏúºÎ©∞<br>Í≤∞Ï†úÏóê ÎèôÏùòÌï©ÎãàÎã§.</label>
                                 </div>
                             </div>
                             <button type="button" class="btn-basic-xlg btn-primary" @click="fnCheckOrder()">
                                 <span class="num"><span id="txt_btn_payment" class="resetOrderPaySide">{{ orderPrice
-                                        }}</span>ø¯
-                                    ∞·¡¶«œ±‚</span>
+                                        }}</span>Ïõê
+                                    Í≤∞Ï†úÌïòÍ∏∞</span>
                             </button>
                         </div> <!--// payment-info-box -->
                     </div>
@@ -313,12 +313,12 @@
             </div>
         </div>
 
-        <!-- ƒÌ∆˘ º±≈√ ∆Àæ˜ -->
+        <!-- Ïø†Ìè∞ ÏÑ†ÌÉù ÌåùÏóÖ -->
         <div class="layer-wrap onload" id="popup-coupon" style="display:none;">
             <div class="layer-pop couponselect-pop-area">
                 <div class="layer-inner">
                     <div class="layer-head">
-                        <h4 class="layer-pop-title">ƒÌ∆˘ «“¿Œ</h4>
+                        <h4 class="layer-pop-title">Ïø†Ìè∞ Ìï†Ïù∏</h4>
                     </div>
 
                     <ul class="layer-content" style="overflow:scroll; height: 450px; padding-top:10px;">
@@ -329,19 +329,19 @@
                     <div class="layer-bottom type-shadow">
                         <div class="btn-area">
                             <button type="button" class="btn-basic-lg2 btn-grey3" id="couponApplyCancel"
-                                @click="couponCancle()"><span>¿˚øÎ√Îº“</span></button>
+                                @click="couponCancle()"><span>Ï†ÅÏö©Ï∑®ÏÜå</span></button>
                             <button type="button" class="btn-basic-lg2 btn-primary" id="couponApply"
-                                @click="couponApply()"><span>ƒÌ∆˘¿˚øÎ</span></button>
+                                @click="couponApply()"><span>Ïø†Ìè∞Ï†ÅÏö©</span></button>
                         </div>
                     </div>
 
                     <button type="button" @click="closeSelectCouponModal()" class="btn-x-md2 ui-close-pop" title=""><i
-                            class="ico-x-black"></i><span class="blind">¥›±‚</span></button>
+                            class="ico-x-black"></i><span class="blind">Îã´Í∏∞</span></button>
                 </div>
             </div>
         </div>
 
-        <!-- ƒ´ƒ´ø¿∆‰¿Ã ∞·¡¶ ∆Àæ˜ -->
+        <!-- Ïπ¥Ïπ¥Ïò§ÌéòÏù¥ Í≤∞Ï†ú ÌåùÏóÖ -->
         <div class="layer-wrap onload" id="popup-kakaopay" style="display:none">
             <div class="layer-pop" style="width: 500px; height: 500px;">
                 <div class="layer-inner">
@@ -407,7 +407,7 @@ export default {
         },
         fnUsePoint(){
             if(this.usePoint > this.orderPageInfo.point){
-                alert("∫∏¿Ø ∆˜¿Œ∆Æ∏¶ √ ∞˙«œø© ªÁøÎ«“ ºˆ æ¯Ω¿¥œ¥Ÿ.");
+                alert("Î≥¥Ïú† Ìè¨Ïù∏Ìä∏Î•º Ï¥àÍ≥ºÌïòÏó¨ ÏÇ¨Ïö©Ìï† Ïàò ÏóÜÏäµÎãàÎã§.");
                 this.usePoint = 0;
             }
             this.calcOrderPrice();
@@ -434,7 +434,7 @@ export default {
                     this.closeSelectCouponModal();
                     return;
                 } else if(userCoupon.userCouponIdx==this.selectCouponIdx) {
-                    alert("ªÛ«∞¿« ±›æ◊¿Ã ƒÌ∆˘ √÷º“ ªÁøÎ ±›æ◊∫∏¥Ÿ ¿˚Ω¿¥œ¥Ÿ.")
+                    alert("ÏÉÅÌíàÏùò Í∏àÏï°Ïù¥ Ïø†Ìè∞ ÏµúÏÜå ÏÇ¨Ïö© Í∏àÏï°Î≥¥Îã§ Ï†ÅÏäµÎãàÎã§.")
                 }
             });
         },
@@ -449,27 +449,27 @@ export default {
         },
         fnCheckOrder(){
             if (!this.termStatus){
-                alert("æ‡∞¸ø° µø¿«∏¶ «ÿ¡÷ººø‰.");
+                alert("ÏïΩÍ¥ÄÏóê ÎèôÏùòÎ•º Ìï¥Ï£ºÏÑ∏Ïöî.");
                 return;
             }
             if (this.selectedPayMethod==null){
-                alert("∞·¡¶ πÊπ˝¿ª º±≈√«ÿ¡÷ººø‰.");
+                alert("Í≤∞Ï†ú Î∞©Î≤ïÏùÑ ÏÑ†ÌÉùÌï¥Ï£ºÏÑ∏Ïöî.");
             } else if(this.selectedPayMethod==="KAKAOPAY"){
                 this.kakaoPayment();
             } else{
-                alert("«ˆ¿Á ¡ˆø¯«œ¡ˆ æ ¥¬ ∞·¡¶ πÊπ˝¿‘¥œ¥Ÿ. ƒ´ƒ´ø¿ ∞·¡¶∏¶ ¿ÃøÎ«ÿ¡÷ººø‰.");
+                alert("ÌòÑÏû¨ ÏßÄÏõêÌïòÏßÄ ÏïäÎäî Í≤∞Ï†ú Î∞©Î≤ïÏûÖÎãàÎã§. Ïπ¥Ïπ¥Ïò§ Í≤∞Ï†úÎ•º Ïù¥Ïö©Ìï¥Ï£ºÏÑ∏Ïöî.");
             }
         },
         kakaoPayment(){
             const {IMP} = window;
-            IMP.init("imp17385342"); // ∞Ì∞¥ªÁ Ωƒ∫∞ ƒ⁄µÂ
+            IMP.init("imp17385342"); // Í≥†Í∞ùÏÇ¨ ÏãùÎ≥Ñ ÏΩîÎìú
             const self = this;
 			IMP.request_pay(
                 {
                     pg: "kakaopay.TC0ONETIME",
-                    merchant_uid: "order_no_" + this.orderPageInfo.bidIdx + Date.now(), // ªÛ¡°ø°º≠ ª˝º∫«— ∞Ì¿Ø ¡÷πÆπ¯»£
-                    name: "¡÷πÆ: " + this.orderPageInfo.productName + " (ºˆ∑Æ "+ this.orderPageInfo.quantity + "∞≥)",
-                    amount: this.orderPrice, // ±›æ◊
+                    merchant_uid: "order_no_" + this.orderPageInfo.bidIdx + Date.now(), // ÏÉÅÏ†êÏóêÏÑú ÏÉùÏÑ±Ìïú Í≥†Ïú† Ï£ºÎ¨∏Î≤àÌò∏
+                    name: "Ï£ºÎ¨∏: " + this.orderPageInfo.productName + " (ÏàòÎüâ "+ this.orderPageInfo.quantity + "Í∞ú)",
+                    amount: this.orderPrice, // Í∏àÏï°
                     buyer_email: this.orderPageInfo.email,
                     buyer_name: this.orderPageInfo.name,
                     custom_data: {
@@ -487,21 +487,21 @@ export default {
                 function (rsp) {
                     console.log(rsp);
                     console.log(rsp.imp_uid);
-                    // πÈø£µÂø°º≠ ∞·¿Á∏¶ »Æ¿Œ«œ¥¬ url »£√‚
+                    // Î∞±ÏóîÎìúÏóêÏÑú Í≤∞Ïû¨Î•º ÌôïÏù∏ÌïòÎäî url Ìò∏Ï∂ú
                     if (rsp.success){
                         axios.get("/api/orders/register?impUid="+rsp.imp_uid, { withCredentials:true })
                         .then((data) => {
                             console.log(data.data);
                             if(data.data.isSuccess){
-                                alert("¡÷πÆ øœ∑·«œø¥Ω¿¥œ¥Ÿ.");
+                                alert("Ï£ºÎ¨∏ ÏôÑÎ£åÌïòÏòÄÏäµÎãàÎã§.");
                                 self.$router.push("/order/history");
                             } else {
-                                alert("¡÷πÆ √Îº“µ«æ˙Ω¿¥œ¥Ÿ.");
+                                alert("Ï£ºÎ¨∏ Ï∑®ÏÜåÎêòÏóàÏäµÎãàÎã§.");
                                 self.$router.push("/main");
                             }
                         });
                     } else {
-                        alert("¡÷πÆ Ω«∆–");
+                        alert("Ï£ºÎ¨∏ Ïã§Ìå®");
                         self.$router.push("/main");
                     }
                 },
@@ -509,7 +509,7 @@ export default {
         },
     },
     computed: {
-        ...mapStores(useOrderStore), // æÓ∂≤ ¿˙¿Âº“∂˚ ø¨∞·Ω√ƒ— ¡÷∞⁄¥Ÿ.
+        ...mapStores(useOrderStore), // Ïñ¥Îñ§ Ï†ÄÏû•ÏÜåÎûë Ïó∞Í≤∞ÏãúÏºú Ï£ºÍ≤†Îã§.
         quantity() {
             return this.$route.query.quantity;
         },
@@ -532,5 +532,5 @@ export default {
 }
 </script>
 
-<style src="./css/¡÷πÆ∆‰¿Ã¡ˆ1.css" scoped></style>
-<style src="./css/¡÷πÆ∆‰¿Ã¡ˆ2.css" scoped></style>
+<style src="./css/Ï£ºÎ¨∏ÌéòÏù¥ÏßÄ1.css" scoped></style>
+<style src="./css/Ï£ºÎ¨∏ÌéòÏù¥ÏßÄ2.css" scoped></style>
