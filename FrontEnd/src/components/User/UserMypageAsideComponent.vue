@@ -36,7 +36,7 @@
                         <a href="#" class="menu">활동관리</a>
                         <ul class="depth2">
                             <li class=""><a href="#" @click="showAlert">최근 본 상품</a></li>
-                            <li class=""><a href="#">관심 공구</a></li>
+                            <li class=""><a href="#" @click.prevent="changeComponent('UserMypageLikesListComponent')" >관심 공구</a></li>
                             <li><a href="#" @click="showAlert">1:1문의</a></li><!-- 활성화될 경우 li에 addClass current  -->
                             <li><a href="#" @click="showAlert">상품후기</a></li><!-- 활성화될 경우 li에 addClass current  -->
                             <li><a href="#" @click="showAlert">상품문의내역</a></li><!-- 활성화될 경우 li에 addClass current  -->

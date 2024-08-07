@@ -24,6 +24,7 @@ import UserMypageInfoDetailComponent from '@/components/User/UserMypageInfoDetai
 import UserMypageInfoEditComponent from '@/components/User/UserMypageInfoEditComponent.vue';
 import UserMypageManageAddressComponent from '@/components/User/UserMypageManageAddressComponent.vue';
 import UserMypageCouponListComponent from '@/components/User/UserMypageCouponListComponent.vue';
+import UserMypageLikesListComponent from '@/components/User/UserMypageLikesListComponent.vue';
 
 export default {
     name: "UserMypage",
@@ -67,6 +68,8 @@ export default {
         UserMypageInfoEditComponent,
         UserMypageManageAddressComponent,
         UserMypageCouponListComponent,
+        UserMypageLikesListComponent,
+
     }
 }
 
