@@ -1,5 +1,7 @@
 
 import { createRouter, createWebHistory } from "vue-router";
+import { useUserStore} from "@/stores/useUserStore";
+import LoginPage2 from "@/login/LoginPage.vue";
 import LoginPage from "@/pages/Common/LoginPage.vue";
 
 import SignupPage from "@/pages/Common/SignupPage.vue";
@@ -28,6 +30,12 @@ import SearchResultPage from "@/pages/User/SearchResultPage.vue";
 import GroupBuyDetailPage from "@/pages/User/GroupBuyDetailPage.vue";
 import ProductDetailPage from "@/pages/User/ProductDetailPage.vue";
 import SellerCompanyModifyComponent from "@/components/Seller/SellerCompanyModifyComponent.vue";
+import UserMypageCouponListComponent from "@/components/User/UserMypageCouponListComponent.vue";
+import UserMypageInfoDetailComponent from "@/components/User/UserMypageInfoDetailComponent.vue";
+import UserMypageInfoEditComponent from "@/components/User/UserMypageInfoEditComponent.vue";
+import UserMypageLikesListComponent from "@/components/User/UserMypageLikesListComponent.vue";
+import UserMypageManageAddressComponent from "@/components/User/UserMypageManageAddressComponent.vue";
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -41,34 +49,63 @@ const router = createRouter({
                 { path: "seller", component: SellerSignupComponent },
             ]
         },
-        { path: '/user/mypage', component: UserMypage },
+        { path: '/user/mypage', component: UserMypage, meta: {requiresAuth: true, roles: ['ROLE_USER']},
+            children:[
+                {path: "detail", component: UserMypageInfoDetailComponent, meta: {requiresAuth: true, roles: ['ROLE_USER']} },
+                {path: "edit", component: UserMypageInfoEditComponent, meta: {requiresAuth: true, roles: ['ROLE_USER']}},
+                {path: "manage/address", component: UserMypageManageAddressComponent, meta: {requiresAuth: true, roles: ['ROLE_USER']}},
+                {path: "coupon/list", component: UserMypageCouponListComponent, meta: {requiresAuth: true, roles: ['ROLE_USER']}},
+                {path: "likes/list", component: UserMypageLikesListComponent, meta: {requiresAuth: true, roles: ['ROLE_USER']}},
+            ]
+         },
 
 
         {
             path: "/seller", component: SellerPage,
             children: [
-                { path: "mypage", component: SellerMyPageComponent },
-                { path: "product", component: SellerProductListComponent },
-                { path: "bid", name: "SellerBidListPage", component: SellerBidListComponent },
-                { path: "waitgroupbuy", component: SellerWaitGroupbuyListComponent },
-                { path: "company/register", component: CompanyRegisterComponent },
-                { path: "company/detail", component: CompanyDetailComponent },
-                { path: "company/modify", component: SellerCompanyModifyComponent},
+                { path: "mypage", component: SellerMyPageComponent, meta: {requiresAuth: true, roles: ['ROLE_SELLER']} },
+                { path: "product", component: SellerProductListComponent, meta: {requiresAuth: true, roles: ['ROLE_SELLER']} },
+                { path: "bid", name: "SellerBidListPage", component: SellerBidListComponent, meta: {requiresAuth: true, roles: ['ROLE_SELLER']} },
+                { path: "waitgroupbuy", component: SellerWaitGroupbuyListComponent, meta: {requiresAuth: true, roles: ['ROLE_SELLER']} },
+                { path: "company/register", component: CompanyRegisterComponent, meta: {requiresAuth: true, roles: ['ROLE_SELLER']} },
+                { path: "company/detail", component: CompanyDetailComponent, meta: {requiresAuth: true, roles: ['ROLE_SELLER']} },
+                { path: "company/modify", component: SellerCompanyModifyComponent, meta: {requiresAuth: true, roles: ['ROLE_SELLER']}},
 
             ]
         },
-        { path: "/seller/bid/register", name: "BidRegisterPage", component: SellerBidRegisterPage },
-        { path: "/seller/bid/modify", name: "BidModifyPage", component: SellerBidModifyPage },
-        { path: "/seller/product/register", component: SellerProductRegisterMain },
+        { path: "/seller/bid/register", name: "BidRegisterPage", component: SellerBidRegisterPage, meta: {requiresAuth: true, roles: ['ROLE_SELLER']} },
+        { path: "/seller/bid/modify", name: "BidModifyPage", component: SellerBidModifyPage , meta: {requiresAuth: true, roles: ['ROLE_SELLER']}},
+        { path: "/seller/product/register", component: SellerProductRegisterMain , meta: {requiresAuth: true, roles: ['ROLE_SELLER']}},
 
 
-        { path: "/order/history", component: OrderHistoryPage },
-        { path: "/order", component: OrderPage },
-        { path: "/groupbuy/register", component: GroupbuyRegisterPage },
-        { path: "/groupbuy/wait", component: MyWaitGroupbuyPage },
+        { path: "/order/history", component: OrderHistoryPage, meta: {requiresAuth: true, roles: ['ROLE_USER']} },
+        { path: "/order", component: OrderPage, meta: {requiresAuth: true, roles: ['ROLE_USER']} },
+        { path: "/groupbuy/register", component: GroupbuyRegisterPage, meta: {requiresAuth: true, roles: ['ROLE_USER']} },
+        { path: "/groupbuy/wait", component: MyWaitGroupbuyPage, meta: {requiresAuth: true, roles: ['ROLE_USER']} },
         { path: "/groupbuy/search", name: "searchGroupbuy", component: SearchResultPage },
-        { path: "/groupbuy/detail/wait/:idx", component: GroupBuyDetailPage },
+        { path: "/groupbuy/detail/wait/:idx", component: GroupBuyDetailPage, meta: {requiresAuth: true, roles: ['ROLE_USER']} },
         { path: "/groupbuy/detail/progress/:idx", component: ProductDetailPage },
     ]
 });
+router.beforeEach(async (to, from, next) => {
+    const userStore = useUserStore(); // Pinia 스토어
+    const isAuthenticated = userStore.isLoggedIn; // 로그인 상태 확인
+    const userRoles = userStore.roles; // 사용자 역할 (예: ['user'])
+    
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+    const requiredRoles = to.matched.flatMap(record => record.meta.roles || []);
+  
+    if (requiresAuth) {
+      if (!isAuthenticated) {
+        next('/login'); // 로그인 페이지로 리다이렉트
+      } else if (!requiredRoles.some(role => userRoles.includes(role))) {
+        alert("접근 권한이 없습니다.");
+        next('/'); // 권한 없음 페이지로 리다이렉트
+      } else {
+        next(); // 경로 허용
+      }
+    } else {
+      next(); // 인증 필요 없는 페이지는 그대로 허용
+    }
+  });
 export default router;

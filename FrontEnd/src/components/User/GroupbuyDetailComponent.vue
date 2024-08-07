@@ -60,12 +60,15 @@ export default {
     computed: {
       ...mapStores(useGroupbuyStore)
     },
-    created() {
-        this.groupbuyStore.getWaitGroupbuy(this.$route.params.idx);
+    mounted() {
+        this.getWaitGroupbuy();
         this.updateRemainingTime();
         setInterval(this.updateRemainingTime, 1000);
     },
     methods: {
+        async getWaitGroupbuy() {
+            await this.groupbuyStore.getWaitGroupbuy(this.$route.params.idx);
+        },
         scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         },

@@ -10,7 +10,7 @@
                             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="../../assets/images/goods_ex.jpg" class="d-block w-100" alt="상품 사진1">
+                                        <img :src="groupbuyStore.progressGroupbuy.productThumbnailImg" class="d-block w-100" alt="상품 사진1">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button"
@@ -72,7 +72,7 @@
                                             </div>
                                         </div>
                                         <div class="col-4">
-                                            <div class="p-3 info_btn3">바로구매</div>
+                                            <div class="p-3 info_btn3" @click="joinGroupbuy">바로구매</div>
                                         </div>
                                     </div>
                                 </div>
@@ -123,19 +123,14 @@ export default {
             quantity: 1,
             remainingTime: '',
             minQuantity: 1,
-            maxQuantity: 1
+            maxQuantity: 1,
         }
     },
     methods: {
         changeQuantity(amount) {
-            var input = document.getElementById('quantityInput');
-            var currentValue = parseInt(input.value);
-            var minValue = parseInt(input.min);
-            var maxValue = parseInt(input.max);
-
-            var newValue = currentValue + amount;
-            if (newValue >= minValue && newValue <= maxValue) {
-                input.value = newValue;
+            const newValue = this.quantity + amount;
+            if (newValue >= this.minQuantity && newValue <= this.groupbuyStore.progressGroupbuy.gpbuyRemainQuantity) {
+                this.quantity = newValue;
             }
         },
         calculateRemainingTime(bidEndTime) {
@@ -157,13 +152,15 @@ export default {
         updateRemainingTime() {
             this.remainingTime = this.calculateRemainingTime(this.groupbuyStore.progressGroupbuy.gpbuyEndedAt);
         },
+        joinGroupbuy() {
+            this.$router.push({ path: '/order', query: { quantity: this.quantity, gpbuyIdx: this.groupbuyStore.progressGroupbuy.gpbuyIdx } });
+        }
     },
     computed: {
       ...mapStores(useGroupbuyStore)
     },
     created() {
         this.groupbuyStore.getProgressGroupbuy(this.$route.params.idx);
-        this.maxQuantity = this.groupbuyStore.progressGroupbuy.gpbuyRemainQuantity;
         this.updateRemainingTime();
         setInterval(this.updateRemainingTime, 1000);
     },

@@ -4,15 +4,21 @@ import axios from "axios";
 const backend = "/api";
 
 export const useUserStore = defineStore('user', {
-    state: () => ({ isLoggedIn: false, uuid: '' }),
+    state: () => ({ isLoggedIn: false, uuid: '', roles:[] }),
     persist: {
         storage: sessionStorage,
     },
     actions: {
         async login(user) {
             let response = await axios.post(backend + "/user/login", user);
+            console.log(response.data.result);
             if (response.status === 200) {
                 this.isLoggedIn = true;
+                if(response.data.result == "ROLE_USER"){
+                    this.roles = ["ROLE_USER"];
+                }else{
+                    this.roles= ["ROLE_SELLER"];
+                }
                 return true;
             } else {
                 return false;

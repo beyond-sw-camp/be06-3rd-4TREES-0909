@@ -2,11 +2,11 @@
     <div id="main_content">
         <!--상품 영역-->
         <section class="main_goods">
-            <h2 v-if="$route.query.categoryName != null">{{ $route.query.categoryName }}</h2>
+            <h2 v-if="0 < $route.query.categoryIdx < 12 ">{{ groupbuyStore.getCategoryText(categoryIdx) }}</h2>
             <h2 v-else>검색 결과</h2>
             <div class="goods_wrap">
                 <div v-if="isLoading"></div>
-                <CardComponent v-else-if="groupbuyStore.groupbuyList.length > 0" v-for="(groupbuy,idx) in groupbuyStore.groupbuyList" :key="idx" :groupbuy="groupbuy"></CardComponent>
+                <CardComponent v-else-if="groupbuyStore.groupbuyList != null" v-for="(groupbuy,idx) in groupbuyStore.groupbuyList" :key="idx" :groupbuy="groupbuy"></CardComponent>
             </div>
         </section>
     </div>
@@ -25,7 +25,6 @@ export default {
             categoryIdx: null,
             minPrice: null,
             maxPrice: null,
-            
         }
     },
     components: {
@@ -37,6 +36,10 @@ export default {
             console.log(this.minPrice);
             await this.groupbuyStore.searchGroupbuyList(this.page,this.categoryIdx, this.minPrice, this.maxPrice);
             this.isLoading = false;
+        },
+        refreshPage(){
+            this.isLoading= true;
+            this.searchGroupbuyList();
         }
     },
     computed: {
@@ -47,6 +50,12 @@ export default {
         this.minPrice = this.$route.query.minPrice;
         this.maxPrice = this.$route.query.maxPrice;
         this.searchGroupbuyList();
+    },
+    watch:{
+        "$route.query.categoryIdx"(newValue){
+            this.categoryIdx = newValue;
+            this.refreshPage();
+        }
     }
 }
 

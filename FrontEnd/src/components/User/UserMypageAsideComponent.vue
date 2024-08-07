@@ -6,14 +6,14 @@
             <nav class="aside-menu">
                 <ul class="menu-list">
                     <li>
-                        <a href="#" class="menu" @click.prevent="changeComponent('UserMypageInfoDetailComponent')">회원정보관리</a>
+                        <a href="#" class="menu"><router-link to="/user/mypage/detail">회원정보관리</router-link></a>
                         <ul class="depth2">
-                            <li><a href="#" @click.prevent="changeComponent('UserMypageInfoDetailComponent')">내 정보</a>
+                            <li><a href="#"><router-link to="/user/mypage/detail">내 정보</router-link></a>
                             </li><!-- 활성화될 경우 li에 addClass current  -->
-                            <li><a href="#" @click.prevent="changeComponent('UserMypageInfoEditComponent')">정보 수정</a>
+                            <li><a href="#" ><router-link to="/user/mypage/edit">정보 수정</router-link></a>
                             </li><!-- 활성화될 경우 li에 addClass current  -->
                             <li class=""><a href="#"
-                                    @click.prevent="changeComponent('UserMypageManageAddressComponent')">배송지 관리</a></li>
+                                    ><router-link to="/user/mypage/manage/address">배송지 관리</router-link></a></li>
                         </ul>
                     </li>
                     <li>
@@ -28,7 +28,7 @@
                     <li>
                         <a href="#" class="menu">혜택관리</a>
                         <ul class="depth2">
-                            <li class=""><a class="sub-menu" href="#" @click.prevent="changeComponent('UserMypageCouponListComponent')" >나의 쿠폰</a></li>
+                            <li class=""><a class="sub-menu" href="#"><router-link to="/user/mypage/coupon/list">나의 쿠폰</router-link></a></li>
                             <li class=""><a href="#" @click="showAlert">포인트</a></li>
                         </ul>
                     </li>
@@ -36,7 +36,7 @@
                         <a href="#" class="menu">활동관리</a>
                         <ul class="depth2">
                             <li class=""><a href="#" @click="showAlert">최근 본 상품</a></li>
-                            <li class=""><a href="#">관심 공구</a></li>
+                            <li class=""><a href="#"><router-link to="/user/mypage/likes/list">관심 공구</router-link></a></li>
                             <li><a href="#" @click="showAlert">1:1문의</a></li><!-- 활성화될 경우 li에 addClass current  -->
                             <li><a href="#" @click="showAlert">상품후기</a></li><!-- 활성화될 경우 li에 addClass current  -->
                             <li><a href="#" @click="showAlert">상품문의내역</a></li><!-- 활성화될 경우 li에 addClass current  -->
@@ -229,5 +229,7 @@ li .menu{
 ul.menu-list {
     padding-left: 20px;
 }
+
+
 
 </style>

@@ -509,7 +509,16 @@ export default {
         },
     },
     computed: {
-        ...mapStores(useOrderStore) // 어떤 저장소랑 연결시켜 주겠다.
+        ...mapStores(useOrderStore), // 어떤 저장소랑 연결시켜 주겠다.
+        quantity() {
+            return this.$route.query.quantity;
+        },
+        gpbuyIdx() {
+            return this.$route.query.gpbuyIdx;
+        },
+        bidIdx() {
+            return this.$route.query.bidIdx;
+        }
     },
     mounted() {
         this.orderPageInfo = this.orderStore.orderPageInfo;
