@@ -8,12 +8,17 @@
                         </div>
                         <div class="col-4">
                             <div class="row justify-content-end top_header_login">
-                                <div class="col-4">
+                                <div class="col-4" v-if="userStore.isLoggedIn===false">
                                     <router-link to="/login" class="btn_map_close">
                                         로그인/회원가입
                                     </router-link>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4" v-else @click="logout()">
+                                    <router-link to="/" class="btn_map_close">
+                                        로그아웃
+                                    </router-link>
+                                </div>
+                                <div class="col-4" v-if="userStore.isLoggedIn">
                                     <router-link to="/user/mypage/detail">
                                         마이페이지
                                     </router-link>
@@ -87,6 +92,8 @@
 </template>
 
 <script>
+import { useUserStore } from '@/stores/useUserStore';
+import { mapStores } from 'pinia';
 export default {
     name: "HeaderComponent",
     data() {
@@ -111,6 +118,12 @@ export default {
         categoryMouseLeave(){
             this.$refs.test_cates.style.display='none';
         },
+        logout(){
+            this.userStore.logout();
+        }
+    },
+    computed: {
+        ...mapStores(useUserStore),
     }
 }
 </script>

@@ -97,7 +97,7 @@ export default {
             let response = this.groupbuyStore.registerGroupbuy(this.title, this.quantity, this.selectedCategoryIdx, this.content);
             if(response.groupbuyIdx != 0){
                 alert("공구가 정상 등록 되었습니다.");
-                this.$router.push("/main");
+                this.$router.push("/");
             } else{
                 alert("공구 등록에 실패하였습니다. 다시 시도해주세요");
                 this.$router.go(0);

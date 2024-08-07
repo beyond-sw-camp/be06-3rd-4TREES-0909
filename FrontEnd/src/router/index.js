@@ -40,7 +40,6 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: "/", component: UserMainPage },
-        { path: "/login2", component: LoginPage2 },
         { path: "/login", component: LoginPage },
         {
             path: "/signup", component: SignupPage
