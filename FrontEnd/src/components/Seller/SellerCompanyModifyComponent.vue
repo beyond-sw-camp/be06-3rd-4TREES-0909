@@ -332,7 +332,7 @@ button {
     border: 1px solid rgb(229, 229, 229);
     background-color: rgb(255, 255, 255);
     color: rgb(25, 25, 25);
-    caret-color: rgb(2, 122, 255);
+    caret-color: #c38ffd;
     font-size: 16px;
     line-height: 1;
     font-weight: 700;
@@ -345,8 +345,8 @@ button {
     font-weight: 700;
     cursor: pointer;
     background: rgb(255, 255, 255);
-    color: rgb(2, 122, 255);
-    border: 1px solid rgba(2, 122, 255, 0.6);
+    color: #c38ffd;
+    border: 1px solid #c38ffd;
     padding: 10px 14px;
     font-size: 14px;
 }
@@ -546,9 +546,9 @@ button {
     line-height: 1;
     font-weight: 700;
     cursor: pointer;
-    background: rgb(2, 122, 255);
+    background: #c38ffd;
     color: rgb(255, 255, 255);
-    border: 1px solid rgb(2, 122, 255);
+    border: 1px solid #c38ffd;
     padding: 15px;
     font-size: 15px;
     width: 265px;

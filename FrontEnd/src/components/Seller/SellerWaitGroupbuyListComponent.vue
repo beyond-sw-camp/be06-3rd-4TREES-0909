@@ -260,7 +260,7 @@ h3 {
     font-size: 14px;
     line-height: 14px;
     color: rgb(255, 255, 255);
-    background-color: rgb(2, 122, 255);
+    background-color: #c38ffd;
     border: none;
 }
 
@@ -535,22 +535,6 @@ ol,
 ul {
     list-style: none;
 }
-
-.css-165uhau {
-    padding: 0px;
-    line-height: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    background-color: transparent;
-    color: inherit;
-    text-decoration: underline;
-}
-
-
-
-
-
-
 
 
 
