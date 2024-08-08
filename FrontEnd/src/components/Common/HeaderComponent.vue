@@ -44,7 +44,7 @@ props: ["headerTitle"]
 }
 
 .header .headerLogo {
-    background: url('../../assets/images/Common/0909.png') 0 0 no-repeat;
+    background: url('../../assets/images/market/logo_공동구매.png') 0 0 no-repeat;
     background-size: 100% auto;
     position: absolute;
     top: 12px;

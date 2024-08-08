@@ -47,95 +47,87 @@ ul {
 
 */
 .uBtn {
-  display: block;
-  width: 100%;
-  height: 50px;
-  padding-bottom: 1px;
-  font-size: 15px;
-  color: #000;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.uBtn:disabled {
-  color: #fff;
-  font-weight: bold;
-  background: #ccc;
-  border: 0;
-}
-
-.uBtn.active {
-  color: #fff;
-  font-weight: bold;
-  background: #333;
-  border: 0;
-}
-
-.uBtn.active:disabled {
-  background: #ccc;
-}
-
-.uBtn.point {
-  color: #fff;
-  font-weight: bold;
-  background: #1769ff;
-  border: 0;
-}
-
-.uBtn.point:disabled {
-  background: #ccc;
-}
-
-.uInputArea {
-  display: table;
-  width: 100%;
-  height: 30px;
-  padding: 10px 0;
-  border-bottom: 1px solid #000;
-}
-
-.uInputArea.emailType {
-  position: relative;
-  background: url("//openimage.interpark.com/member/common/icon/icon_arrow_down.png") 100% 50% no-repeat;
-  background-size: 22px auto;
-}
-
-.uInputArea.emailType .uInput .inputBox .inputText {
-  padding-right: 0;
-}
-
-.uInputArea.emailType .uSelectBox label {
-  min-width: 106px;
-  background: none;
-}
-
-.uInputArea.emailType .uSelectBox select {
-  padding-left: 0;
-}
-
-.uInputArea.emailType.active .inputBox {
-  padding-right: 60px;
-}
-
-.uInputArea.emailType.active .selectCol {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  padding: 0;
-  opacity: 0;
-  margin-top: -15px;
-}
-
-.uInputArea.emailType.active .selectCol label {
-  min-width: 0;
-  width: 50px;
-  height: 100%;
-  padding: 0;
-}
-
-@media screen and (min-width: 769px) {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding-bottom: 1px;
+    font-size: 15px;
+    color: #000;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+  .uBtn:disabled {
+    color: #fff;
+    font-weight: bold;
+    background: #ccc;
+    border: 0;
+  }
+  
+  .uBtn.active {
+    color: #fff;
+    font-weight: bold;
+    background: #333;
+    border: 0;
+  }
+  
+  .uBtn.active:disabled {
+    background: #ccc;
+  }
+  
+  .uBtn.point {
+    color: #fff;
+    font-weight: bold;
+    background: #c38ffd;
+    border: 0;
+  }
+  
+  .uBtn.point:disabled {
+    background: #ccc;
+  }
+  
+  .uInputArea {
+    display: table;
+    width: 100%;
+    height: 30px;
+    padding: 10px 0;
+    border-bottom: 1px solid #000;
+  }
+  
+  .uInputArea.emailType {
+    position: relative;
+    background: url("//openimage.interpark.com/member/common/icon/icon_arrow_down.png") 100% 50% no-repeat;
+    background-size: 22px auto;
+  }
+  
+  .uInputArea.emailType .uInput .inputBox .inputText {
+    padding-right: 0;
+  }
+  
+  .uInputArea.emailType .uSelectBox label {
+    min-width: 106px;
+    background: none;
+  }
+  
+  .uInputArea.emailType .uSelectBox select {
+    padding-left: 0;
+  }
+  
+  .uInputArea.emailType.active .inputBox {
+    padding-right: 60px;
+  }
+  
+  .uInputArea.emailType.active .selectCol {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding: 0;
+    opacity: 0;
+    margin-top: -15px;
+  }
+  
   .uInputArea.emailType.active .selectCol label {
     min-width: 130px;
     width: auto;
