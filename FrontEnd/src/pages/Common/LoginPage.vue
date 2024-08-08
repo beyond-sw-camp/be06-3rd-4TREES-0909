@@ -194,15 +194,15 @@ html {
   padding: 10px 20px;
   margin: 5px;
   font-size: 1.2rem;
-  border: 2px solid #007BFF;
+  border: 2px solid #c4b0d1;
   background-color: #fff;
-  color: #007BFF;
+  color: #b617ff;
   cursor: pointer;
   border-radius: 5px;
 }
 
 .buttonGroup button.active {
-  background-color: #007BFF;
+  background-color: #c566f7eb;
   color: #fff;
 }
 
@@ -291,9 +291,9 @@ html {
 
 .loginLogo h1 {
   display: inline-block;
-  width: 15.6rem;
+  width: 30rem;
   height: 15rem;
-  background: url("../../assets/images/Common/logo.png") 0 0 no-repeat;
+  background: url("../../assets/images/market/logo_공동구매.png") 0 0 no-repeat;
   background-size: 100%;
 }
 
@@ -678,7 +678,8 @@ html {
   width: 100%;
   height: 5.2rem;
   border-radius: 1.2rem;
-  background-color: #1769ff;
+  border:2px solid#c4b0d1;
+  background-color: #c38ffd;
 }
 
 .loginInner .loginButtonBox .loginBtn:disabled {
@@ -731,7 +732,7 @@ html {
 }
 
 .loginInner .findList li:last-child a {
-  color: #1769ff;
+  color: #b617ff;
 }
 
 .loginInner .snsLogin {
@@ -881,7 +882,7 @@ html {
   }
 
   .loginLogo h1 {
-    width: 18.6rem;
+    width: 47rem;
     height: 15rem;
   }
 

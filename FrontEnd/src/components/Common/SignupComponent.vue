@@ -78,7 +78,7 @@ ol,ul {
   .uBtn.point {
     color: #fff;
     font-weight: bold;
-    background: #1769ff;
+    background: #c38ffd;
     border: 0;
   }
   
