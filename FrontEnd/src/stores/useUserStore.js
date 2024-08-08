@@ -4,7 +4,7 @@ import axios from "axios";
 const backend = "/api";
 
 export const useUserStore = defineStore('user', {
-    state: () => ({ isLoggedIn: false, uuid: '', roles:[] }),
+    state: () => ({ isLoggedIn: false, uuid: '', roles: [] }),
     persist: {
         storage: sessionStorage,
     },
@@ -12,23 +12,23 @@ export const useUserStore = defineStore('user', {
         async login(user) {
             try {
                 let response = await axios.post(backend + "/user/login", user);
-            console.log(response.data.result);
-            if (response.status === 200) {
-                this.isLoggedIn = true;
-                if(response.data.result == "ROLE_USER"){
-                    this.roles = ["ROLE_USER"];
-                }else{
-                    this.roles= ["ROLE_SELLER"];
+                console.log(response.data.result);
+                if (response.status === 200) {
+                    this.isLoggedIn = true;
+                    if (response.data.result == "ROLE_USER") {
+                        this.roles = ["ROLE_USER"];
+                    } else {
+                        this.roles = ["ROLE_SELLER"];
+                    }
+                    return true;
+                } else {
+                    return false;
                 }
-                return true;
-            } else {
-                return false;
-            }
             } catch (error) {
                 console.error("로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요")
                 return false;
             }
-            
+
         },
         logout() {
             this.isLoggedIn = false;
