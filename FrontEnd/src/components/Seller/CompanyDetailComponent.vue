@@ -773,6 +773,7 @@ p {
 }
 
 .cs_btn.large.black {
+    border-radius: 6px;
     background: #c981f1;
     border: 1px solid #a053ce;
     color: #fff;

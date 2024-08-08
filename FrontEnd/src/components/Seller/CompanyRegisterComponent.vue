@@ -326,32 +326,18 @@ button {
     row-gap: 10px;
 }
 
-.css-49gxn1 {
-    padding: 14px;
-    border-radius: 6px;
-    border: 1px solid rgb(229, 229, 229);
-    background-color: rgb(255, 255, 255);
-    color: rgb(25, 25, 25);
-    caret-color: rgb(2, 122, 255);
-    font-size: 16px;
-    line-height: 1;
-    font-weight: 700;
-    opacity: 1;
-}
-
 .css-1v0rcng {
     border-radius: 6px;
     line-height: 1;
     font-weight: 700;
     cursor: pointer;
     background: rgb(255, 255, 255);
-    color: rgb(2, 122, 255);
-    border: 1px solid rgba(2, 122, 255, 0.6);
+    color: #c38ffd;
+    border: 1px solid #c38ffd;
     padding: 10px 14px;
     font-size: 14px;
 }
 
-.css-11nkng1:read-only,
 .css-11nkng1.read-only {
     color: rgb(140, 140, 140);
     cursor: default;
@@ -370,7 +356,7 @@ button {
     border: 1px solid rgb(229, 229, 229);
     background-color: rgb(255, 255, 255);
     color: rgb(25, 25, 25);
-    caret-color: rgb(2, 122, 255);
+    caret-color: rgb#c38ffd;
     font-size: 16px;
     line-height: 1;
     font-weight: 700;
@@ -546,9 +532,9 @@ button {
     line-height: 1;
     font-weight: 700;
     cursor: pointer;
-    background: rgb(2, 122, 255);
+    background: #c38ffd;
     color: rgb(255, 255, 255);
-    border: 1px solid rgb(2, 122, 255);
+    border: 1px solid #c9b5e0;
     padding: 15px;
     font-size: 15px;
     width: 265px;
