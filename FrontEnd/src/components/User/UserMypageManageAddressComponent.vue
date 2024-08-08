@@ -442,23 +442,11 @@ tbody {
 .text-center {
     text-align: center !important;
 }
-.custom-radio input[type="radio"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
+
 label, select, input, textarea {
     vertical-align: middle;
 }
-.custom-radio {
-    position: relative;
-    display: inline-block;
-}
+
 input[type="radio" i] {
     background-color: initial;
     cursor: default;
@@ -498,20 +486,7 @@ input {
     line-height: 20px;
     letter-spacing: 0.002em;
 }
-.custom-radio.single .radio + label {
-    padding-left: 20px;
-}
-.custom-radio .radio + label {
-    display: inline-block;
-    color: #333;
-    position: relative;
-    padding-left: 28px;
-    height: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 1.4;
-    vertical-align: top;
-}
+
 .blind {
     overflow: hidden;
     position: absolute;
@@ -526,35 +501,8 @@ input {
     word-break: break-all;
     clip: rect(0, 0, 0, 0);
 }
-.custom-radio .radio:checked + label:before {
-    background: #fff;
-    border: 1px solid #ddd;
-}
-.custom-radio .radio + label:before {
-    display: block;
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 100%;
-    box-sizing: border-box;
-}
-.custom-radio .radio + label {
-    display: inline-block;
-    color: #333;
-    position: relative;
-    padding-left: 28px;
-    height: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 1.4;
-    vertical-align: top;
-}
+
+
 .blind {
     overflow: hidden;
     position: absolute;
@@ -569,30 +517,11 @@ input {
     word-break: break-all;
     clip: rect(0, 0, 0, 0);
 }
-.custom-radio .radio:checked + label:after {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 10px;
-    height: 10px;
-    background: #FF6001;
-    border-radius: 100%;
-}
+
 *, ::after, ::before {
     box-sizing: border-box;
 }
-.custom-radio .radio + label {
-    display: inline-block;
-    color: #333;
-    position: relative;
-    padding-left: 28px;
-    height: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    line-height: 1.4;
-    vertical-align: top;
-}
+
 .text-center {
     text-align: center !important;
 }
@@ -713,27 +642,7 @@ a {
     display: block;
     clear: both;
 }
-#radio-delivery-20220424000000577778{
-    display: none;
-}
-.custom-radio .radio:checked + label:before {
-    background: #fff;
-    border: 1px solid #ddd;
-}
-.custom-radio .radio + label:before {
-    display: block;
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 100%;
-    box-sizing: border-box;
-}
+
 .reply-area ~ .pagination, .banner-list-wrap ~ .pagination, .board-list ~ .pagination, .board-list ~ .btn-bottom-area, .board-form ~ .btn-bottom-area, .list-lately-wrap ~ .btn-bottom-area, .order-list-area ~ .pagination {
     margin-top: 20px;
 }
@@ -791,4 +700,5 @@ button span {
 *, ::after, ::before {
     box-sizing: border-box;
 }
+
 </style>

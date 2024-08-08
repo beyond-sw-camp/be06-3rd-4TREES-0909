@@ -293,13 +293,13 @@ li {
     max-height: 340px;
     overflow-y: scroll;
 }
-.custom-checkbox {
+/* .custom-checkbox {
     margin-top: 8px;
     position: relative;
     display: inline-block;
     vertical-align: top;
-}
-custom-checkbox input[type="checkbox"] {
+} */
+/* custom-checkbox input[type="checkbox"] {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -309,7 +309,7 @@ custom-checkbox input[type="checkbox"] {
     clip: rect(0, 0, 0, 0);
     border: 0;
     vertical-align: top;
-}
+} */
 input {
     
     text-rendering: auto;
@@ -335,6 +335,10 @@ input {
     padding-block: 1px;
     padding-inline: 2px;
 }
+
+input[type="checkbox"]{
+    cursor: pointer;
+}
 .layer-pop.dlv-addr-pop .lineless-table .custom-checkbox input[type="checkbox"] + label {
     font-size: 13px;
 }
@@ -345,13 +349,14 @@ input {
     vertical-align: top;
 }
 .custom-checkbox .checkbox + label {
-    padding-left: 26px;
+    padding-left: 10px;
+    padding-top: 2px;
     min-height: 18px;
 }
 .layer-pop.dlv-addr-pop .custom-checkbox .checkbox + label:before {
     border-radius: 4px;
 }
-.custom-checkbox .checkbox + label:before {
+/* .custom-checkbox .checkbox + label:before {
     display: block;
     content: '';
     position: absolute;
@@ -363,7 +368,7 @@ input {
     background: #fff;
     border: 1px solid #ccc;
     box-sizing: border-box;
-}
+} */
 .layer-pop.dlv-addr-pop .lineless-table .custom-checkbox input[type="checkbox"] + label {
     font-size: 13px;
 }
@@ -769,5 +774,8 @@ button[data-v-d42245a0] {
 #closeBtn{
     border: none;
     background: none;
+}
+ul {
+    padding-left: 5px;
 }
 </style>
