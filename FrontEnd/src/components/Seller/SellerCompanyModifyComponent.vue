@@ -3,7 +3,7 @@
         <div class="css-k3npxh">
             <div class="css-vdsrs0">
                 <div class="css-1geb722">
-                    <h1 class="css-1je12r6">업체 정보<span class="css-vg8pgq"></span>등록</h1>
+                    <h1 class="css-1je12r6">업체 정보<span class="css-vg8pgq"></span>수정</h1>
                     <section class="css-1dy31wn">
                         <article>
                             <h1 class="css-7m4a1a">업체 정보</h1>
@@ -56,7 +56,7 @@
                         <div class="css-vopr99"></div>
                     </section>
                     <div class="css-zl1inp">
-                        <button type="button" class="css-110qy8c" @click="submitForm()">업체 등록 신청</button>
+                        <button type="button" class="css-110qy8c" @click="submitForm()">업체 정보 수정</button>
                     </div>
                 </div>
             </div>
