@@ -10,7 +10,8 @@
                             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img :src="groupbuyStore.progressGroupbuy.productThumbnailImg" class="d-block w-100" alt="상품 사진1">
+                                        <img :src="groupbuyStore.progressGroupbuy.productThumbnailImg"
+                                            class="d-block w-100" alt="상품 사진1">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button"
@@ -27,7 +28,8 @@
                         </div>
                         <div class="col detail_content_info">
                             <h2>{{ groupbuyStore.progressGroupbuy.productName }}</h2>
-                            <p>{{ new Intl.NumberFormat('ko-KR').format(groupbuyStore.progressGroupbuy.bidPrice) }}<span>원</span></p>
+                            <p>{{ new Intl.NumberFormat('ko-KR').format(groupbuyStore.progressGroupbuy.bidPrice)
+                                }}<span>원</span></p>
                             <hr>
                             <div id="detail_content_info_mid">
                                 <p>
@@ -38,11 +40,13 @@
                             <div id="detail_content_info_state">
                                 <p>
                                     <span>카테고리</span>
-                                    <span>{{ groupbuyStore.getCategoryText(groupbuyStore.progressGroupbuy.categoryIdx) }}</span>
+                                    <span>{{ groupbuyStore.getCategoryText(groupbuyStore.progressGroupbuy.categoryIdx)
+                                        }}</span>
                                 </p>
                                 <p>
                                     <span>남은수량/목표수량</span>
-                                    <span>{{ groupbuyStore.progressGroupbuy.gpbuyRemainQuantity }}/{{ groupbuyStore.progressGroupbuy.gpbuyQuantity}}</span>
+                                    <span>{{ groupbuyStore.progressGroupbuy.gpbuyRemainQuantity }}/{{
+                                        groupbuyStore.progressGroupbuy.gpbuyQuantity }}</span>
                                 </p>
                                 <p>
                                     <span>업체명</span>
@@ -50,32 +54,38 @@
                                 </p>
                             </div>
                             <div>
-                                <div class="container text-center detail_content_info_btn">
-                                    <div class="row g-2">
+                                <div class="container detail_content_info_btn">
+                                    <div class="row g-2 justify-content-start align-items-center">
+                                        <div class="col-8"></div>
                                         <div class="col-4">
-                                            <div class="p-3 info_btn1">
-                                                <img src="../../assets/images/goods/w_heart.svg" alt="찜"> 찜
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <button class="btn btn-outline-secondary" type="button"
                                                         @click="changeQuantity(-1)">-</button>
                                                 </div>
-                                                <input class="form-control text-center" v-model="quantity" :min="minQuantity" :max="maxQuantity"
-                                                    id="quantityInput">
+                                                <input class="form-control text-center" v-model="quantity"
+                                                    :min="minQuantity" :max="maxQuantity" id="quantityInput" readonly>
                                                 <div class="input-group-append">
                                                     <button class="btn btn-outline-secondary" type="button"
                                                         @click="changeQuantity(1)">+</button>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row g-2 justify-content-start align-items-center mt-3">
+                                        <div class="col-4"></div>
                                         <div class="col-4">
-                                            <div class="p-3 info_btn3" @click="joinGroupbuy">바로구매</div>
+                                            <div @click="likes" class="p-3 info_btn1 text-center"
+                                                :style="{ backgroundColor: isLiked ? '#c981f1' : '#ccc' }">
+                                                <img src="../../assets/images/goods/w_heart.svg" alt="찜"> 찜
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="p-3 info_btn3 text-center" @click="joinGroupbuy">바로구매</div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -97,7 +107,8 @@
                             {{ groupbuyStore.progressGroupbuy.productContent }}
                         </div>
                     </div>
-                    <img class="product_img" v-for="(image, index) in groupbuyStore.progressGroupbuy.productImgUrlList" :key="index" :src="image">
+                    <img class="product_img" v-for="(image, index) in groupbuyStore.progressGroupbuy.productImgUrlList"
+                        :key="index" :src="image">
                 </div>
             </div>
             <!-- // goods_info -->
@@ -124,9 +135,18 @@ export default {
             remainingTime: '',
             minQuantity: 1,
             maxQuantity: 1,
+            isLiked: false
         }
     },
     methods: {
+        async likes() {
+            const result = await this.groupbuyStore.getGroupbuyLikes(this.$route.params.idx);
+            if (result) {
+                this.isLiked = this.groupbuyStore.isLiked;
+            } else {
+                alert("일반 회원 계정으로 로그인이 필요합니다.")
+            }
+        },
         changeQuantity(amount) {
             const newValue = this.quantity + amount;
             if (newValue >= this.minQuantity && newValue <= this.groupbuyStore.progressGroupbuy.gpbuyRemainQuantity) {
@@ -154,22 +174,26 @@ export default {
         },
         joinGroupbuy() {
             this.$router.push({ path: '/order', query: { quantity: this.quantity, gpbuyIdx: this.groupbuyStore.progressGroupbuy.gpbuyIdx } });
+        },
+        async getProgressGroupbuy() {
+            await this.groupbuyStore.getProgressGroupbuy(this.$route.params.idx);
+            this.isLiked = this.groupbuyStore.progressGroupbuy.isLiked;
+
         }
     },
     computed: {
-      ...mapStores(useGroupbuyStore)
+        ...mapStores(useGroupbuyStore)
     },
-    created() {
-        this.groupbuyStore.getProgressGroupbuy(this.$route.params.idx);
+    mounted() {
+        this.getProgressGroupbuy();
         this.updateRemainingTime();
         setInterval(this.updateRemainingTime, 1000);
-    },
+    }
 }
 
 </script>
 
 <style scoped>
-
 /* 전체적인 레이아웃 설계 */
 #main_content {
     width: 1024px;
@@ -185,6 +209,7 @@ export default {
 
 .detail_content_img {
     padding-left: 0;
+    margin: auto 0;
 }
 
 .detail_content_info {
@@ -281,6 +306,11 @@ export default {
 
 .info_btn1 {
     background-color: #ccc;
+}
+
+.info_btn_active {
+    background-color: #ca64ef;
+
 }
 
 .info_btn1>img {
