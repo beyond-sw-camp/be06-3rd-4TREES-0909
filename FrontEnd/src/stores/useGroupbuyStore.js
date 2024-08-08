@@ -4,6 +4,7 @@ import axios from "axios"
 // 전역 저장소 생성
 export const useGroupbuyStore = defineStore("groupbuy", {
   state: () => ({
+    isLiked: false,
     waitGroupbuy: {
       gpbuyIdx: 0,
       gpbuyTitle: "",
@@ -118,6 +119,16 @@ export const useGroupbuyStore = defineStore("groupbuy", {
         11: '반려동물용품'
       };
       return categoryMap[categoryIdx] || '알 수 없는 카테고리';
+    },
+    async getGroupbuyLikes(idx) {
+      const response = await axios.get("/api/gpbuy/likes/save?gpbuyIdx=" + idx);
+      console.log(response);
+      if (response.data.isSuccess) {
+        this.isLiked = response.data.result.isLiked;
+        return true;
+      } else {
+        return false
+      }
     }
   }
 });
