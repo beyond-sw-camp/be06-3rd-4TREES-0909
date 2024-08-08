@@ -6,26 +6,45 @@
                     alt="logo" class="css-1n6kgi5"></router-link>
             <div class="css-fdexoo">
             </div>
-            <div><router-link to="/seller/mypage" class="css-1053wox">
+            <div class="mypage_button"><router-link to="/seller/mypage" class="css-1053wox" >
                     <div class="css-23v5d0">마이페이지</div>
                     <img src="../../assets/images/기본프로필.png" alt="" width="22" height="22" class="css-4fhydt">
-                </router-link></div>
+                </router-link>
+            </div>
+            <div @click="logout()"><router-link to="/" class="css-1053wox" >
+                    <div class="css-23v5d0">로그아웃</div>
+                </router-link>
+            </div>
         </header>
     </div>
 </template>
 
 <script>
+import { useUserStore } from '@/stores/useUserStore';
+import { mapStores } from 'pinia';
+
 export default {
     name: "HeaderComponent",
     data() {
         return { message: "test" }
+    },
+    computed:{
+        ...mapStores(useUserStore)
+    },
+    methods: {
+        logout(){
+            this.userStore.logout();
+        }
     }
 }
 
 </script>
 
 <style scoped>
-
+.mypage_button{
+    margin-left: auto;
+    margin-right:10px;
+}
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time,mark,audio,video {
     margin: 0px;
     padding: 0px;
