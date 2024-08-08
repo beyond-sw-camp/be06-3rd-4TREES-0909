@@ -30,7 +30,8 @@ export const useUserStore = defineStore('user', {
             }
 
         },
-        logout() {
+        async logout() {
+            await axios.post(backend + "/logout",);
             this.isLoggedIn = false;
             this.roles = [];
         },
