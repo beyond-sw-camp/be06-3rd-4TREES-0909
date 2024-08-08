@@ -54,17 +54,18 @@ export const useGroupbuyStore = defineStore("groupbuy", {
       const response = await axios.get("/api/gpbuy/list", {
         params: {
           page: page,
-          size: 10
+          size: 20
         },
         withCredentials: true
       });
       this.groupbuyList = response.data.result;
+      return response.data.result;
     },
     async searchGroupbuyList(page, categoryIdx, minPrice, maxPrice) {
       const response = await axios.get("/api/gpbuy/search", {
         params: {
           page: page,
-          size: 10,
+          size: 20,
           categoryIdx: categoryIdx,
           minPrice: minPrice,
           maxPrice: maxPrice

@@ -5,7 +5,13 @@
             <h2>오늘의 공구 추천</h2>
             <div class="goods_wrap">
                 <div v-if="isLoading"></div>
-                <CardComponent v-else-if="groupbuyStore.groupbuyList.length > 0" v-for="(groupbuy,idx) in groupbuyStore.groupbuyList" :key="idx" :groupbuy="groupbuy"></CardComponent>
+                <CardComponent v-else-if="groupbuyList.length > 0" v-for="(groupbuy, idx) in groupbuyList" :key="idx"
+                    :groupbuy="groupbuy"></CardComponent>
+                <infinite-loading @infinite="load">
+                    <template #spinner><span></span></template>
+                    <template #no-more><span></span></template>
+                    <template #no-results><span></span></template>
+                </infinite-loading>
             </div>
         </section>
     </div>
@@ -13,6 +19,7 @@
 
 <script>
 import CardComponent from './CardComponent.vue';
+import InfiniteLoading from 'infinite-loading-vue3-ts';
 import { useGroupbuyStore } from '@/stores/useGroupbuyStore';
 import { mapStores } from 'pinia';
 export default {
@@ -20,16 +27,38 @@ export default {
     data() {
         return {
             page: 0,
-            isLoading: true
+            isLoading: true,
+            groupbuyList: [],
         }
     },
     components: {
-        CardComponent
+        CardComponent,
+        InfiniteLoading
     },
     methods: {
         async getGroupbuyList() {
-            await this.groupbuyStore.getGroupbuyList(this.page);
+            const response = await this.groupbuyStore.getGroupbuyList(this.page);
             this.isLoading = false;
+            this.groupbuyList.push(...response);
+            this.page++;
+        },
+        async load($state) {
+            console.log('load');
+            console.log(this.page);
+
+            const response = await this.groupbuyStore.getGroupbuyList(this.page);
+            if (response == null) {
+                $state.complete();
+            }
+            else if (response.length == 20) {
+                this.page++;
+                this.groupbuyList.push(...response);
+                $state.loaded()
+            }
+            else {
+                this.groupbuyList.push(...response);
+                $state.complete();
+            }
         }
     },
     computed: {
