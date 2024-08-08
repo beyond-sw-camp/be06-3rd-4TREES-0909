@@ -773,8 +773,8 @@ p {
 }
 
 .cs_btn.large.black {
-    background: #f14f4f;
-    border: 1px solid #da3a3a;
+    background: #c981f1;
+    border: 1px solid #a053ce;
     color: #fff;
 }
 

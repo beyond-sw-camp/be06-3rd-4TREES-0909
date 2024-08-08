@@ -1,8 +1,7 @@
 <template>
     <div class="css-1rhwfdb">
         <header class="css-fzv4fk"><router-link to="/seller/mypage" href="판매자 입찰 수정 조회.html"><img
-                    src="https://seller.bunjang.co.kr/static/js/../../static/media/Biz_type.2115f5da70bff8d5b30c4ebc2ed0eed2.svg"
-                    srcset="https://seller.bunjang.co.kr/static/js/../../static/media/Biz_type.2115f5da70bff8d5b30c4ebc2ed0eed2.svg 500w, https://seller.bunjang.co.kr/static/js/../../static/media/Biz_type.2115f5da70bff8d5b30c4ebc2ed0eed2.svg 1000w"
+                    src="../../assets/images/market/logo_seller.png"
                     alt="logo" class="css-1n6kgi5"></router-link>
             <div class="css-fdexoo">
             </div>
@@ -25,6 +24,11 @@ export default {
 </script>
 
 <style scoped>
+.css-1n6kgi5 {
+    width: 380px;
+    height: 100px;
+}
+
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time,mark,audio,video {
     margin: 0px;
@@ -84,7 +88,7 @@ body {
     -webkit-box-pack: justify;
     justify-content: space-between;
     padding: 0px 40px;
-    height: 83px;
+    height: 100px;
     background: rgb(255, 255, 255);
     box-shadow: rgb(229, 229, 229) 0px 1px 0px 0px;
     z-index: 3000;
