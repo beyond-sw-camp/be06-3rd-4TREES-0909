@@ -34,12 +34,14 @@ import UserMypageInfoDetailComponent from "@/components/User/UserMypageInfoDetai
 import UserMypageInfoEditComponent from "@/components/User/UserMypageInfoEditComponent.vue";
 import UserMypageLikesListComponent from "@/components/User/UserMypageLikesListComponent.vue";
 import UserMypageManageAddressComponent from "@/components/User/UserMypageManageAddressComponent.vue";
+import LoginRedirect from "@/pages/Common/LoginRedirect.vue";
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: "/", component: UserMainPage },
-        { path: "/login", component: LoginPage },
+        { path: "/login", component: LoginPage},
+        { path: "/login/redirect", component: LoginRedirect},
         {
             path: "/signup", component: SignupPage
             , children: [
