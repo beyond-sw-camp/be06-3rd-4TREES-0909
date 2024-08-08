@@ -138,7 +138,7 @@ export default {
     padding:5px;
 }
 .category:hover{
-    background-color: rgb(246, 68, 72);
+    background-color: #d5a2f1;
 }
 
 /* // 햄버거 메뉴 호버 */
@@ -568,12 +568,12 @@ header,
 #test_cates>h2>span {
     float: right;
     margin-right: 10px;
-    color: rgb(246, 68, 72);
+    color: #c981f1;
     display: none;
 }
 
 #test_area a:hover {
-    background-color: rgb(246, 68, 72);
+    background-color: #c981f1;
     color: white;
 }
 

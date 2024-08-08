@@ -296,7 +296,7 @@ export default {
 }
 
 .info_btn3 {
-    background-color: #F70000;
+    background-color: #ac6af6;
 }
 
 /* goods_info */
