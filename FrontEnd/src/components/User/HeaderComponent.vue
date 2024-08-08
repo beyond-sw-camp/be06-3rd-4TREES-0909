@@ -37,7 +37,7 @@
                     <div class="col-3 header_logo">
                         <h1 class="hidden">로고</h1>
                         <router-link to="/">
-                            <img src="../../assets/images/market/logo.svg" alt="번개장터 로고">
+                            <img src="../../assets/images/market/logo_공동구매.png" alt="번개장터 로고" class="css-1n6kgi5">
                         </router-link>
                     </div>
                     <div class="col-6 top_searh_area">
@@ -129,6 +129,10 @@ export default {
 </script>
 
 <style scoped>
+.css-1n6kgi5 {
+    width: 220px;
+    height: 60px;
+}
 /* 카테고리 호버 */
 .category{
     padding:5px;
@@ -429,7 +433,8 @@ header,
     width: 445px;
     height: 36px;
     padding: 18px 15px;
-    border: 2px solid rgb(247, 47, 51);
+    border: 2px solid rgb(202 100 239);
+    margin-top: 10px;
 }
 
 #top_searh>img {

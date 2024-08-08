@@ -315,7 +315,7 @@ select {
 .uBtn.point {
   color: #fff;
   font-weight: bold;
-  background: #1769ff;
+  background: #a88bf1eb;
   border: 0;
 }
 
