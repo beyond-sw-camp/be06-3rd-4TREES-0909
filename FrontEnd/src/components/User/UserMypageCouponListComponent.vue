@@ -138,7 +138,6 @@ h3 {
 .board-top-tab-group {
     display: flex;
     justify-content: flex-end;
-    margin-top: 40px;
     gap: 30px;
     align-items: center;
 }
