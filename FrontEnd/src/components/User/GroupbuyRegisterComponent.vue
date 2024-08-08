@@ -578,7 +578,7 @@ form > div.goods_count_area {
     font-size: 20px;
     font-weight: 700;
     border-radius: 2px;
-    background: rgb(255, 80, 88);
+    background: #ac6af6;
     position: relative;
     outline: none;
     border: none;

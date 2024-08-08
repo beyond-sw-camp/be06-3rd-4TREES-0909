@@ -255,7 +255,7 @@ h3 {
     font-size: 14px;
     line-height: 14px;
     color: rgb(255, 255, 255);
-    background-color: rgb(2, 122, 255);
+    background-color: #c38ffd;
     border: none;
 }
 
