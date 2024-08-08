@@ -1,19 +1,13 @@
 <template>
-    <div id="wrapper">
-    <HeaderComponent @change-component="changeComponent"></HeaderComponent>
     <UserMypageInfoComponent></UserMypageInfoComponent>
     <div class="frame-sm">
         <UserMypageAsideComponent></UserMypageAsideComponent>
         <router-view></router-view>
     </div>
     <div style="margin-bottom: 30px;"></div>
-    <FooterComponent></FooterComponent>
-    </div>
 </template>
 
 <script>
-import HeaderComponent from '@/components/User/HeaderComponent.vue';
-import FooterComponent from '@/components/User/FooterComponent.vue';
 import UserMypageInfoComponent from '@/components/User/UserMypageInfoComponent.vue';
 import { mapStores } from 'pinia';
 import { userBasicStore } from '@/stores/userBasicStore';
@@ -33,18 +27,13 @@ export default {
         this.setMypage();
     },
     methods: {
-        
         setMypage(){
             this.userBasicStore.userDetail();
         }
     },
     components: {
-        HeaderComponent,
-        FooterComponent,
         UserMypageInfoComponent,
         UserMypageAsideComponent,
-
-
     }
 }
 

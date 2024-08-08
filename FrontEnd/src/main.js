@@ -14,4 +14,3 @@ app.use(router);
 
 app.mount('#app')
 
-window.Kakao.init(process.env.VUE_APP_KAKAO_API_KEY);

@@ -1,5 +1,6 @@
 <template>
-    <section id="contents" class="container">
+    <div v-if="isLoading"></div>
+    <section v-else id="contents" class="container">
 
 
         <iframe id="hiddenIframe" name="hiddenIframe" src="" width="0" height="0" scrolling="no" frameborder="0"
@@ -364,6 +365,7 @@ import axios from "axios"
 export default {
     data(){
         return {
+            isLoading: true,
             orderPageInfo: {},
             defaultDelivery: {
                 addressName: "",
@@ -507,6 +509,10 @@ export default {
                 },
             );
         },
+        async getOrderPageInfo() {
+            await this.orderStore.getOrderPageInfo(this.$route.query.gpbuyIdx , this.$route.query.quantity, this.$route.query.bidIdx);
+            this.isLoading = false;
+        },
     },
     computed: {
         ...mapStores(useOrderStore), // 어떤 저장소랑 연결시켜 주겠다.
@@ -520,7 +526,8 @@ export default {
             return this.$route.query.bidIdx;
         }
     },
-    mounted() {
+    async mounted() {
+        await this.getOrderPageInfo();
         this.orderPageInfo = this.orderStore.orderPageInfo;
         this.getDefaultDelivery();
         this.receiverName = this.orderPageInfo.name;
