@@ -153,9 +153,8 @@ a {
     text-decoration: none;
     color: inherit;
 }a:-webkit-any-link {
-    color: -webkit-link;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
 }
 li {
     text-align: -webkit-match-parent;

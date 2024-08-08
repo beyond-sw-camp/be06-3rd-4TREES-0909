@@ -573,6 +573,7 @@ p {
     background: #ac6af6;
     border: 1px solid #ac6af6;
     color: #fff;
+    border-radius: 5px;
 }
 .cs_btn.large {
     min-width: 96px;
