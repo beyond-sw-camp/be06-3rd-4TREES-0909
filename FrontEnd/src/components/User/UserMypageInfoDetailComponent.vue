@@ -570,8 +570,8 @@ p {
     text-align: center;
 }
 .cs_btn.large.black {
-    background: #f14f4f;
-    border: 1px solid #da3a3a;
+    background: #ac6af6;
+    border: 1px solid #ac6af6;
     color: #fff;
 }
 .cs_btn.large {
