@@ -1,184 +1,195 @@
 <template>
-    <div class="contentWrapper registContent">
-        <div class="uBlock">
-            <div class="uInputArea emailType">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputEmail">이메일</label>
-                        <div class="inputBox">
-                            <input type="text" id="inputEmail" class="inputText" tabindex="5" v-model="user.email" @input="validateEmail">
-                        </div>
-                    </div>
-                </div>
-                <div class="col selectCol">
-                    <div class="uSelectBox">
-                        <label>
-                            <select @change="updateEmail" v-model="selectedDomain" tabindex="6">
-                                <option value="">직접 입력</option>
-                                <option value="@naver.com">@naver.com</option>
-                                <option value="@hanmail.net">@hanmail.net</option>
-                                <option value="@gmail.com">@gmail.com</option>
-                                <option value="@nate.com">@nate.com</option>
-                                <option value="@hotmail.com">@hotmail.com</option>
-                            </select>
-                        </label>
-                    </div>
-                </div>
+  <div class="contentWrapper registContent">
+    <div class="uBlock">
+      <div class="uInputArea emailType">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputEmail">이메일</label>
+            <div class="inputBox">
+              <input type="text" id="inputEmail" class="inputText" tabindex="5" v-model="user.email"
+                @input="validateEmail">
             </div>
-            <div class="uErrorText" v-if="emailError">{{ emailError }}</div>
+          </div>
         </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputPw">비밀번호</label>
-                        <div class="inputBox">
-                            <input type="password" id="inputPw" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="2" v-model="user.password" @input="validatePassword">
-                            <button type="button" class="btnDel" aria-label="삭제"></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="uBtnArea">
-                        <button type="button" class="uBtn" id="togglePwBtn" @click="togglePassword">보기</button>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="passwordError">{{ passwordError }}</div>
+        <div class="col selectCol">
+          <div class="uSelectBox">
+            <label>
+              <select @change="updateEmail" v-model="selectedDomain" tabindex="6">
+                <option value="">직접 입력</option>
+                <option value="@naver.com">@naver.com</option>
+                <option value="@hanmail.net">@hanmail.net</option>
+                <option value="@gmail.com">@gmail.com</option>
+                <option value="@nate.com">@nate.com</option>
+                <option value="@hotmail.com">@hotmail.com</option>
+              </select>
+            </label>
+          </div>
         </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputPwConfirm">비밀번호 확인</label>
-                        <div class="inputBox">
-                            <input type="password" id="inputPwConfirm" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="3" v-model="confirmPassword" @input="validateConfirmPassword">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="confirmPasswordError">{{ confirmPasswordError }}</div>
-        </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputName">이름</label>
-                        <div class="inputBox">
-                            <input type="text" id="inputName" class="inputText" tabindex="4" v-model="user.name" @input="validateName">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="nameError">{{ nameError }}</div>
-        </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputBirth">생년월일</label>
-                        <div class="inputBox">
-                            <input type="date" id="inputBirth" class="inputText" tabindex="4" v-model="user.birth" @change="validateBirth">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="birthError">{{ birthError }}</div>
-        </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="genderMale">성별</label>
-                        <div class="inputBox radioBox">
-                            <input type="radio" id="genderMale" name="gender" value="남" v-model="user.sex" tabindex="4" @change="validateGender">
-                            <label for="genderMale">남성</label>
-                            <input type="radio" id="genderFemale" name="gender" value="여" v-model="user.sex" tabindex="5" @change="validateGender">
-                            <label for="genderFemale">여성</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="genderError">{{ genderError }}</div>
-        </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputPostCode">우편번호</label>
-                        <div class="inputBox">
-                            <input type="text" id="inputPostCode" class="inputText" tabindex="2" v-model="user.postCode" @input="validatePostCode">
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="uBtnArea">
-                        <button type="button" class="uBtn" @click="execDaumPostcode">우편번호 찾기</button>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="postCodeError">{{ postCodeError }}</div>
-        </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputAddress">주소</label>
-                        <div class="inputBox">
-                            <input type="text" id="inputAddress" class="inputText" tabindex="4" v-model="user.address" @input="validateAddress">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="addressError">{{ addressError }}</div>
-        </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputDetailAddr">상세주소</label>
-                        <div class="inputBox">
-                            <input type="text" id="inputDetailAddr" class="inputText" tabindex="4" v-model="detailAddress" @input="validateDetailAddress">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="detailAddressError">{{ detailAddressError }}</div>
-        </div>
-        
-        <div class="uBlock">
-            <div class="uInputArea">
-                <div class="col">
-                    <div class="uInput">
-                        <label for="inputCellphone">휴대폰</label>
-                        <div class="inputBox">
-                            <input type="text" id="inputCellphone" class="inputText" placeholder="010-1234-5678" tabindex="7" v-model="user.phoneNumber" @input="validateAndFilterPhoneNumber" pattern="\d*">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="uErrorText" v-if="phoneNumberError">{{ phoneNumberError }}</div>
-        </div>
-        
-        <div class="uBlock checkBlock">
-            <div class="uBlock">
-                <p class="blockText">※ 가입 후 이메일 인증까지 완료하여야 계정이 활성화됩니다.</p>
-            </div>
-            <div class="ubtnArea">
-                <div class="col">
-                    <button type="button" class="uBtn point" @click="submit" :disabled="isSubmitDisabled">가입완료</button>
-                </div>
-            </div>
-        </div>
+      </div>
+      <div class="uErrorText" v-if="emailError">{{ emailError }}</div>
     </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputPw">비밀번호</label>
+            <div class="inputBox">
+              <input type="password" id="inputPw" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="2"
+                v-model="user.password" @input="validatePassword">
+              <button type="button" class="btnDel" aria-label="삭제"></button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="uBtnArea">
+            <button type="button" class="uBtn" id="togglePwBtn" @click="togglePassword">보기</button>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="passwordError">{{ passwordError }}</div>
+    </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputPwConfirm">비밀번호 확인</label>
+            <div class="inputBox">
+              <input type="password" id="inputPwConfirm" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="3"
+                v-model="confirmPassword" @input="validateConfirmPassword">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="confirmPasswordError">{{ confirmPasswordError }}</div>
+    </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputName">이름</label>
+            <div class="inputBox">
+              <input type="text" id="inputName" class="inputText" tabindex="4" v-model="user.name"
+                @input="validateName">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="nameError">{{ nameError }}</div>
+    </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputBirth">생년월일</label>
+            <div class="inputBox">
+              <input type="date" id="inputBirth" class="inputText" tabindex="4" v-model="user.birth"
+                @change="validateBirth">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="birthError">{{ birthError }}</div>
+    </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="genderMale">성별</label>
+            <div class="inputBox radioBox">
+              <input type="radio" id="genderMale" name="gender" value="남" v-model="user.sex" tabindex="4"
+                @change="validateGender">
+              <label for="genderMale">남성</label>
+              <input type="radio" id="genderFemale" name="gender" value="여" v-model="user.sex" tabindex="5"
+                @change="validateGender">
+              <label for="genderFemale">여성</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="genderError">{{ genderError }}</div>
+    </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputPostCode">우편번호</label>
+            <div class="inputBox">
+              <input type="text" id="inputPostCode" class="inputText" tabindex="2" v-model="user.postCode"
+                @input="validatePostCode">
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="uBtnArea">
+            <button type="button" class="uBtn" @click="execDaumPostcode">우편번호 찾기</button>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="postCodeError">{{ postCodeError }}</div>
+    </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputAddress">주소</label>
+            <div class="inputBox">
+              <input type="text" id="inputAddress" class="inputText" tabindex="4" v-model="user.address"
+                @input="validateAddress">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="addressError">{{ addressError }}</div>
+    </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputDetailAddr">상세주소</label>
+            <div class="inputBox">
+              <input type="text" id="inputDetailAddr" class="inputText" tabindex="4" v-model="detailAddress"
+                @input="validateDetailAddress">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="detailAddressError">{{ detailAddressError }}</div>
+    </div>
+
+    <div class="uBlock">
+      <div class="uInputArea">
+        <div class="col">
+          <div class="uInput">
+            <label for="inputCellphone">휴대폰</label>
+            <div class="inputBox">
+              <input type="text" id="inputCellphone" class="inputText" placeholder="010-1234-5678" tabindex="7"
+                v-model="user.phoneNumber" @input="validateAndFilterPhoneNumber" pattern="\d*">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="uErrorText" v-if="phoneNumberError">{{ phoneNumberError }}</div>
+    </div>
+
+    <div class="uBlock checkBlock">
+      <div class="uBlock">
+        <p class="blockText">※ 가입 후 이메일 인증까지 완료하여야 계정이 활성화됩니다.</p>
+      </div>
+      <div class="ubtnArea">
+        <div class="col">
+          <button type="button" class="uBtn point" @click="submit" :disabled="isSubmitDisabled">가입완료</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -186,374 +197,470 @@ import { useUserStore } from '@/stores/useUserStore';
 import { mapStores } from 'pinia';
 
 export default {
-    name: "UserSignupComponent",
-    data() {
-        return {
-            user: {
-                email: '',
-                password: '',
-                name: '',
-                birth: '',
-                sex: '',
-                postCode: '',
-                address: '',
-                phoneNumber: ''
-            },
-            confirmPassword: '',
-            selectedDomain: '',
-            detailAddress: '',
-            emailError: '',
-            passwordError: '',
-            confirmPasswordError: '',
-            nameError: '',
-            birthError: '',
-            genderError: '',
-            postCodeError: 0,
-            addressError: '',
-            detailAddressError: '',
-            phoneNumberError: '',
-            isSubmitDisabled: true,
-        };
+  name: "UserSignupComponent",
+  data() {
+    return {
+      user: {
+        email: '',
+        password: '',
+        name: '',
+        birth: '',
+        sex: '',
+        postCode: '',
+        address: '',
+        phoneNumber: ''
+      },
+      confirmPassword: '',
+      selectedDomain: '',
+      detailAddress: '',
+      emailError: '',
+      passwordError: '',
+      confirmPasswordError: '',
+      nameError: '',
+      birthError: '',
+      genderError: '',
+      postCodeError: 0,
+      addressError: '',
+      detailAddressError: '',
+      phoneNumberError: '',
+      isSubmitDisabled: true,
+    };
+  },
+  computed: {
+    ...mapStores(useUserStore)
+  },
+  methods: {
+    validateEmail() {
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      this.emailError = emailPattern.test(this.user.email) ? '' : '유효한 이메일을 입력하세요.';
+      this.updateSubmitButtonState();
     },
-    computed: {
-      ...mapStores(useUserStore)
+    validatePassword() {
+      const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,12}$/;
+      this.passwordError = passwordPattern.test(this.user.password) ? '' : '비밀번호는 8~12자 영문, 숫자, 특수문자를 포함해야 합니다.';
+      this.updateSubmitButtonState();
     },
-    methods: {
-        validateEmail() {
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            this.emailError = emailPattern.test(this.user.email) ? '' : '유효한 이메일을 입력하세요.';
-            this.updateSubmitButtonState();
-        },
-        validatePassword() {
-            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,12}$/;
-            this.passwordError = passwordPattern.test(this.user.password) ? '' : '비밀번호는 8~12자 영문, 숫자, 특수문자를 포함해야 합니다.';
-            this.updateSubmitButtonState();
-        },
-        validateConfirmPassword() {
-            this.confirmPasswordError = this.user.password === this.confirmPassword ? '' : '비밀번호가 일치하지 않습니다.';
-            this.updateSubmitButtonState();
-        },
-        validateName() {
-            this.nameError = this.user.name ? '' : '이름을 입력하세요.';
-            this.updateSubmitButtonState();
-        },
-        validateBirth() {
-            this.birthError = this.user.birth ? '' : '생년월일을 입력하세요.';
-            this.updateSubmitButtonState();
-        },
-        validateGender() {
-            this.genderError = this.user.sex ? '' : '성별을 선택하세요.';
-            this.updateSubmitButtonState();
-        },
-        validatePostCode() {
-            this.postCodeError = this.user.postCode ? '' : '우편번호를 입력하세요.';
-            this.updateSubmitButtonState();
-        },
-        validateAddress() {
-            this.addressError = this.user.address ? '' : '주소를 입력하세요.';
-            this.updateSubmitButtonState();
-        },
-        validateDetailAddress() {
-            this.detailAddressError = this.detailAddress ? '' : '상세주소를 입력하세요.';
-            this.updateSubmitButtonState();
-        },
-        validateAndFilterPhoneNumber(event) {
-            let input = event.target.value;
+    validateConfirmPassword() {
+      this.confirmPasswordError = this.user.password === this.confirmPassword ? '' : '비밀번호가 일치하지 않습니다.';
+      this.updateSubmitButtonState();
+    },
+    validateName() {
+      this.nameError = this.user.name ? '' : '이름을 입력하세요.';
+      this.updateSubmitButtonState();
+    },
+    validateBirth() {
+      this.birthError = this.user.birth ? '' : '생년월일을 입력하세요.';
+      this.updateSubmitButtonState();
+    },
+    validateGender() {
+      this.genderError = this.user.sex ? '' : '성별을 선택하세요.';
+      this.updateSubmitButtonState();
+    },
+    validatePostCode() {
+      this.postCodeError = this.user.postCode ? '' : '우편번호를 입력하세요.';
+      this.updateSubmitButtonState();
+    },
+    validateAddress() {
+      this.addressError = this.user.address ? '' : '주소를 입력하세요.';
+      this.updateSubmitButtonState();
+    },
+    validateDetailAddress() {
+      this.detailAddressError = this.detailAddress ? '' : '상세주소를 입력하세요.';
+      this.updateSubmitButtonState();
+    },
+    validateAndFilterPhoneNumber(event) {
+      let input = event.target.value;
 
-            // 숫자만 필터링
-            this.user.phoneNumber = input.replace(/[^0-9]/g, '');
+      // 숫자만 필터링
+      this.user.phoneNumber = input.replace(/[^0-9]/g, '');
 
-            // 하이픈을 기준으로 전화번호 포맷팅
-            if (this.user.phoneNumber.length > 3) {
-                if (this.user.phoneNumber.length > 7) {
-                    this.user.phoneNumber = `${this.user.phoneNumber.slice(0, 3)}-${this.user.phoneNumber.slice(3, 7)}-${this.user.phoneNumber.slice(7)}`;
-                } else {
-                    this.user.phoneNumber = `${this.user.phoneNumber.slice(0, 3)}-${this.user.phoneNumber.slice(3)}`;
-                }
-            }
-
-            // 전화번호 유효성 검사 (하이픈 포함)
-            const phonePattern = /^01[0-9]-\d{3,4}-\d{4}$/;
-            this.phoneNumberError = phonePattern.test(this.user.phoneNumber) ? '' : '유효한 휴대폰 번호를 입력하세요.';
-            
-            this.updateSubmitButtonState();
-        },
-        updateEmail() {
-            this.user.email = this.user.email.split('@')[0] + this.selectedDomain; // 선택된 도메인 추가
-            this.validateEmail(); // 이메일 유효성 재검사
-        },
-        togglePassword() {
-            const input = document.getElementById('inputPw');
-            input.type = input.type === 'password' ? 'text' : 'password';
-        },
-        execDaumPostcode() {
-            // eslint-disable-next-line no-undef
-            new daum.Postcode({
-                oncomplete: (data) => {
-                    this.user.address = data.address; // 주소
-                    this.user.postCode = Number(data.zonecode); // 우편번호
-                }
-            }).open();
-        },
-        updateSubmitButtonState() {
-            this.isSubmitDisabled = !this.isFormValid();
-        },
-        submit() {
-            // - 제외
-            this.user.address = this.user.phoneNumber.replace(/-/g, '');
-            // 상세 주소가 입력된 경우 주소에 추가
-            if (this.detailAddress) {
-                this.user.address += `, ${this.detailAddress}`; // 콤마로 구분
-            }
-            const result = this.userStore.userSignup(this.user);
-            if(result) {
-                this.$router.push("/login");
-            }
-        },
-        isFormValid() {
-            return !this.emailError && !this.passwordError && !this.confirmPasswordError &&
-                !this.nameError && !this.birthError && !this.genderError &&
-                !this.postCodeError && !this.addressError && !this.detailAddressError &&
-                !this.phoneNumberError &&
-                this.user.email && this.user.password && this.confirmPassword &&
-                this.user.name && this.user.birth && this.user.sex &&
-                this.user.postCode && this.user.address && this.detailAddress &&
-                this.user.phoneNumber;
+      // 하이픈을 기준으로 전화번호 포맷팅
+      if (this.user.phoneNumber.length > 3) {
+        if (this.user.phoneNumber.length > 7) {
+          this.user.phoneNumber = `${this.user.phoneNumber.slice(0, 3)}-${this.user.phoneNumber.slice(3, 7)}-${this.user.phoneNumber.slice(7)}`;
+        } else {
+          this.user.phoneNumber = `${this.user.phoneNumber.slice(0, 3)}-${this.user.phoneNumber.slice(3)}`;
         }
+      }
+
+      // 전화번호 유효성 검사 (하이픈 포함)
+      const phonePattern = /^01[0-9]-\d{3,4}-\d{4}$/;
+      this.phoneNumberError = phonePattern.test(this.user.phoneNumber) ? '' : '유효한 휴대폰 번호를 입력하세요.';
+
+      this.updateSubmitButtonState();
+    },
+    updateEmail() {
+      this.user.email = this.user.email.split('@')[0] + this.selectedDomain; // 선택된 도메인 추가
+      this.validateEmail(); // 이메일 유효성 재검사
+    },
+    togglePassword() {
+      const input = document.getElementById('inputPw');
+      input.type = input.type === 'password' ? 'text' : 'password';
+    },
+    execDaumPostcode() {
+      // eslint-disable-next-line no-undef
+      new daum.Postcode({
+        oncomplete: (data) => {
+          this.user.address = data.address; // 주소
+          this.user.postCode = Number(data.zonecode); // 우편번호
+        }
+      }).open();
+    },
+    updateSubmitButtonState() {
+      this.isSubmitDisabled = !this.isFormValid();
+    },
+    submit() {
+      // - 제외
+      this.user.address = this.user.phoneNumber.replace(/-/g, '');
+      // 상세 주소가 입력된 경우 주소에 추가
+      if (this.detailAddress) {
+        this.user.address += `, ${this.detailAddress}`; // 콤마로 구분
+      }
+      const result = this.userStore.userSignup(this.user);
+      if (result) {
+        alert("일반 회원가입이 완료되었습니다. 이메일을 확인해주세요.")
+        this.$router.push("/login");
+      } else {
+        alert("회원가입에 실패하였습니다.");
+      }
+    },
+    isFormValid() {
+      return !this.emailError && !this.passwordError && !this.confirmPasswordError &&
+        !this.nameError && !this.birthError && !this.genderError &&
+        !this.postCodeError && !this.addressError && !this.detailAddressError &&
+        !this.phoneNumberError &&
+        this.user.email && this.user.password && this.confirmPassword &&
+        this.user.name && this.user.birth && this.user.sex &&
+        this.user.postCode && this.user.address && this.detailAddress &&
+        this.user.phoneNumber;
     }
+  }
 };
 </script>
 
 
 <style scoped>
-abbr,address,article,aside,audio,b,blockquote,body,canvas,caption,cite,code,dd,del,details,dfn,div,dl,dt,em,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,p,pre,q,samp,section,small,span,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,ul,var,video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent
+abbr,
+address,
+article,
+aside,
+audio,
+b,
+blockquote,
+body,
+canvas,
+caption,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+p,
+pre,
+q,
+samp,
+section,
+small,
+span,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+ul,
+var,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent
 }
 
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
-    display: block
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block
 }
 
-ol,ul {
-    list-style: none
+ol,
+ul {
+  list-style: none
 }
 
-blockquote,q {
-    quotes: none
+blockquote,
+q {
+  quotes: none
 }
 
-blockquote:after,blockquote:before,q:after,q:before {
-    content: "";
-    content: none
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: "";
+  content: none
 }
 
-dfn,em,i {
-    font-style: normal
+dfn,
+em,
+i {
+  font-style: normal
 }
 
 a {
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
-    text-decoration: none
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  text-decoration: none
 }
 
 ins {
-    text-decoration: none
+  text-decoration: none
 }
 
-ins,mark {
-    background-color: #ff9;
-    color: #000
+ins,
+mark {
+  background-color: #ff9;
+  color: #000
 }
 
 mark {
-    font-style: italic;
-    font-weight: 700
+  font-style: italic;
+  font-weight: 700
 }
 
 del {
-    text-decoration: line-through
+  text-decoration: line-through
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0
+  border-collapse: collapse;
+  border-spacing: 0
 }
 
 hr {
-    display: none
+  display: none
 }
 
-input,select {
-    vertical-align: middle
+input,
+select {
+  vertical-align: middle
 }
 
 input {
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0
 }
 
 input[type=checkbox] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none
 }
 
 input[type=text]::-ms-clear {
-    display: none;
-    width: 0;
-    height: 0
+  display: none;
+  width: 0;
+  height: 0
 }
 
 input[type=text]::-ms-reveal {
-    display: none;
-    width: 0;
-    height: 0
+  display: none;
+  width: 0;
+  height: 0
 }
 
-input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration,input[type=search]::-webkit-search-results-button,input[type=search]::-webkit-search-results-decoration {
-    display: none
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {
+  display: none
 }
 
 html {
-    text-size-adjust: none;
-    font-size: 62.5%
+  text-size-adjust: none;
+  font-size: 62.5%
 }
 
 body {
-    font-size: 1.5rem;
-    font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif;
-    font-weight: 400;
-    color: #000
+  font-size: 1.5rem;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, Helvetica Neue, Segoe UI, Apple SD Gothic Neo, Malgun Gothic, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, sans-serif;
+  font-weight: 400;
+  color: #000
 }
 
-a,button {
-    -webkit-tap-highlight-color: rgba(0,0,0,0)
+a,
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
 input[type=text] {
-    font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, Helvetica Neue, Segoe UI, Apple SD Gothic Neo, Malgun Gothic, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, sans-serif
 }
 
 select {
-    font-family: Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,sans-serif
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, Helvetica Neue, Segoe UI, Apple SD Gothic Neo, Malgun Gothic, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, sans-serif
 }
 
 .blind {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    margin: -.1rem;
-    width: .1rem;
-    height: .1rem
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  margin: -.1rem;
+  width: .1rem;
+  height: .1rem
 }
 
 .header {
-    position: relative;
-    height: 50px;
-    padding-top: 5px;
-    line-height: 44px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    text-align: center
+  position: relative;
+  height: 50px;
+  padding-top: 5px;
+  line-height: 44px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center
 }
 
 .header .headerInner {
-    position: relative;
-    width: 100%;
-    height: 100%
+  position: relative;
+  width: 100%;
+  height: 100%
 }
 
 .header .headerLogo {
-    background: url('../../assets/images/Common/0909.png') 0 0 no-repeat;
-    background-size: 100% auto;
-    position: absolute;
-    top: 12px;
-    left: 20px;
-    width: 119px;
-    height: 50px
+  background: url('../../assets/images/Common/0909.png') 0 0 no-repeat;
+  background-size: 100% auto;
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  width: 119px;
+  height: 50px
 }
 
 .header .headerTitle {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    height: 100%;
-    font-size: 15px;
-    padding: 0 150px;
-    line-height: 50px
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 100%;
+  font-size: 15px;
+  padding: 0 150px;
+  line-height: 50px
 }
 
 @media screen and (min-width: 769px) {
-    .header {
-        height:88px;
-        padding-top: 0;
-        line-height: 68px;
-        border-bottom: 1px solid rgba(0,0,0,.08)
-    }
+  .header {
+    height: 88px;
+    padding-top: 0;
+    line-height: 68px;
+    border-bottom: 1px solid rgba(0, 0, 0, .08)
+  }
 
-    .header .headerInner {
-        max-width: 1280px;
-        margin: 0 auto
-    }
+  .header .headerInner {
+    max-width: 1280px;
+    margin: 0 auto
+  }
 
-    .header .headerLogo {
-        background-position: 0 50%
-    }
+  .header .headerLogo {
+    background-position: 0 50%
+  }
 
-    .header .headerLogo,.header .headerLogo.blackLogo {
-        position: absolute;
-        top: auto;
-        bottom: 20px;
-        left: 24px;
-        width: 151px;
-        height: 38px
-    }
+  .header .headerLogo,
+  .header .headerLogo.blackLogo {
+    position: absolute;
+    top: auto;
+    bottom: 20px;
+    left: 24px;
+    width: 151px;
+    height: 38px
+  }
 
-    .header .headerLogo.blackLogo {
-        background: url('../../assets/images/Common/0909.png') 0 0 no-repeat;
-        background-size: 100% auto
-    }
+  .header .headerLogo.blackLogo {
+    background: url('../../assets/images/Common/0909.png') 0 0 no-repeat;
+    background-size: 100% auto
+  }
 
-    .header .headerTitle {
-        padding: 0 190px;
-        line-height: 88px
-    }
+  .header .headerTitle {
+    padding: 0 190px;
+    line-height: 88px
+  }
 }
 
 .footer {
-    height: 57px
+  height: 57px
 }
 
 .footer .copyright {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 11px;
-    line-height: 17px;
-    color: #999
+  text-align: center;
+  padding: 20px 0;
+  font-size: 11px;
+  line-height: 17px;
+  color: #999
 }
 
 @media screen and (min-width: 769px) {
-    .footer {
-        height:80px;
-        background: #fafafa
-    }
+  .footer {
+    height: 80px;
+    background: #fafafa
+  }
 
-    .footer .copyright {
-        padding: 0;
-        line-height: 80px
-    }
+  .footer .copyright {
+    padding: 0;
+    line-height: 80px
+  }
 }
+
 /*!
  _ _  _
 | | || | interpark Member Platform v0.2.2
