@@ -90,9 +90,9 @@ legend.block{display:block; position:static; left:0; width:auto; height:auto; ov
 table td .title-elps{display:inline-block; vertical-align: middle; max-width:94%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; word-break: keep-all;}
 
 /**** Text Color ****/
-.text-primary{color:#FF6001 !important;}
-.text-primary-ex{color:#FF8004 !important;}
-.text-primary-ex2{color:#FF7E32 !important;}
+.text-primary{color:#a04dcb !important;}
+.text-primary-ex{color:#a04dcb !important;}
+.text-primary-ex2{color:#a04dcb !important;}
 .text-point{color:#13a7b8 !important;}
 .text-green{color:#2E9F41 !important;}
 .text-blue{color:#4598E5 !important;}
@@ -590,7 +590,7 @@ textarea:-ms-input-placeholder{color:#bbb;}
 /* 기본 */
 .custom-checkbox .checkbox + label{padding-left:26px; min-height:18px;}
 .custom-checkbox .checkbox + label:before{display:block; content:''; position:absolute; left:0; top:0; width:18px; height:18px; text-align:center; background:#fff; border:1px solid #ccc;box-sizing:border-box;} 
-.custom-checkbox .checkbox:checked + label:before{background:#FF6001; width:18px; height:18px; border:1px solid #FF6001;}
+.custom-checkbox .checkbox:checked + label:before{background:#8801ff; width:18px; height:18px; border:1px solid #8801ff;}
 /* disable */
 .custom-checkbox .checkbox.disabled + label:before,
 .custom-checkbox .checkbox[disabled] + label:before{background-color:#F7F7F7; border: 1px solid #ccc;}
@@ -658,12 +658,12 @@ textarea:-ms-input-placeholder{color:#bbb;}
 .custom-checkbox .checkbox-wish-sm + label:before{display:block; content:''; position:absolute; left:0; top:0; width:16px; height:14px;  /* $& */}
 .custom-checkbox .checkbox-wish-sm:checked + label:before{/* $& */}
 .custom-checkbox .checkbox-wish-sm + label .count{display:block; position:absolute; top:0; left:50%; transform:translateX(-50%); -webkit-transform:translateX(-50%); font-size:12px; padding-top:20px;}
-.custom-checkbox .checkbox-wish-sm:checked + label .count{color:#FF6001; }
+.custom-checkbox .checkbox-wish-sm:checked + label .count{color:#8801ff; }
 .custom-checkbox .checkbox-wish-sm-check + label{width:16px; height:14px; line-height: 1;}
 .custom-checkbox .checkbox-wish-sm-check + label:before{display:block; content:''; position:absolute; left:0; top:0; width:16px; height:14px;  /* $& */}
 .custom-checkbox .checkbox-wish-sm-check + label:before{/* $& */}
 .custom-checkbox .checkbox-wish-sm-check + label .count{display:block; position:absolute; top:0; left:50%; transform:translateX(-50%); -webkit-transform:translateX(-50%); font-size:12px; padding-top:20px;}
-.custom-checkbox .checkbox-wish-sm-check + label .count{color:#FF6001; }
+.custom-checkbox .checkbox-wish-sm-check + label .count{color:#8801ff; }
 
 
 
@@ -1105,10 +1105,10 @@ button .blind {position:relative;font-size:0;color:transparent}
 .btn-rud-xs > i + span{margin-left:4px;}
 
 /**** Color ****/
-.btn-primary-ex{background:#FF6001; color:#fff; border:1px solid #FF6001;}
-.btn-primary-exline{background:#fff; color:#FF7E32; border:1px solid #FF7E32;}
-.btn-primary{background:#ff6001; color:#fff; border:1px solid #ff6001;}
-.btn-primary-line{background:#fff; color:#ff6001; border:1px solid #ff6001;}
+.btn-primary-ex{background:#ac6af6; color:#fff; border:1px solid #ac6af6;}
+.btn-primary-exline{background:#fff; color:#ac6af6; border:1px solid #ac6af6;}
+.btn-primary{background:#ac6af6; color:#fff; border:1px solid #ac6af6;}
+.btn-primary-line{background:#fff; color:#ac6af6; border:1px solid #ac6af6;}
 .btn-default{background:#fff; color:#333; border:1px solid #ccc;}
 .btn-default-ex{background:#fff; color:#333; border:1px solid #666;}
 .btn-default-ex2{background:#fff; color:#333; border:1px solid #999;}
@@ -1120,7 +1120,7 @@ button .blind {position:relative;font-size:0;color:transparent}
 .btn-grey2{background:#666; color:#fff;}
 .btn-grey3{background:#ccc; color:#fff;}
 .btn-grey4{background:#888; color:#fff;}
-.btn-blue-line{background:#eef7ff; color:#3c89fd; border:1px solid #3c89fd}
+.btn-blue-line{background:#eef7ff; color:#ac6af6; border:1px solid #ac6af6}
 /* 예외 */
 .btn-primary-ex > span,
 .btn-primary-exline > span{font-weight:700;}
