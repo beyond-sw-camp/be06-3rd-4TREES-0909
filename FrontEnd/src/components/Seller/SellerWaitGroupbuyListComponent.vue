@@ -5,18 +5,20 @@
                 <h3 class="css-9fmo7n">입찰 대기 공구 조회</h3>
                 <p class="css-17ti8g7">입챌 대기중인 공구들을 조회할 수 있어요.</p>
             </header>
-            <div v-if="selectGpbuyIdx==null" class="css-8knsro"><button type="button" class="css-16iku8x" style="background-color: gray;">입찰 등록하기</button></div>
-            <div v-else class="css-8knsro"><router-link  :to="{ name: 'BidRegisterPage' , query: {gpbuyTitle: selectGpbuyTitle, gpbuyIdx: selectGpbuyIdx}}">
-                <button type="button" class="css-16iku8x">입찰 등록하기</button></router-link>
+            <div v-if="selectGpbuyIdx == null" class="css-8knsro"><button type="button" class="css-16iku8x"
+                    style="background-color: gray;">입찰 등록하기</button></div>
+            <div v-else class="css-8knsro"><router-link
+                    :to="{ name: 'BidRegisterPage', query: { gpbuyTitle: selectGpbuyTitle, gpbuyIdx: selectGpbuyIdx } }">
+                    <button type="button" class="css-16iku8x">입찰 등록하기</button></router-link>
             </div>
             <div class="css-1buehjj">
                 <div class="css-1oucam8">
                     <form>
                         <div class="css-17t0ez6">
                             <div class="css-xrnbd4">
-                                <div class="css-prvn4i"><label for="name" class="css-8840p9">공구명</label><input v-model="gpbuyTitle"
-                                        type="text" autocomplete="off" id="name" placeholder="공구명을 입력하세요." name="name"
-                                        class="css-14q291r"></div>
+                                <div class="css-prvn4i"><label for="name" class="css-8840p9">공구명</label><input
+                                        v-model="gpbuyTitle" type="text" autocomplete="off" id="name"
+                                        placeholder="공구명을 입력하세요." name="name" class="css-14q291r"></div>
                                 <div class="css-1m20113"><label class="css-8840p9">카테고리</label>
                                     <div class="css-1og3vwv">
                                         <div class="css-6g4wep">
@@ -37,7 +39,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <router-link :to="{useLink:'/seller/waitgroupbuy', query:{page: 0, gpbuyTitle: gpbuyTitle, categoryIdx: categoryIdx}}"><button type="button" class="css-10q122i" @click="search">검색하기</button></router-link>
+                                <router-link
+                                    :to="{ useLink: '/seller/waitgroupbuy', query: { page: 0, gpbuyTitle: gpbuyTitle, categoryIdx: categoryIdx } }"><button
+                                        type="button" class="css-10q122i" @click="search">검색하기</button></router-link>
                             </div>
                         </div>
                     </form>
@@ -75,8 +79,17 @@
                                     </tr>
                                 </thead>
                                 <tbody role="rowgroup">
-                                    <SellerWaitGroupbuyComponent v-for="(waitGroupbuy,idx) in sellerStore.waitGroupbuyList" :key="idx" :waitGroupbuy="waitGroupbuy" 
-                                    @update-select-groupbuy="handleSelectGroupbuy"></SellerWaitGroupbuyComponent>
+                                    <div v-if="isLoading"></div>
+                                    <SellerWaitGroupbuyComponent v-else v-for="(waitGroupbuy, idx) in waitGroupbuyList"
+                                        :key="idx" :waitGroupbuy="waitGroupbuy"
+                                        @update-select-groupbuy="handleSelectGroupbuy">
+                                    </SellerWaitGroupbuyComponent>
+                                    <div v-if="isLoading"></div>
+                                    <infinite-loading v-else @infinite="load" ref="InfiniteLoading">
+                                        <template #spinner><span></span></template>
+                                        <template #no-more><span></span></template>
+                                        <template #no-results><span></span></template>
+                                    </infinite-loading>
                                 </tbody>
                             </table>
                         </div>
@@ -121,33 +134,61 @@
 
 <script>
 import SellerWaitGroupbuyComponent from './SellerWaitGroupbuyComponent.vue';
+import InfiniteLoading from 'infinite-loading-vue3-ts';
+
 import { useSellerStore } from '@/stores/useSellerStore';
 import { mapStores } from 'pinia';
 export default {
-    data(){
-        return{
+    data() {
+        return {
             page: 0,
+            isLoading: true,
             gpbuyTitle: null,
             categoryIdx: null,
             selectGpbuyIdx: null,
             selectGpbuyTitle: "",
+            waitGroupbuyList: []
 
         }
     },
-    components:{
-        SellerWaitGroupbuyComponent
+    components: {
+        SellerWaitGroupbuyComponent,
+        InfiniteLoading
     },
     computed: {
         ...mapStores(useSellerStore) // 어떤 저장소랑 연결시켜 주겠다.
     },
     methods: {
-        getWaitGroupbuyList() {
-            this.sellerStore.getWaitGroupbuyList(this.page, this.gpbuyTitle, this.categoryIdx);
+        async getWaitGroupbuyList() {
+            await this.sellerStore.getWaitGroupbuyList(this.page, this.gpbuyTitle, this.categoryIdx);
+            const response = this.sellerStore.waitGroupbuyList;
+            this.waitGroupbuyList.push(...response);
+            this.page++;
+            this.isLoading=false;
         },
-        search(){
+        async load($state) {
+            await this.sellerStore.getWaitGroupbuyList(this.page, this.gpbuyTitle, this.categoryIdx);
+            const response = this.sellerStore.waitGroupbuyList;
+            if (response.length == 0) {
+                $state.complete();
+            }
+            else {
+                this.waitGroupbuyList.push(...response);
+                if (response.length == 10) {
+                    this.page++;
+                    $state.loaded()
+                } else {
+                    $state.complete();
+                }
+            }
+        },
+        search() {
+            this.page = 0;
+            this.waitGroupbuyList = [];
+            this.$refs.InfiniteLoading.stateChanger.reset();
             this.getWaitGroupbuyList();
         },
-        handleSelectGroupbuy(newIdx, newTitle){
+        handleSelectGroupbuy(newIdx, newTitle) {
             this.selectGpbuyIdx = newIdx;
             this.selectGpbuyTitle = newTitle;
         }
@@ -574,7 +615,7 @@ input {
     min-height: 500px;
     overflow: scroll;
     position: relative;
-    max-height: 750px;
+    max-height: 500px;
 }
 
 .css-1dfxxj6 {
@@ -896,7 +937,88 @@ table {
     background-color: transparent;
 }
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time,mark,audio,video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+em,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
     margin: 0px;
     padding: 0px;
     border: 0px;
@@ -904,6 +1026,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, bl
     font-style: normal;
     vertical-align: baseline;
 }
+
 .css-xrnbd4 {
     display: flex;
     -webkit-box-align: center;
@@ -911,6 +1034,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, bl
     padding: 10px 0px;
     gap: 25px;
 }
+
 .css-8840p9 {
     font-weight: 700;
     font-size: 14px;
@@ -918,6 +1042,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, bl
     color: rgb(76, 76, 76);
     white-space: nowrap;
 }
+
 .css-14q291r {
     padding: 10px 16px;
     border-radius: 6px;
@@ -933,6 +1058,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, bl
     box-sizing: border-box;
     width: 205px;
 }
+
 .css-loukex {
     display: inline-flex;
     -webkit-box-pack: center;
@@ -953,6 +1079,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, bl
     line-height: 17px;
     color: rgb(102, 102, 102);
 }
+
 .css-10q122i {
     display: inline-flex;
     -webkit-box-pack: center;
@@ -972,6 +1099,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, em, bl
     min-width: 193px;
     height: 36px;
 }
+
 .css-17t0ez6 {
     display: flex;
     flex-direction: column;

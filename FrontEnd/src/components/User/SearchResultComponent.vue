@@ -2,11 +2,18 @@
     <div id="main_content">
         <!--상품 영역-->
         <section class="main_goods">
-            <h2 v-if="0 < $route.query.categoryIdx < 12 ">{{ groupbuyStore.getCategoryText(categoryIdx) }}</h2>
+            <h2 v-if="0 < $route.query.categoryIdx < 12">{{ groupbuyStore.getCategoryText(categoryIdx) }}</h2>
             <h2 v-else>검색 결과</h2>
             <div class="goods_wrap">
                 <div v-if="isLoading"></div>
-                <CardComponent v-else-if="groupbuyStore.groupbuyList != null" v-for="(groupbuy,idx) in groupbuyStore.groupbuyList" :key="idx" :groupbuy="groupbuy"></CardComponent>
+                <CardComponent v-else-if="groupbuyList.legnth != 0"
+                    v-for="(groupbuy, idx) in groupbuyList" :key="idx" :groupbuy="groupbuy">
+                </CardComponent>
+                <infinite-loading @infinite="load" ref="InfiniteLoading">
+                    <template #spinner><span></span></template>
+                    <template #no-more><span></span></template>
+                    <template #no-results><span></span></template>
+                </infinite-loading>
             </div>
         </section>
     </div>
@@ -14,6 +21,7 @@
 
 <script>
 import CardComponent from './CardComponent.vue';
+import InfiniteLoading from 'infinite-loading-vue3-ts';
 import { useGroupbuyStore } from '@/stores/useGroupbuyStore';
 import { mapStores } from 'pinia';
 export default {
@@ -25,20 +33,42 @@ export default {
             categoryIdx: null,
             minPrice: null,
             maxPrice: null,
+            groupbuyList: []
         }
     },
     components: {
-        CardComponent
+        CardComponent,
+        InfiniteLoading
     },
     methods: {
         async searchGroupbuyList() {
-            console.log(this.categoryIdx);
-            console.log(this.minPrice);
-            await this.groupbuyStore.searchGroupbuyList(this.page,this.categoryIdx, this.minPrice, this.maxPrice);
+            await this.groupbuyStore.searchGroupbuyList(this.page, this.categoryIdx, this.minPrice, this.maxPrice);
+            const response = this.groupbuyStore.groupbuyList;
+            this.groupbuyList.push(...response);
             this.isLoading = false;
+            this.page ++;
         },
-        refreshPage(){
-            this.isLoading= true;
+        async load($state) {
+            await this.groupbuyStore.searchGroupbuyList(this.page, this.categoryIdx, this.minPrice, this.maxPrice);
+            const response = this.groupbuyStore.groupbuyList;
+            if (response.length == 0) {
+                $state.complete();
+            }
+            else {
+                this.groupbuyList.push(...response)
+                if (response.length == 20) {
+                    this.page++;
+                    $state.loaded()
+                } else{
+                    $state.complete();
+                }
+            }
+        },
+        refreshPage() {
+            this.page = 0;
+            this.isLoading = true;
+            this.groupbuyList = [];
+            this.$refs.InfiniteLoading.stateChanger.reset();
             this.searchGroupbuyList();
         }
     },
@@ -51,8 +81,8 @@ export default {
         this.maxPrice = this.$route.query.maxPrice;
         this.searchGroupbuyList();
     },
-    watch:{
-        "$route.query.categoryIdx"(newValue){
+    watch: {
+        "$route.query.categoryIdx"(newValue) {
             this.categoryIdx = newValue;
             this.refreshPage();
         }

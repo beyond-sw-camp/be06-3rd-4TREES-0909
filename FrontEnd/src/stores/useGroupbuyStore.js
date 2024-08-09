@@ -82,24 +82,30 @@ export const useGroupbuyStore = defineStore("groupbuy", {
       const response = await axios.get("/api/gpbuy/list", {
         params: {
           page: page,
-          size: 10
+          size: 20
         },
         withCredentials: true
       });
-      this.groupbuyList = response.data.result;
+      this.groupbuyList = [];
+      if (response.data.result != null){
+        this.groupbuyList.push(...response.data.result);
+      }
     },
     async searchGroupbuyList(page, categoryIdx, minPrice, maxPrice) {
       const response = await axios.get("/api/gpbuy/search", {
         params: {
           page: page,
-          size: 10,
+          size: 20,
           categoryIdx: categoryIdx,
           minPrice: minPrice,
           maxPrice: maxPrice
         },
         withCredentials: true
       });
-      this.groupbuyList = response.data.result;
+      this.groupbuyList = [];
+      if (response.data.result != null){
+        this.groupbuyList.push(...response.data.result);
+      }
     },
     async registerGroupbuy(title, gpbuyQuantity, categoryIdx, content) {
       const registerGroupbuyRequest = {

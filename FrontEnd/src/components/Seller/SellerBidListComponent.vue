@@ -94,8 +94,15 @@
                                     </tr>
                                 </thead>
                                 <tbody role="rowgroup">
-                                    <SellerBidComponent v-for="(bid, idx) in sellerStore.bidInfoList" :key="idx"
+                                    <div v-if="isLoading"></div>
+                                    <SellerBidComponent v-else v-for="(bid, idx) in bidInfoList" :key="idx"
                                         :bid="bid" @update-select-bid="handleSelectBid"></SellerBidComponent>
+                                    <div v-if="isLoading"></div>
+                                    <infinite-loading v-else @infinite="load" ref="InfiniteLoading">
+                                        <template #spinner><span></span></template>
+                                        <template #no-more><span></span></template>
+                                        <template #no-results><span></span></template>
+                                    </infinite-loading>
                                 </tbody>
                             </table>
                         </div>
@@ -140,11 +147,13 @@
 
 <script>
 import SellerBidComponent from './SellerBidComponent.vue';
+import InfiniteLoading from 'infinite-loading-vue3-ts';
 import { useSellerStore } from '@/stores/useSellerStore';
 import { mapStores } from 'pinia';
 export default {
     data() {
         return {
+            isLoading: true,
             page: 0,
             selected: this.$route.query.selectedBid == "true",
             checkboxSelect: "",
@@ -153,11 +162,13 @@ export default {
             notSelectFill: "",
             selectedBidIdx: null,
             gpbuyTitle: "",
-            gpbuyStatus: ""
+            gpbuyStatus: "",
+            bidInfoList: []
         }
     },
     components: {
-        SellerBidComponent
+        SellerBidComponent,
+        InfiniteLoading
     },
     computed: {
         ...mapStores(useSellerStore) // 어떤 저장소랑 연결시켜 주겠다.
@@ -183,19 +194,42 @@ export default {
         clickNotSelect() {
             this.$router.push("/seller/bid?selectedBid=false");
         },
-        getBidInfoList() {
-            this.sellerStore.getBidInfoList(this.page, this.selected);
+        async getBidInfoList() {
+            await this.sellerStore.getBidInfoList(this.page, this.selected);
+            const response = this.sellerStore.bidInfoList;
+            this.bidInfoList.push(...response);
+            this.isLoading = false;
+            this.page ++;
         },
         handleSelectBid(bidIdx, groupbuyTitle, gpbuyStatus) {
             this.selectedBidIdx = bidIdx;
             this.gpbuyTitle = groupbuyTitle;
             this.gpbuyStatus = gpbuyStatus;
-
         },
         refreshPage() {
+            this.page = 0;
+            this.bidInfoList = [];
+            this.$refs.InfiniteLoading.stateChanger.reset();
+            this.isLoading = true;
             this.getBidInfoList();
             this.updateSelect();
-        }
+        },
+        async load($state) {
+            await this.sellerStore.getBidInfoList(this.page, this.selected);
+            const response = this.sellerStore.bidInfoList;
+            if (response.length == 0) {
+                $state.complete();
+            }
+            else {
+                this.bidInfoList.push(...response)
+                if (response.length == 10) {
+                    this.page++;
+                    $state.loaded()
+                } else{
+                    $state.complete();
+                }
+            }
+        },
     },
     mounted() {
         if (this.$route.query.selectedBid != "true" && this.$route.query.selectedBid != "false") {
@@ -642,7 +676,7 @@ input {
     min-height: 500px;
     overflow: scroll;
     position: relative;
-    max-height: 750px;
+    max-height: 500px;
 }
 
 .css-1dfxxj6 {

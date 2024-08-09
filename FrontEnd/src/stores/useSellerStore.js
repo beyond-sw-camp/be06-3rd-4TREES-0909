@@ -98,7 +98,7 @@ export const useSellerStore = defineStore("seller", {
       const response = await axios.get("/api/bid/gpbuy/status-wait/list", {
         params: {
           page: page,
-          size: 5,
+          size: 10,
           categoryIdx: categoryIdx,
           gpbuyTitle: gpbuyTitle
         },
