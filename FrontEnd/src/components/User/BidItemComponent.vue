@@ -327,8 +327,7 @@ export default {
 }
 
 .hotelDetail .typeContentList .btnReserve {
-    border: 1px solid #1769ff;
-    background-color: #1769ff;
+    background-color: #b281e9;
     color: #fff
 }
 

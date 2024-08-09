@@ -24,17 +24,20 @@
 
                 <div class="column order">
                     <dt>주문/배송</dt>
-                    <dd><a href="#"><strong class="num" id="orderCountText">0</strong>건</a></dd>
+                    <dd><a href="#" @click="showAlert"><strong class="num" id="orderCountText">0</strong>건</a></dd>
                 </div><!--// order -->
                 <div class="column coupon">
                     <dt>나의 쿠폰</dt>
-                    <dd><a href="#"><strong class="num" id="couponCountText">{{
-                        userBasicStore.userInfoDetail.couponList.length }}</strong>개</a></dd>
+                    <dd><a href="#">
+                            <router-link to="/user/mypage/coupon/list">
+                                <strong class="num" id="couponCountText">{{
+                                    userBasicStore.userInfoDetail.couponList.length }}</strong>개
+                            </router-link></a></dd>
                 </div><!--// coupon -->
                 <div class="column point">
                     <dt>포인트</dt>
-                    <dd class="text-primary"><a href="/mypage/myPoint"><strong class="num"
-                                id="totalUnusedPointText">{{ userBasicStore.userInfoDetail.userPoint }}</strong>P</a></dd>
+                    <dd class="text-primary"><a href="#" @click="showAlert" ><strong class="num" id="totalUnusedPointText">{{
+                        userBasicStore.userInfoDetail.userPoint }}</strong>P</a></dd>
                 </div><!--// point -->
             </div><!--// inner -->
         </div><!--// user-info-box -->
@@ -64,14 +67,17 @@ export default {
         ...mapStores(userBasicStore)
     },
     methods: {
+        showAlert() {
+            alert("준비중인 기능입니다.");
 
+        }
     },
 }
 
 </script>
 
 <style scoped>
-.frame-full{
+.frame-full {
     display: flex;
     align-content: flex-end;
     flex-direction: row;
@@ -80,7 +86,7 @@ export default {
     align-items: stretch;
 }
 
-.frame-full > div:nth-of-type(1){
+.frame-full>div:nth-of-type(1) {
     padding: 30px 30px;
 }
 

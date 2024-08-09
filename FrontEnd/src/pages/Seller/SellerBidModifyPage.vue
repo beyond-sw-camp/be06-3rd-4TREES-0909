@@ -1146,91 +1146,6 @@ form>div.goods_count_area {
     margin-right: 1rem;
 }
 
-/*번개페이영역*/
-.fast_selling_area>h2 {
-    height: 100px;
-    font-size: 26px;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    border-bottom: 2px solid rgb(30, 29, 41);
-}
-
-.fast_selling_area>h2>span {
-    font-size: 16px;
-    font-weight: normal;
-    color: rgb(30, 29, 41);
-}
-
-.fast_selling_area>h2>span>a {
-    color: rgb(30, 29, 41);
-    text-decoration: underline;
-}
-
-.goods_option_area {
-    width: 100%;
-    display: flex;
-    padding: 2rem 0px;
-}
-
-.goods_option_area>p {
-    width: 10.5rem;
-    font-size: 18px;
-}
-
-.goods_option {
-    width: 100%;
-}
-
-.checkbox_safePay {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-}
-
-.checkbox_safePay input[type="checkbox"]::before {
-    position: relative;
-    top: -7px;
-}
-
-.safe_pay_notice {
-    border: 1px solid rgb(230, 229, 239);
-    border-radius: 2px;
-    background-color: rgb(250, 250, 253);
-    padding: 36px;
-    margin-top: 22px;
-}
-
-.safe_pay_notice>div {
-    display: flex;
-}
-
-.safe_pay_notice>div+div {
-    margin-top: 43px;
-}
-
-.safe_pay_notice span.check {
-    width: 15px;
-    height: 8px;
-    margin-right: 8px;
-    position: relative;
-    top: 6px;
-    border-left: 2px solid rgb(250, 250, 253);
-    border-bottom: 2px solid rgb(250, 250, 253);
-    transform: rotate(308deg);
-    -webkit-transform: rotate(308deg);
-    -moz-transform: rotate(308deg);
-    -ms-transform: rotate(308deg);
-    -o-transform: rotate(308deg);
-    /*border-color: #c3c2cc*/
-}
-
-.safe_pay_notice+p {
-    font-size: 14px;
-    color: rgb(114, 112, 127);
-    margin: 20px 0px 154px 32px;
-}
-
 .btn_submit_area {
     width: 100%;
     height: 5.5rem;
@@ -1261,7 +1176,7 @@ form>div.goods_count_area {
     font-size: 20px;
     font-weight: 700;
     border-radius: 2px;
-    background: rgb(255, 80, 88);
+    background: #c38ffd;
     position: relative;
     outline: none;
     border: none;

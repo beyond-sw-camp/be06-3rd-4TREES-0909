@@ -4,15 +4,25 @@
 
 <script>
 
+
+
 export default {
   name: 'App',
   components: {
 
+  },
+  mounted(){
+
+    console.log("  ███║     ████╗     ███║     ████╗  ");
+    console.log("██║  ██║  ██║ ██║  ██║  ██║  ██║ ██║ ");
+    console.log("██║  ██║   █████║  ██║  ██║   █████║ ");
+    console.log("██║  ██║      ██║  ██║  ██║      ██║ ");
+    console.log("  ███║        ██║    ███║        ██║ ");
   }
+
 }
 </script>
 
 <style>
-
 
 </style>

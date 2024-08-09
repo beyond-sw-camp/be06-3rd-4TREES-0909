@@ -18,8 +18,8 @@
                                     <div class="inner">
                                         <div class="column img"><a href="#"><img :src="likes.productThumbnailImg"
                                                     alt="상품이미지"></a></div>
-                                        <div class="column tit">
-                                            <!-- [Dev] 20220420 추가 : 당일/새벽배송 아이콘 추가 -->
+                                        <!-- <div class="column tit">
+                                            
 
                                             <div class="tit" style="width: 300px;">
                                                 <a href="#">{{ likes.productName }}</a>
@@ -27,10 +27,27 @@
                                             <p class="desc">
                                                 목표수량 / 남은수량<br>{{ likes.gpbuyQuantity }} / {{
                                                 likes.gpbuyRemainQuantity}}</p>
+                                        </div> -->
+                                        <div class="column tit" style="width: 250px;">
+                                            
+
+                                            <div class="tit">
+                                                <a href="#" id="endDate">상품명</a>
+                                            </div>
+                                            <p class="desc">
+                                                {{ likes.productName }}</p>
+                                        </div>
+                                        <div class="column tit">
+                                            
+
+                                            <div class="tit">
+                                                <a href="#" id="endDate">목표수량 / 남은수량</a>
+                                            </div>
+                                            <p class="desc">
+                                                {{ likes.gpbuyQuantity }} / {{likes.gpbuyRemainQuantity}}</p>
                                         </div>
 
                                         <div class="column tit">
-                                            <!-- [Dev] 20220420 추가 : 당일/새벽배송 아이콘 추가 -->
 
                                             <div class="tit">
                                                 <a href="#" id="endDate">종료일시</a>
@@ -638,5 +655,9 @@ a:link {
     line-height: 14px;
     color: #333;
     white-space: nowrap;
+}
+
+.swiper-wrapper{
+    border-bottom: 1px dotted #999;
 }
 </style>

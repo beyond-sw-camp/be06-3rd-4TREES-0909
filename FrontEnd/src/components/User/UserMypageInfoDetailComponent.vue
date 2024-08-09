@@ -57,10 +57,13 @@
                 <button type="button" id="submitBtn" class="cs_btn large black" @click.prevent="changeComponent('UserMypageInfoEditComponent')">수정하기</button>
             </div>
             <div class="cs_info_box">
-                <h3 class="cs_info_subtit">회원정보변경 안내</h3>
+                <h3 class="cs_info_subtit">마이페이지 안내</h3>
                 <ul class="cs_info_lst">
-                    <li>배송지 정보는 '나의 정보관리 &gt; 배송지 관리' 메뉴에서 추가/수정/삭제하실 수 있습니다.</li>
-                    <li>주문 정보는 회원 정보에 등록된 휴대폰번호 및 이메일주소로 안내됩니다.</li>
+                    <li>현재 구현된 페이지는 내정보, 배송지 관리, 나의 쿠폰, 관심 공구 페이지 입니다.</li>
+                    <li>구현되지 않은 페이지나 기능 호출시 처리되지 않은 예외가 발생할 수 있습니다.</li>
+                    <li>배송지 추가는 배송지 관리페이지에서 이용할 수 있습니다.</li>
+                    <li>현재 배송지 관련 기능에서 기본 배송지와 관련된 기능은 제대로 동작하지 않을 수 있습니다.</li>
+                    <li>관심 공구 목록 페이지에서 에러화면 발생시 새로고침 후 이용해주세요.</li>
                 </ul>
             </div>
         </form>
@@ -573,6 +576,7 @@ p {
     background: #ac6af6;
     border: 1px solid #ac6af6;
     color: #fff;
+    border-radius: 5px;
 }
 .cs_btn.large {
     min-width: 96px;
