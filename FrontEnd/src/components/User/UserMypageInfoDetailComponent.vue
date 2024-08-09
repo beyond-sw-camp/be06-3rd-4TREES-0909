@@ -11,50 +11,50 @@
                     <div class="field">
                         <span class="label">이메일</span>
                         <div class="insert">
-                            <span id="userEmail">{{userBasicStore.userInfoDetail.email}}</span>
+                            <span id="userEmail">{{userStore.userInfoDetail.email}}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">이름</span>
                         <div class="insert">
-                            <span id="userName">{{userBasicStore.userInfoDetail.name}}</span>
+                            <span id="userName">{{userStore.userInfoDetail.name}}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">생년월일</span>
                         <div class="insert">
-                            <span id="userBirth">{{userBasicStore.userInfoDetail.birth}}</span>
+                            <span id="userBirth">{{userStore.userInfoDetail.birth}}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">성별</span>
                         <div class="insert">
-                            <span id="userSex">{{userBasicStore.userInfoDetail.sex}}</span>
+                            <span id="userSex">{{userStore.userInfoDetail.sex}}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">주소</span>
                         <div class="insert">
-                            <span id="userAddress">{{userBasicStore.userInfoDetail.address}}</span>
+                            <span id="userAddress">{{userStore.userInfoDetail.address}}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">우편번호</span>
                         <div class="insert">
-                            <span id="userPostCode">{{userBasicStore.userInfoDetail.postCode}}</span>
+                            <span id="userPostCode">{{userStore.userInfoDetail.postCode}}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">휴대폰 번호</span>
                         <div class="insert">
-                            <span id="userPhoneNumber">{{userBasicStore.userInfoDetail.phoneNumber}}</span>
+                            <span id="userPhoneNumber">{{userStore.userInfoDetail.phoneNumber}}</span>
                         </div>
                     </div>
                 </fieldset>
             </div>
             <div class="form_btn_area">
                 <p id="alertArea" class="desc"></p>
-                <button type="button" id="submitBtn" class="cs_btn large black" @click.prevent="changeComponent('UserMypageInfoEditComponent')">수정하기</button>
+                <button type="button" id="submitBtn" class="cs_btn large black" @click="toEdit">수정하기</button>
             </div>
             <div class="cs_info_box">
                 <h3 class="cs_info_subtit">마이페이지 안내</h3>
@@ -74,7 +74,7 @@
 
 <script>
 import { mapStores } from 'pinia';
-import { userBasicStore } from '@/stores/userBasicStore';
+import { useUserStore } from '@/stores/useUserStore';
 
 export default {
     name: "UserMypageInfoDetailComponent",
@@ -84,14 +84,12 @@ export default {
         };
     },
     computed: {
-        ...mapStores(userBasicStore)
+        ...mapStores(useUserStore)
     },
     methods: {
-        // 필요한 메소드 추가
-        changeComponent(componentName) {
-            this.$emit('change-component', componentName);
-            console.log(componentName);
-        },
+        toEdit(){
+            this.$router.push("/user/mypage/edit")
+        }
     
     },
 };

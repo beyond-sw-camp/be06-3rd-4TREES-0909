@@ -12,7 +12,7 @@
                         </span>
                         <div class="" style="display:inline-block;width:calc(100% - 60xp);">
                             <p class="greeting">
-                                <strong class="name">{{ userBasicStore.userInfoDetail.name }}</strong>님 반갑습니다
+                                <strong class="name">{{ userStore.userInfoDetail.name }}</strong>님 반갑습니다
                             </p>
 
                         </div>
@@ -31,13 +31,13 @@
                     <dd><a href="#">
                             <router-link to="/user/mypage/coupon/list">
                                 <strong class="num" id="couponCountText">{{
-                                    userBasicStore.userInfoDetail.couponList.length }}</strong>개
+                                    userStore.userInfoDetail.couponList.length }}</strong>개
                             </router-link></a></dd>
                 </div><!--// coupon -->
                 <div class="column point">
                     <dt>포인트</dt>
                     <dd class="text-primary"><a href="#" @click="showAlert" ><strong class="num" id="totalUnusedPointText">{{
-                        userBasicStore.userInfoDetail.userPoint }}</strong>P</a></dd>
+                        userStore.userInfoDetail.userPoint }}</strong>P</a></dd>
                 </div><!--// point -->
             </div><!--// inner -->
         </div><!--// user-info-box -->
@@ -55,7 +55,7 @@
 
 <script>
 import { mapStores } from 'pinia';
-import { userBasicStore } from '@/stores/userBasicStore';
+import { useUserStore } from '@/stores/useUserStore';
 
 export default {
     name: "UserMypageInfoComponent",
@@ -64,7 +64,7 @@ export default {
         }
     },
     computed: {
-        ...mapStores(userBasicStore)
+        ...mapStores(useUserStore)
     },
     methods: {
         showAlert() {

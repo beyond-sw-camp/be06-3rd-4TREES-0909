@@ -15,7 +15,7 @@
                         <span class="label">아이디 <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"></span>
                         <div class="insert" id="idCheckDiv">
                             
-                                <span>{{userBasicStore.userInfoDetail.email}}</span>
+                                <span>{{userStore.userInfoDetail.email}}</span>
                             
                             
                         </div>
@@ -69,7 +69,7 @@
                                     <option value="010" addtoptnval1="" addtoptnval2="" selected="selected">010</option><option value="011" addtoptnval1="" addtoptnval2="">011</option><option value="016" addtoptnval1="" addtoptnval2="">016</option><option value="017" addtoptnval1="" addtoptnval2="">017</option><option value="018" addtoptnval1="" addtoptnval2="">018</option><option value="019" addtoptnval1="" addtoptnval2="">019</option>
                                 </select>
                                 <span>-</span>
-                                <input type="tel" id="mbrCntsELno" title="휴대폰 번호 뒷자리" placeholder="- 없이 뒷자리를 입력해주세요." value="47541175" class="input_text small translated" style="width:136px;ime-mode:disabled;" maxlength="8" numberonly=""><span class="trans_placeholder blind" data-default-txt="- 없이 뒷자리를 입력해주세요.">- 없이 뒷자리를 입력해주세요.</span>
+                                <input type="tel" id="mbrCntsELno" title="휴대폰 번호 뒷자리" placeholder="- 없이 뒷자리를 입력해주세요." :value="userStore.userInfoDetail.phoneNumber" class="input_text small translated" style="width:136px;ime-mode:disabled;" maxlength="8" numberonly=""><span class="trans_placeholder blind" data-default-txt="- 없이 뒷자리를 입력해주세요.">- 없이 뒷자리를 입력해주세요.</span>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                     <div class="field" id="emailChg01">
                         <label for="email" class="label">이메일주소 <img src="//sui.ssgcdn.com/ui/ssg/img/mem/ico_star.gif" alt="필수"></label>
                         <div class="insert">
-                            <input type="text" id="email" name="email" placeholder="자주 사용하시는 이메일 주소를 입력해주세요." value="dlflq11@gmail.com" class="input_text small translated" style="width:250px" maxlength="50"><span class="trans_placeholder blind" data-default-txt="자주 사용하시는 이메일 주소를 입력해주세요.">자주 사용하시는 이메일 주소를 입력해주세요.</span>
+                            <input type="text" id="email" name="email" placeholder="자주 사용하시는 이메일 주소를 입력해주세요." :value="userStore.userInfoDetail.email" class="input_text small translated" style="width:250px" maxlength="50"><span class="trans_placeholder blind" data-default-txt="자주 사용하시는 이메일 주소를 입력해주세요.">자주 사용하시는 이메일 주소를 입력해주세요.</span>
                         </div>
                     </div>
                 </fieldset>
@@ -104,7 +104,7 @@
 
 <script>
 import { mapStores } from 'pinia';
-import { userBasicStore } from '@/stores/userBasicStore';
+import { useUserStore } from '@/stores/useUserStore';
 export default {
     name: "UserMypageInfoEditComponent",
     data() {
@@ -112,7 +112,7 @@ export default {
         }
     },
     computed: {
-        ...mapStores(userBasicStore)
+        ...mapStores(useUserStore)
     },
     methods: {
 
