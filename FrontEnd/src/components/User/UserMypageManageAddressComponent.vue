@@ -35,7 +35,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(deliveryAddress, index) in userBasicStore.userInfoDetail.deliveryAddressList" :key="index">
+                                    <tr v-for="(deliveryAddress, index) in userStore.userInfoDetail.deliveryAddressList" :key="index">
                                         <td class="text-center">
                                             <!-- [Dev] 20210909 체크박스 > 라디오 버튼으로 수정 -->
         
@@ -61,7 +61,7 @@
                                         </td>
                                         <td class="text-center">
                                         </td>
-                                        <td class="text-center td-delivery-cell">{{ userBasicStore.userInfoDetail.phoneNumber }}</td>
+                                        <td class="text-center td-delivery-cell">{{ userStore.userInfoDetail.phoneNumber }}</td>
                                         <td class="text-center">
                                             <ul class="sep-list type4">
                                                 <li><a href="javascript:void(0);" class="btn-upd-delivery">수정</a></li>
@@ -181,7 +181,7 @@
 </template>
 
 <script>
-import { userBasicStore } from '@/stores/userBasicStore';
+import { useUserStore } from '@/stores/useUserStore';
 import { mapStores } from 'pinia';
 import UserMypageAddAddressComponent from './UserMypageAddAddressComponent.vue';
 export default {
@@ -191,7 +191,7 @@ export default {
         }
     },
     computed:{
-        ...mapStores(userBasicStore)
+        ...mapStores(useUserStore)
     },
     methods: {
         addAddr(){
@@ -202,8 +202,8 @@ export default {
         },
         handleSaveModal(payload){
             console.log(payload.detailAddr);
-            this.userBasicStore.saveAddr(payload);
-            this.userBasicStore.userDetail();
+            this.userStore.saveAddr(payload);
+            this.userStore.userDetail();
             this.addAddrIsVisible = false;
         }
     },

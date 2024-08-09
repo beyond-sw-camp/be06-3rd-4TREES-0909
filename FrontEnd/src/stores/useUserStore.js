@@ -4,7 +4,37 @@ import axios from "axios";
 const backend = "/api";
 
 export const useUserStore = defineStore('user', {
-    state: () => ({ isLoggedIn: false, uuid: '', roles: [] }),
+    state: () => ({ isLoggedIn: false, uuid: '', roles: [],
+        userInfoDetail:
+        {
+            "name": "",
+            "password": "",
+            "birth": "",
+            "email": "",
+            "sex": "",
+            "address": "",
+            "postCode": 0,
+            "phoneNumber": "",
+            "couponList": [
+              {
+                "couponName": "",
+                "couponPrice": 0,
+                "couponContent": "",
+                "minOrderPrice": 0
+              }
+            ],
+            "deliveryAddressList": [
+              {
+                "addressName": "",
+                "addressInfo": "",
+                "addressDefault": true,
+                "postCode": 0
+              }
+            ],
+            "userPoint": 0
+          },
+    "deliveryAddressIdx": 0
+     }),
     persist: {
         storage: sessionStorage,
     },
@@ -79,5 +109,17 @@ export const useUserStore = defineStore('user', {
                 return false;
             }
         },
+        async userDetail(){            
+            const response = await axios.get("/api/user/info/detail", {withCredentials: true});
+            this.userInfoDetail = response.data.result;
+            console.log(this.userInfoDetail);
+        },
+        async saveAddr(deliveryAddressRegisterRequest){
+          
+          const response = await axios.post("/api/user/delivery/register",deliveryAddressRegisterRequest, {withCredentials: true})
+          console.log(response.result);
+          this.userDetail();
+          
+        }
     }
 });

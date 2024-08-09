@@ -9,7 +9,7 @@
         
 
         <div class="board-top-tab-group">
-            <button id="myCoupon" class="board-top-tab active" type="button" data-cp-status="10">보유쿠폰 <b id="myCouponCnt">{{ userBasicStore.userInfoDetail.couponList.length }}</b></button>
+            <button id="myCoupon" class="board-top-tab active" type="button" data-cp-status="10">보유쿠폰 <b id="myCouponCnt">{{ userStore.userInfoDetail.couponList.length }}</b></button>
             
         </div>
         <div id="myConponCont" class="board-list"><div class="coupon-table" id="myCouponList">
@@ -30,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(coupon, index) in userBasicStore.userInfoDetail.couponList" :key="index">
+        <tr v-for="(coupon, index) in userStore.userInfoDetail.couponList" :key="index">
                     <td>
                         <div class="coupon-tbl-discount-group">
                             <b>{{ coupon.couponPrice }}원</b>
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { userBasicStore } from '@/stores/userBasicStore';
+import { useUserStore } from '@/stores/useUserStore';
 import { mapStores } from 'pinia';
 export default {
     name: "UserMypageCouponListComponent",
@@ -72,7 +72,7 @@ export default {
         }
     },
     computed:{
-        ...mapStores(userBasicStore)
+        ...mapStores(useUserStore)
     },
     methods: {
     },

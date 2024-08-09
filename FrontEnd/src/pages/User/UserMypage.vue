@@ -10,7 +10,7 @@
 <script>
 import UserMypageInfoComponent from '@/components/User/UserMypageInfoComponent.vue';
 import { mapStores } from 'pinia';
-import { userBasicStore } from '@/stores/userBasicStore';
+import { useUserStore } from '@/stores/useUserStore';
 import UserMypageAsideComponent from '@/components/User/UserMypageAsideComponent.vue';
 
 
@@ -21,14 +21,14 @@ export default {
         }
     },
     computed: {
-        ...mapStores(userBasicStore)
+        ...mapStores(useUserStore)
     },
     mounted(){
         this.setMypage();
     },
     methods: {
         setMypage(){
-            this.userBasicStore.userDetail();
+            this.userStore.userDetail();
         }
     },
     components: {

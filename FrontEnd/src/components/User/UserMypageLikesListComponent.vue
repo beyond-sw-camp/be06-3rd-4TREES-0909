@@ -91,26 +91,22 @@
 
 <script>
 import { userBasicStore } from '@/stores/userBasicStore';
-import { groupbuyStore } from '@/stores/groupbuyStore';
+import { useGroupbuyStore } from '@/stores/useGroupbuyStore';
 import { mapStores } from 'pinia';
+
 export default {
     name: "UserMypageLikesListComponent",
     data() {
         return { componentKey: 0, isLoading: true}
     },
-    beforeRouteUpdate(to, from) {
-        console.log("test");
-        console.log(to);
-        console.log(from);
-        console.log("test");
-    },
     computed: {
-        ...mapStores(userBasicStore, groupbuyStore)
+        ...mapStores(userBasicStore, useGroupbuyStore)
     },
     mounted() {
         this.setData();
     },
     methods: {
+        // ...mapActions(this.groupbuyStore,['myLikesList']),
         showAlert() {
             alert("준비중인 기능입니다.")
         },
