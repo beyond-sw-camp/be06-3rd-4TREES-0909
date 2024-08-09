@@ -18,7 +18,7 @@
                                         로그아웃
                                     </router-link>
                                 </div>
-                                <div class="col-4" v-if="userStore.isLoggedIn">
+                                <div class="col-4" v-if="userStore.isLoggedIn && userStore.roles[0]==='ROLE_USER'">
                                     <router-link to="/user/mypage/detail">
                                         마이페이지
                                     </router-link>
@@ -65,9 +65,13 @@
                     <div class="col-md-1 hamburger" @mouseover="hamburgerHover" @mouseleave="hamburgerMouseLeave">
                         <img id="menu" ref="menu" src="../../assets/images/market/hamburger.png" alt="메뉴">
                     </div>
-                    <div class="col-md-4 sell_center">
-
-                    </div>
+                    
+                    <router-link v-if="userStore.roles[0]=='ROLE_SELLER'"   to="/seller/mypage" class="col-md-4 sell_center" style="color:black" >
+                            <p>
+                                번개장터 판매자센터
+                            </p>
+                    </router-link>
+                    
                     <!-- 메뉴 호버 -->
                     <div id="test_area" @mouseover="categoryHover" @mouseleave="categoryMouseLeave">
                         <ul id="test_cates" ref="test_cates">
@@ -182,10 +186,6 @@ a:link {
     text-decoration: none;
 }
 
-a:visited {
-    color: #8a8e91;
-    text-decoration: none;
-}
 
 a:hover,
 a:focus {
@@ -236,7 +236,7 @@ header,
 
 #bot_header_border {
     position: sticky;
-    height: 146px;
+    height: 160px;
     top: 0;
     background-color: white;
 }
@@ -492,9 +492,11 @@ header,
 .sell_center {
     text-align: left;
     position: relative;
-    left: -35px;
+    left: -30px;
     font-weight: bold;
+    font-size: 17px;
     padding: 0;
+    
 }
 
 .sell_center>p {
@@ -506,6 +508,9 @@ header,
     width: 72px;
 }
 
+a:visited{
+    color: #8a8e91;
+}
 /* // 하단 헤더 부분 */
 /* // header 영역 */
 
