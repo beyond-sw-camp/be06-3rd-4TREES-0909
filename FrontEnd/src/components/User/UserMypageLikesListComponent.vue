@@ -90,7 +90,6 @@
 </template>
 
 <script>
-import { userBasicStore } from '@/stores/userBasicStore';
 import { useGroupbuyStore } from '@/stores/useGroupbuyStore';
 import { mapStores } from 'pinia';
 
@@ -100,7 +99,7 @@ export default {
         return { componentKey: 0, isLoading: true}
     },
     computed: {
-        ...mapStores(userBasicStore, useGroupbuyStore)
+        ...mapStores(useGroupbuyStore)
     },
     mounted() {
         this.setData();
