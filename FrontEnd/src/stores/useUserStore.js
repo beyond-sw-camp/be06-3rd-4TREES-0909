@@ -12,7 +12,6 @@ export const useUserStore = defineStore('user', {
         async login(user) {
             try {
                 let response = await axios.post(backend + "/user/login", user);
-                console.log(response.data.result);
                 if (response.status === 200) {
                     this.isLoggedIn = true;
                     if (response.data.result == "ROLE_USER") {

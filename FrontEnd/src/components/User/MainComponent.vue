@@ -37,27 +37,26 @@ export default {
     },
     methods: {
         async getGroupbuyList() {
-            const response = await this.groupbuyStore.getGroupbuyList(this.page);
+            await this.groupbuyStore.getGroupbuyList(this.page);
+            const response = this.groupbuyStore.groupbuyList;
             this.isLoading = false;
             this.groupbuyList.push(...response);
             this.page++;
         },
         async load($state) {
-            console.log('load');
-            console.log(this.page);
-
-            const response = await this.groupbuyStore.getGroupbuyList(this.page);
-            if (response == null) {
+            await this.groupbuyStore.getGroupbuyList(this.page);
+            const response = this.groupbuyStore.groupbuyList;
+            if (response.length == 0) {
                 $state.complete();
-            }
-            else if (response.length == 20) {
-                this.page++;
-                this.groupbuyList.push(...response);
-                $state.loaded()
             }
             else {
-                this.groupbuyList.push(...response);
-                $state.complete();
+                this.groupbuyList.push(...response)
+                if (response.length == 20) {
+                    this.page++;
+                    $state.loaded()
+                } else{
+                    $state.complete();
+                }
             }
         }
     },
