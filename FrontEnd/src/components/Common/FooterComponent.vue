@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <div class="copyright">Copyright © InterparkTriple Corp. All rights reserved.</div>
+        <div class="copyright">Copyright © 4Trees Corp. All rights reserved.</div>
     </div>
 </template>
 
