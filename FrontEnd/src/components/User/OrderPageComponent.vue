@@ -46,27 +46,47 @@
                                     </a></div>
                             </div>
                             <div id="addressInfoDiv">
-                                <span>수령인 이름</span><br>
-                                <input type="text" style="width:20%; height: 30px; border:1px solid #ccc"
-                                    v-model="receiverName">
-                                <em class="badge-point2" style="margin-left:6px;display:inline-block;">기본배송지</em>
-                                <br><br>
-                                <span>우편번호</span><br>
-                                <input type="text" style="border: 1px solid #ccc; height: 30px; margin-bottom:12px;"
-                                    v-model="receiverPostCode"><br>
-                                <span>주소</span> <br>
-                                <input type="text"
-                                    style="margin-bottom:12px; background-color: white; width:100%; height:35px; border: 1px solid #ccc;"
-                                    v-model="receiverAddress"><br>
+                                <div class="css-k9oiqw">
+                                    <label class="css-yhuigj">수령인 이름</label>
+                                    <div class="css-ay1s">
+                                        <input type="text" v-model="receiverName" autocomplete="off" name="companyName"
+                                            class="css-11nkng1">
+                                    </div>
+                                </div>
 
-                                <ul class="order-order-info">
-                                    <li>
-                                        전화번호<br>
-                                        <input
-                                            style="background-color: white; width:20%; height: 30px; border: 1px solid #ccc;"
-                                            v-model="receiverPhoneNumber">
-                                    </li>
-                                </ul>
+                                <div class="css-k9oiqw">
+                                    <label class="css-yhuigj">수령인 전화번호</label>
+                                    <div class="css-ay1s">
+                                        <input type="text" v-model="receiverPhoneNumber" autocomplete="off"
+                                            name="companyName" class="css-11nkng1" @input="validateAndFilterPhoneNumber"
+                                            pattern="\d*">
+                                    </div>
+                                </div>
+
+                                <div class="css-k9oiqw">
+                                    <label class="css-yhuigj">수령지 우편번호</label>
+                                    <div class="css-ay1s">
+                                        <input type="text" v-model="receiverPostCode" autocomplete="off" required=""
+                                            placeholder="우편번호 (5자 입력)" name="companyPostCode" maxlength="5"
+                                            class="css-11nkng1" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="css-k9oiqw">
+                                    <label class="css-yhuigj">수령지 주소</label>
+                                    <div class="css-ay1s">
+                                        <div>
+                                            <div class="css-1v0rcng" @click="execDaumPostcode">주소
+                                                찾기</div>
+                                        </div>
+                                        <input type="text" v-model="receiverAddress" autocomplete="off" required=""
+                                            spellcheck="false" placeholder="주소" name="companyAddress" readonly
+                                            class="css-1k3phzy">
+                                        <input type="text" v-model="receiverSubAddress" autocomplete="off"
+                                            placeholder="상세 주소 입력 (40자 내 입력)" name="subAddress" maxlength="40"
+                                            class="css-11nkng1">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -363,7 +383,7 @@ import { mapStores } from 'pinia';
 import axios from "axios"
 
 export default {
-    data(){
+    data() {
         return {
             isLoading: true,
             orderPageInfo: {},
@@ -376,6 +396,7 @@ export default {
             receiverName: "",
             receiverPostCode: "",
             receiverAddress: "",
+            receiverSubAddress: "",
             receiverPhoneNumber: "",
             usePoint: 0,
             useCouponPrice: 0,
@@ -386,131 +407,171 @@ export default {
         }
     },
     methods: {
+        validateAndFilterPhoneNumber(event) {
+            let input = event.target.value;
+
+            // 숫자만 필터링
+            this.receiverPhoneNumber = input.replace(/[^0-9]/g, '');
+
+            // 하이픈을 기준으로 전화번호 포맷팅
+            if (this.receiverPhoneNumber.length > 3) {
+                if (this.receiverPhoneNumber.length > 7) {
+                    this.receiverPhoneNumber = `${this.receiverPhoneNumber.slice(0, 3)}-${this.receiverPhoneNumber.slice(3, 7)}-${this.receiverPhoneNumber.slice(7)}`;
+                } else {
+                    this.receiverPhoneNumber = `${this.receiverPhoneNumber.slice(0, 3)}-${this.receiverPhoneNumber.slice(3)}`;
+                }
+            }
+
+            // 전화번호 유효성 검사 (하이픈 포함)
+            const phonePattern = /^01[0-9]-\d{3,4}-\d{4}$/;
+            this.phoneNumberError = phonePattern.test(this.receiverPhoneNumber) ? '' : '유효한 휴대폰 번호를 입력하세요.';
+        },
+        execDaumPostcode() {
+            // eslint-disable-next-line no-undef
+            if (typeof daum !== 'undefined' && typeof daum.Postcode !== 'undefined') {
+                // eslint-disable-next-line no-undef
+                new daum.Postcode({
+                    oncomplete: (data) => {
+                        // 선택한 주소를 인풋 박스에 입력
+                        this.receiverAddress = data.address;
+                        this.receiverPostCode = data.zonecode;  // 우편번호 설정
+                    }
+                }).open();
+            } else {
+                console.error('Daum Postcode script is not loaded');
+            }
+        },
         couponSelectModal() {
             document.getElementById("popup-coupon").style.display = "inline-block";
         },
         closeSelectCouponModal() {
             document.getElementById("popup-coupon").style.display = "none";
         },
-        getDefaultDelivery(){
+        getDefaultDelivery() {
             Array.from(this.orderPageInfo.deliveryAddressResponseList).forEach(delivery => {
-                if(delivery.addressDefault){
-                    this.receiverPostCode = delivery.postCode;
-                    this.receiverAddress =delivery.addressInfo;
+                if (delivery.addressDefault) {
+                    this.receiverAddress = delivery.postCode;
+                    this.receiverAddress = delivery.addressInfo;
                     return;
                 }
             });
         },
-        calcOrderPrice(){
+        calcOrderPrice() {
             this.orderPrice = this.orderPageInfo.bidPrice * this.orderPageInfo.quantity - this.usePoint - this.useCouponPrice;
-            if(this.orderPrice < 0){
-                this.orderPrice= 0
-            } 
+            if (this.orderPrice < 0) {
+                this.orderPrice = 0
+            }
         },
-        fnUsePoint(){
-            if(this.usePoint > this.orderPageInfo.point){
+        fnUsePoint() {
+            if (this.usePoint > this.orderPageInfo.point) {
                 alert("보유 포인트를 초과하여 사용할 수 없습니다.");
                 this.usePoint = 0;
             }
             this.calcOrderPrice();
         },
-        fnUseAllPoint(){
-            if(this.orderPageInfo.bidPrice < this.orderPageInfo.point){
+        fnUseAllPoint() {
+            if (this.orderPageInfo.bidPrice < this.orderPageInfo.point) {
                 this.usePoint = this.orderPageInfo.bidPrice;
-            } else{
+            } else {
                 this.usePoint = this.orderPageInfo.point;
             }
             this.calcOrderPrice();
         },
-        focusPoint(){
-            this.usePoint="";
+        focusPoint() {
+            this.usePoint = "";
         },
-        handleSelectCoupon(newIdx){
-            this.selectCouponIdx = newIdx; 
+        handleSelectCoupon(newIdx) {
+            this.selectCouponIdx = newIdx;
         },
-        couponApply(){
+        couponApply() {
             Array.from(this.orderPageInfo.userCouponResponseList).forEach(userCoupon => {
-                if(userCoupon.userCouponIdx==this.selectCouponIdx && userCoupon.minOrderPrice <= this.orderPageInfo.bidPrice*this.orderPageInfo.quantity){
+                if (userCoupon.userCouponIdx == this.selectCouponIdx && userCoupon.minOrderPrice <= this.orderPageInfo.bidPrice * this.orderPageInfo.quantity) {
                     this.useCouponPrice = userCoupon.couponPrice;
                     this.calcOrderPrice();
                     this.closeSelectCouponModal();
                     return;
-                } else if(userCoupon.userCouponIdx==this.selectCouponIdx) {
+                } else if (userCoupon.userCouponIdx == this.selectCouponIdx) {
                     alert("상품의 금액이 쿠폰 최소 사용 금액보다 적습니다.")
                 }
             });
         },
-        couponCancle(){
+        couponCancle() {
             this.useCouponPrice = 0;
             this.selectCouponIdx = null;
             this.closeSelectCouponModal();
             this.calcOrderPrice();
         },
-        checkTerms(){
+        checkTerms() {
             this.termStatus = !this.termStatus
         },
-        fnCheckOrder(){
-            if (!this.termStatus){
+        fnCheckOrder() {
+            if (this.receiverName == "" || this.receiverPhoneNumber == "" || this.receiverPostCode == ""
+                || this.receiverPostCode.length > 5 || this.recipientAddress == "" || this.receiverSubAddress == ""
+            ) {
+                alert("수령인 정보를 입력해주세요.");
+                return;
+            }
+            else if (!this.termStatus) {
                 alert("약관에 동의를 해주세요.");
                 return;
             }
-            if (this.selectedPayMethod==null){
+            if (this.selectedPayMethod == null) {
                 alert("결제 방법을 선택해주세요.");
-            } else if(this.selectedPayMethod==="KAKAOPAY"){
+            } else if (this.selectedPayMethod === "KAKAOPAY") {
                 this.kakaoPayment();
-            } else{
+            } else {
                 alert("현재 지원하지 않는 결제 방법입니다. 카카오 결제를 이용해주세요.");
             }
         },
-        kakaoPayment(){
-            const {IMP} = window;
+        kakaoPayment() {
+            const { IMP } = window;
             IMP.init("imp17385342"); // 고객사 식별 코드
             const self = this;
-			IMP.request_pay(
+            IMP.request_pay(
                 {
                     pg: "kakaopay.TC0ONETIME",
                     merchant_uid: "order_no_" + this.orderPageInfo.bidIdx + Date.now(), // 상점에서 생성한 고유 주문번호
-                    name: "주문: " + this.orderPageInfo.productName + " (수량 "+ this.orderPageInfo.quantity + "개)",
+                    name: "주문: " + this.orderPageInfo.productName + " (수량 " + this.orderPageInfo.quantity + "개)",
                     amount: this.orderPrice, // 금액
                     buyer_email: this.orderPageInfo.email,
                     buyer_name: this.orderPageInfo.name,
                     custom_data: {
                         bidIdx: this.orderPageInfo.bidIdx,
                         orderQuantity: this.orderPageInfo.quantity,
-                        deadline:2,
+                        deadline: 2,
                         recipientName: this.receiverName,
-                        recipientAddress: this.receiverAddress,
+                        recipientAddress: this.receiverAddress + " " + this.receiverSubAddress,
                         recipientPostCode: this.receiverPostCode,
                         recipientPhoneNumber: this.receiverPhoneNumber,
                         usePoint: this.usePoint,
                         userCouponIdx: this.selectCouponIdx
-                    } 
+                    }
                 },
                 function (rsp) {
                     console.log(rsp);
                     console.log(rsp.imp_uid);
                     // 백엔드에서 결재를 확인하는 url 호출
-                    if (rsp.success){
-                        axios.get("/api/orders/register?impUid="+rsp.imp_uid, { withCredentials:true })
-                        .then((data) => {
-                            console.log(data.data);
-                            if(data.data.isSuccess){
-                                alert("주문 완료하였습니다.");
-                                self.$router.push("/order/history");
-                            } else {
-                                alert("주문 취소되었습니다.");
-                                self.$router.push("/main");
-                            }
-                        });
+                    if (rsp.success) {
+                        axios.get("/api/orders/register?impUid=" + rsp.imp_uid, { withCredentials: true })
+                            .then((data) => {
+                                console.log(data.data);
+                                if (data.data.isSuccess) {
+                                    alert("주문 완료하였습니다.");
+                                    self.$router.push("/order/history");
+                                } else {
+                                    alert("주문 취소되었습니다.");
+                                    self.$router.push("/");
+                                }
+                            });
                     } else {
                         alert("주문 실패");
-                        self.$router.push("/main");
+                        self.$router.push("/");
                     }
                 },
             );
         },
         async getOrderPageInfo() {
-            await this.orderStore.getOrderPageInfo(this.$route.query.gpbuyIdx , this.$route.query.quantity, this.$route.query.bidIdx);
+            await this.orderStore.getOrderPageInfo(this.$route.query.gpbuyIdx, this.$route.query.quantity, this.$route.query.bidIdx);
             this.isLoading = false;
         },
     },
@@ -538,9 +599,118 @@ export default {
     components: {
         CouponComponent,
     }
-   
+
 }
 </script>
 
 <style src="./css/주문페이지1.css" scoped></style>
 <style src="./css/주문페이지2.css" scoped></style>
+<style scoped>
+.css-k9oiqw {
+    margin-bottom: 15px;
+}
+
+.css-k9oiqw {
+    display: flex;
+    column-gap: 20px;
+}
+
+
+.css-yhuigj {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.css-yhuigj {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    min-width: 140px;
+    white-space: pre-wrap;
+    font-weight: bold;
+    color: rgb(76, 76, 76);
+    height: 48px;
+    font-size: 16px;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.css-ay1s {
+    margin-top: 10px;
+}
+
+.css-ay1s {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+
+.css-11nkng1.read-only {
+    color: rgb(140, 140, 140);
+    cursor: default;
+    pointer-events: none;
+}
+
+.css-11nkng1:disabled {
+    background-color: rgb(246, 246, 246);
+    color: rgb(178, 178, 178);
+    cursor: not-allowed;
+}
+
+.css-11nkng1 {
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid rgb(229, 229, 229);
+    background-color: rgb(255, 255, 255);
+    color: rgb(25, 25, 25);
+    caret-color: rgb#c38ffd;
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.css-1k3phzy.read-only {
+    color: rgb(140, 140, 140);
+    cursor: default;
+    pointer-events: none;
+}
+
+.css-1k3phzy:disabled {
+    background-color: rgb(246, 246, 246);
+    color: rgb(178, 178, 178);
+    cursor: not-allowed;
+}
+
+.css-1k3phzy {
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid rgb(229, 229, 229);
+    background-color: rgb(255, 255, 255);
+    color: rgb(25, 25, 25);
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 700;
+    caret-color: transparent;
+}
+
+.css-1v0rcng {
+    display: inline-block;
+    border-radius: 6px;
+    line-height: 1;
+    font-weight: 700;
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+    color: #c38ffd;
+    border: 1px solid #c38ffd;
+    padding: 10px 14px;
+    font-size: 14px;
+}
+
+.css-1v0rcng:disabled {
+    cursor: not-allowed;
+}
+</style>
