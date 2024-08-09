@@ -540,7 +540,7 @@ input {
     min-height: 500px;
     overflow: scroll;
     position: relative;
-    max-height: 750px;
+    max-height: 500px;
 }
 
 .css-1dfxxj6 {
