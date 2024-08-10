@@ -23,7 +23,7 @@
             <div class="inputStyle inputId">
               <label>
                 <input v-model="user.email" value="" autofocus="" type="text" class="inputText id" name="userId"
-                  id="userId" placeholder="아이디">
+                  id="userId" placeholder="아이디" @keydown.enter="login">
                 <span class="focusLine"></span>
                 <i>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
