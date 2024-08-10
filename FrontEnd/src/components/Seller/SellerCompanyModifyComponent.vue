@@ -110,7 +110,6 @@ export default {
             }
         },
         async submitForm() {
-            console.log(this.companyName);
             try {
                 const response = await this.sellerStore.modifyCompanyDetail(
                     this.companyName,
@@ -120,7 +119,6 @@ export default {
                     this.companyIntro
                 );
                 if (response.isSuccess) {
-                    console.log('업체 정보 수정 성공');
                     // 성공적인 등록 후 추가 로직
                 } else {
                     alert(response.message); // 서버에서 받은 에러 메시지 표시

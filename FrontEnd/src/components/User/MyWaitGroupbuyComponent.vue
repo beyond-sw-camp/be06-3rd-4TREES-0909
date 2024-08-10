@@ -46,7 +46,6 @@ export default {
         let bidEndDay =  this.waitGroupbuy.gpbuyBidEndedAt.split("T")[0];
         let bidEndTime = this.waitGroupbuy.gpbuyBidEndedAt.split("T")[1].split(":");
         this.bidEndedAt = bidEndDay + " ("+ bidEndTime[0] + ":"+bidEndTime[1] +")";
-        console.log(this.bidEndedAt);
     }
     
 }
