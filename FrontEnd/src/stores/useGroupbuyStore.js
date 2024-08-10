@@ -121,8 +121,6 @@ export const useGroupbuyStore = defineStore("groupbuy", {
     async getMyWaitGroupbuyList() {
       const response = await axios.get("/api/gpbuy/list/wait", { withCredentials: true });
       this.myWaitGroupbuyList = response.data.result;
-      console.log(this.myWaitGroupbuyList);
-      console.log(response);
       return this.gpbuyRegisterResponse;
     },
     async getWaitGroupbuy(idx) {
@@ -130,12 +128,10 @@ export const useGroupbuyStore = defineStore("groupbuy", {
         withCredentials: true
       });
       this.waitGroupbuy = response.data.result;
-      console.log(this.waitGroupbuy);
     },
     async getProgressGroupbuy(idx) {
       const response = await axios.get("/api/gpbuy/detail?gpbuyIdx=" + idx);
       this.progressGroupbuy = response.data.result;
-      console.log(this.progressGroupbuy);
     },
     getCategoryText(categoryIdx) {
       const categoryMap = {
@@ -155,7 +151,6 @@ export const useGroupbuyStore = defineStore("groupbuy", {
     },
     async getGroupbuyLikes(idx) {
       const response = await axios.get("/api/gpbuy/likes/save?gpbuyIdx=" + idx);
-      console.log(response);
       if (response.data.isSuccess) {
         this.isLiked = response.data.result.isLiked;
         return true;

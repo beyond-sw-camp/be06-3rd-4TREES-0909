@@ -118,7 +118,6 @@ export const useSellerStore = defineStore("seller", {
 
       const response = await axios.post("/api/company/register", request, { withCredentials: true });
       this.registeredCompany = response.data.result;
-      console.log(response);
       return response.data;
     },
 

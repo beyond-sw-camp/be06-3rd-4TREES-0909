@@ -109,7 +109,11 @@ export const useUserStore = defineStore('user', {
         async saveAddr(deliveryAddressRegisterRequest){
           
           const response = await axios.post("/api/user/delivery/register",deliveryAddressRegisterRequest, {withCredentials: true})
-          this.userDetail();
+          if(response.status === 200){         
+            this.userDetail();
+          }else{
+            alert("배송지 등록에 실패했습니다.");
+          }
           
         }
     }

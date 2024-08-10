@@ -148,7 +148,6 @@ export default {
     },
     methods: {
         bidRegister() {
-            console.log(this.gpbuyIdx, this.productIdx, this.bidPrice);
             if (this.productIdx == null) {
                 alert("상품을 선택해 주세요.");
                 return;
