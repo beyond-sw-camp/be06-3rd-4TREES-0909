@@ -93,7 +93,7 @@ export default {
         }
 
     },
-    mounted() {
+    created() {
         if (this.userStore.userInfoDetail.postCode < 10000) {
             this.postCode = "0" + this.userStore.userInfoDetail.postCode;
         } else {

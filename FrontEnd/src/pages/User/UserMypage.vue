@@ -2,7 +2,8 @@
     <UserMypageInfoComponent></UserMypageInfoComponent>
     <div class="frame-sm">
         <UserMypageAsideComponent></UserMypageAsideComponent>
-        <router-view></router-view>
+        <div v-if="isLoading"></div>
+        <router-view v-else></router-view>
     </div>
     <div style="margin-bottom: 30px;"></div>
 </template>
@@ -17,7 +18,7 @@ import UserMypageAsideComponent from '@/components/User/UserMypageAsideComponent
 export default {
     name: "UserMypage",
     data() {
-        return { response:{},
+        return { response:{}, isLoading:true
         }
     },
     computed: {
@@ -27,8 +28,9 @@ export default {
         this.setMypage();
     },
     methods: {
-        setMypage(){
-            this.userStore.userDetail();
+        async setMypage(){
+            await this.userStore.userDetail();
+            this.isLoading=false;
         }
     },
     components: {
