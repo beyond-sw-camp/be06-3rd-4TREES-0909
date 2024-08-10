@@ -120,8 +120,12 @@ export default {
                 this.companyType = companyDetails.companyType;
                 this.companyIntro = companyDetails.companyIntro;
                 this.companyAddress = companyDetails.companyAddress;
-                this.companyPostCode = companyDetails.companyPostCode;
                 this.subAddress = companyDetails.subAddress;
+                if (this.sellerStore.sellerInfoDetail.postCode < 10000) {
+                    this.companyPostCode = "0" + this.sellerStore.sellerInfoDetail.postCode;
+                } else {
+                    this.companyPostCode = this.sellerStore.sellerInfoDetail.postCode;
+                }
             } catch (error) {
                 console.error('Failed to load company detail:', error);
                 alert('업체 정보를 불러오는 중 오류가 발생했습니다.');

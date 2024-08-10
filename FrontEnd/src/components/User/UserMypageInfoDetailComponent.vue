@@ -11,43 +11,43 @@
                     <div class="field">
                         <span class="label">이메일</span>
                         <div class="insert">
-                            <span id="userEmail">{{userStore.userInfoDetail.email}}</span>
+                            <span id="userEmail">{{ userStore.userInfoDetail.email }}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">이름</span>
                         <div class="insert">
-                            <span id="userName">{{userStore.userInfoDetail.name}}</span>
+                            <span id="userName">{{ userStore.userInfoDetail.name }}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">생년월일</span>
                         <div class="insert">
-                            <span id="userBirth">{{userStore.userInfoDetail.birth}}</span>
+                            <span id="userBirth">{{ userStore.userInfoDetail.birth }}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">성별</span>
                         <div class="insert">
-                            <span id="userSex">{{userStore.userInfoDetail.sex}}</span>
+                            <span id="userSex">{{ userStore.userInfoDetail.sex }}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">주소</span>
                         <div class="insert">
-                            <span id="userAddress">{{userStore.userInfoDetail.address}}</span>
+                            <span id="userAddress">{{ userStore.userInfoDetail.address }}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">우편번호</span>
                         <div class="insert">
-                            <span id="userPostCode">{{userStore.userInfoDetail.postCode}}</span>
+                            <span id="userPostCode">{{ postCode }}</span>
                         </div>
                     </div>
                     <div class="field">
                         <span class="label">휴대폰 번호</span>
                         <div class="insert">
-                            <span id="userPhoneNumber">{{userStore.userInfoDetail.phoneNumber}}</span>
+                            <span id="userPhoneNumber">{{ userStore.userInfoDetail.phoneNumber }}</span>
                         </div>
                     </div>
                 </fieldset>
@@ -81,23 +81,31 @@ export default {
     data() {
         return {
             // 필요한 데이터 추가
+            postCode: "",
         };
     },
     computed: {
         ...mapStores(useUserStore)
     },
     methods: {
-        toEdit(){
+        toEdit() {
             this.$router.push("/user/mypage/edit")
         }
-    
+
     },
+    mounted() {
+        if (this.userStore.userInfoDetail.postCode < 10000) {
+            this.postCode = "0" + this.userStore.userInfoDetail.postCode;
+        } else {
+            this.postCode = this.userStore.userInfoDetail.postCode;
+        }
+    }
 };
 </script>
 
 <style scoped>
 /* 필요한 스타일 추가 */
-.field{
+.field {
     font-size: 0.75em;
     font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
@@ -109,15 +117,68 @@ export default {
     padding: 0 4rem;
     float: right;
 }
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, big, cite, code, del, dfn, em, font, img, ins, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, ul, ol, li, dl, dt, dd, table, caption, tbody, tfoot, thead, tr, th, td, fieldset, form, label, legend, input, button, textarea, select {
-    margin: 0;
-    padding: 0;
-}
-div {
-    display: block;
-    unicode-bidi: isolate;
-}
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, big, cite, code, del, dfn, em, font, img, ins, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, ul, ol, li, dl, dt, dd, table, caption, tbody, tfoot, thead, tr, th, td, fieldset, form, label, legend, input, button, textarea, select {
+
+html,
+body,
+div,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+fieldset,
+form,
+label,
+legend,
+input,
+button,
+textarea,
+select {
     margin: 0;
     padding: 0;
 }
@@ -126,7 +187,158 @@ div {
     display: block;
     unicode-bidi: isolate;
 }
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+
+html,
+body,
+div,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+fieldset,
+form,
+label,
+legend,
+input,
+button,
+textarea,
+select {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -136,9 +348,13 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
-*, ::after, ::before {
+
+*,
+::after,
+::before {
     box-sizing: border-box;
 }
+
 body {
     position: relative;
     line-height: 1.5em;
@@ -146,6 +362,7 @@ body {
     font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
 }
+
 body {
     position: relative;
     line-height: 1.5em;
@@ -153,7 +370,9 @@ body {
     font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
 }
-html, body {
+
+html,
+body {
     height: 100%;
     color: #333;
     font-size: 14px;
@@ -162,10 +381,12 @@ html, body {
     font-family: 'Pretendard', sans-serif;
     word-break: break-all;
 }
+
 body {
     color: black;
     font-size: 15px;
 }
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -178,9 +399,11 @@ body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
 }
+
 :root {
     --swiper-theme-color: #007aff;
 }
+
 :root {
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
@@ -249,32 +472,45 @@ body {
     --bs-code-color: #d63384;
     --bs-highlight-bg: #fff3cd;
 }
+
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     /* -ms-touch-action: none; */
 }
-*, ::after, ::before {
+
+*,
+::after,
+::before {
     box-sizing: border-box;
 }
-.frame-wrap, .clear:after, [class*="frame-"]:after {
+
+.frame-wrap,
+.clear:after,
+[class*="frame-"]:after {
     display: block;
     clear: both;
     content: '';
 }
-*, ::after, ::before {
+
+*,
+::after,
+::before {
     box-sizing: border-box;
 }
+
 form {
     display: block;
     margin-top: 0em;
     unicode-bidi: isolate;
 }
+
 form {
     display: block;
     margin-top: 0em;
     unicode-bidi: isolate;
 }
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -287,11 +523,12 @@ body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
 }
+
 h2.stit {
     padding-top: 15px;
     border-bottom: 1px solid #203a4d;
     padding-bottom: 13px;
-    
+
     padding-left: 10px;
     font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
@@ -299,9 +536,11 @@ h2.stit {
     color: #203a4d;
     line-height: 30px;
 }
+
 .stit {
     padding-left: 0px;
 }
+
 h2 {
     display: block;
     font-size: 1.5em;
@@ -312,11 +551,13 @@ h2 {
     font-weight: bold;
     unicode-bidi: isolate;
 }
+
 h2 {
     margin: 0;
     padding: 0;
     font-size: 1em;
 }
+
 h2.stit {
     padding-top: 15px;
     border-bottom: 1px solid #203a4d;
@@ -328,20 +569,24 @@ h2.stit {
     color: #203a4d;
     line-height: 30px;
 }
+
 .form_section {
     margin-bottom: 30px;
 }
 
-.stit + .form_section .content_intro {
+.stit+.form_section .content_intro {
     margin-top: 30px;
 }
+
 .form_section .content_intro {
-    
+
     overflow: unset;
 }
+
 .content_intro {
     position: relative;
 }
+
 .form_section .content_intro h3 {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -353,6 +598,7 @@ h2.stit {
     letter-spacing: -1px;
     text-align: left;
 }
+
 .form_section .content_intro h3 {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -364,20 +610,84 @@ h2.stit {
     letter-spacing: -1px;
     text-align: left;
 }
+
 .form_section .fieldset.medium {
     padding: 0;
     background: none;
 }
+
 .form_section .fieldset.medium {
     position: relative;
     margin-top: 1px;
     border-top: 1px solid #666;
     border-bottom: 1px solid #666;
 }
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, big, cite, code, del, dfn, em, font, img, ins, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, ul, ol, li, dl, dt, dd, table, caption, tbody, tfoot, thead, tr, th, td, fieldset, form, label, legend, input, button, textarea, select {
+
+html,
+body,
+div,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+fieldset,
+form,
+label,
+legend,
+input,
+button,
+textarea,
+select {
     margin: 0;
     padding: 0;
 }
+
 fieldset {
     display: block;
     margin-inline-start: 2px;
@@ -392,6 +702,7 @@ fieldset {
     border-color: rgb(192, 192, 192);
     border-image: initial;
 }
+
 body {
     position: relative;
     line-height: 1.5em;
@@ -399,6 +710,7 @@ body {
     font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
 }
+
 .form_section legend {
     overflow: hidden;
     position: absolute;
@@ -413,6 +725,7 @@ body {
     word-break: break-all;
     clip: rect(0, 0, 0, 0);
 }
+
 legend {
     display: block;
     padding-inline-start: 2px;
@@ -423,7 +736,9 @@ legend {
     border-color: initial;
     border-image: initial;
 }
-legend, caption {
+
+legend,
+caption {
     position: absolute;
     left: -99999px;
     display: block;
@@ -433,6 +748,7 @@ legend, caption {
     text-indent: -99999px;
     clip: rect(0, 0, 0, 0);
 }
+
 legend {
     float: left;
     width: 100%;
@@ -441,6 +757,7 @@ legend {
     font-size: calc(1.275rem + .3vw);
     line-height: inherit;
 }
+
 .form_section legend:before {
     display: block;
     width: 0;
@@ -448,9 +765,13 @@ legend {
     font-size: 0;
     content: " ";
 }
-*, ::after, ::before {
+
+*,
+::after,
+::before {
     box-sizing: border-box;
 }
+
 .form_section legend {
     overflow: hidden;
     position: absolute;
@@ -465,41 +786,110 @@ legend {
     word-break: break-all;
     clip: rect(0, 0, 0, 0);
 }
+
 .form_section .fieldset.medium .field {
     padding: 12px 10px;
 }
+
 .fieldset.medium .field {
     padding: 12px 10px;
     vertical-align: middle;
     border-top: 1px solid #e5e5e5;
 }
+
 .fieldset .field {
     zoom: 1;
 }
-html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, big, cite, code, del, dfn, em, font, img, ins, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, ul, ol, li, dl, dt, dd, table, caption, tbody, tfoot, thead, tr, th, td, fieldset, form, label, legend, input, button, textarea, select {
+
+html,
+body,
+div,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+fieldset,
+form,
+label,
+legend,
+input,
+button,
+textarea,
+select {
     margin: 0;
     padding: 0;
 }
+
 .form_section .fieldset.medium .field .label {
     width: 154px;
     padding: 0;
     color: #222;
 }
+
 .fieldset.medium .field .label {
     width: 154px;
     line-height: 28px;
     font-weight: bold;
     color: #222;
 }
+
 .fieldset .field .label {
     float: left;
     display: inline;
     font-size: 12px;
 }
+
 .form_section .fieldset.medium .field .insert {
     margin-left: 154px;
     color: #666;
 }
+
 .fieldset.medium .field .insert {
     position: relative;
     margin-left: 154px;
@@ -507,10 +897,12 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, 
     vertical-align: middle;
     zoom: 1;
 }
+
 .form_section .fieldset.medium .field .insert {
     margin-left: 154px;
     color: #666;
 }
+
 .fieldset.medium .field .insert {
     position: relative;
     margin-left: 154px;
@@ -518,6 +910,7 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, 
     vertical-align: middle;
     zoom: 1;
 }
+
 .fieldset.medium .field:after {
     display: block;
     visibility: hidden;
@@ -526,11 +919,13 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, 
     height: 0;
     content: "";
 }
+
 .form_section .fieldset.medium .field .label {
     width: 154px;
     padding: 0;
     color: #222;
 }
+
 .fieldset.medium .field .insert {
     position: relative;
     margin-left: 154px;
@@ -538,6 +933,7 @@ html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, 
     vertical-align: middle;
     zoom: 1;
 }
+
 body {
     position: relative;
     line-height: 1.5em;
@@ -545,19 +941,23 @@ body {
     font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
 }
+
 .form_section .fieldset.medium .field .label {
     width: 154px;
     padding: 0;
     color: #222;
 }
+
 .form_btn_area {
     margin-top: 20px;
     text-align: center;
 }
+
 .form_btn_area p.desc {
     margin: 10px 0 20px;
     color: #f96a62;
 }
+
 p {
     display: block;
     margin-block-start: 1em;
@@ -566,16 +966,19 @@ p {
     margin-inline-end: 0px;
     unicode-bidi: isolate;
 }
+
 .form_btn_area {
     margin-top: 20px;
     text-align: center;
 }
+
 .cs_btn.large.black {
     background: #ac6af6;
     border: 1px solid #ac6af6;
     color: #fff;
     border-radius: 5px;
 }
+
 .cs_btn.large {
     min-width: 96px;
     padding: 11px 16px;
@@ -586,22 +989,27 @@ p {
     text-decoration: none;
     letter-spacing: -1px;
     line-height: 18px;
-    
+
 }
+
 .cs_btn {
     display: inline-block;
 }
+
 a {
     text-decoration: none;
     cursor: pointer;
 }
+
 .cs_info_box {
     margin-top: 30px;
     text-align: left;
 }
+
 .frame-cnt-inner {
     width: 820px;
 }
+
 .cs_info_box .cs_info_subtit {
     padding-bottom: 10px;
     border-bottom: 1px solid #e8e8e8;
@@ -612,6 +1020,7 @@ a {
     font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 400;
 }
+
 h3 {
     display: block;
     font-size: 1.17em;
@@ -622,10 +1031,12 @@ h3 {
     font-weight: bold;
     unicode-bidi: isolate;
 }
+
 .cs_info_box .cs_info_lst {
     overflow: hidden;
     padding: 15px 0;
 }
+
 ul {
     display: block;
     list-style-type: disc;
@@ -636,6 +1047,7 @@ ul {
     padding-inline-start: 40px;
     unicode-bidi: isolate;
 }
+
 .cs_info_box .cs_info_lst li:before {
     position: absolute;
     top: 8px;
@@ -646,9 +1058,12 @@ ul {
     border-radius: 50%;
     content: "";
 }
- ::after, ::before {
+
+::after,
+::before {
     box-sizing: border-box;
 }
+
 .cs_info_box .cs_info_lst li {
     position: relative;
     margin-top: 5px;
@@ -658,9 +1073,11 @@ ul {
     line-height: 16px;
     letter-spacing: -0.28px;
 }
+
 ul li {
     list-style: none;
 }
+
 .cs_info_box .cs_info_lst li {
     position: relative;
     margin-top: 5px;
@@ -670,6 +1087,7 @@ ul li {
     line-height: 16px;
     letter-spacing: -0.28px;
 }
+
 li {
     display: list-item;
     text-align: -webkit-match-parent;
