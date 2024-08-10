@@ -365,4 +365,26 @@ export default {
 .info_content>div:nth-child(2) {
     margin-top: 40px;
 }
+
+.text-center{
+    height:100%
+}
+.row{
+    height:100%
+}
+.detail_content_img{
+    height:100%
+}
+.carousel{
+    height:100%
+}
+.carousel-inner{
+    height: 100%;
+}
+.carousel-item{
+    height:100%
+}
+.w-100{
+    max-height: 100%;
+}
 </style>
