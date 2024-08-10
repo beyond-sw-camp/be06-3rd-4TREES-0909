@@ -42,11 +42,11 @@
 <br/><br/>
 
 ## 📌코드 컨벤션
-<a href="#">코드 컨벤션 위키</a>
+<a href="https://github.com/beyond-sw-camp/be06-3rd-4TREES-0909/wiki/%EC%BD%94%EB%93%9C%EC%BB%A8%EB%B2%A4%EC%85%98">코드 컨벤션 위키</a>
 <br/><br/>
 
 ## 📌화면 설계서
-<a href="http://43.202.232.230:8080/swagger-ui/index.html#/">김우혁 AWS 배포 Swagger</a> 
+<a href="https://github.com/beyond-sw-camp/be06-3rd-4TREES-0909/wiki/%ED%99%94%EB%A9%B4-%EC%84%A4%EA%B3%84%EC%84%9C">Figma 화면 설계서</a> 
 <br/><br/>
 
 ## 📌기능 테스트 시연
@@ -56,7 +56,7 @@
 
 ## 📌시스템 아키텍처
 <div align="center">
-<a href="#">시스템 아키텍처 위키</a>
+<a href="https://github.com/beyond-sw-camp/be06-3rd-4TREES-0909/wiki/%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98">시스템 아키텍처 위키</a>
 </div>
 <br/><br/>
 
