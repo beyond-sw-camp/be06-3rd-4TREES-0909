@@ -450,8 +450,9 @@ export default {
         getDefaultDelivery() {
             Array.from(this.orderPageInfo.deliveryAddressResponseList).forEach(delivery => {
                 if (delivery.addressDefault) {
-                    this.receiverAddress = delivery.postCode;
-                    this.receiverAddress = delivery.addressInfo;
+                    this.receiverPostCode = delivery.postCode;
+                    this.receiverAddress = delivery.addressInfo.split(",")[0];
+                    this.receiverSubAddress = delivery.addressInfo.split(",")[1];
                     return;
                 }
             });
@@ -540,7 +541,7 @@ export default {
                         orderQuantity: this.orderPageInfo.quantity,
                         deadline: 2,
                         recipientName: this.receiverName,
-                        recipientAddress: this.receiverAddress + " " + this.receiverSubAddress,
+                        recipientAddress: this.receiverAddress + "," + this.receiverSubAddress,
                         recipientPostCode: this.receiverPostCode,
                         recipientPhoneNumber: this.receiverPhoneNumber,
                         usePoint: this.usePoint,
@@ -593,7 +594,7 @@ export default {
         this.getDefaultDelivery();
         this.receiverName = this.orderPageInfo.name;
         this.receiverPhoneNumber = this.orderPageInfo.phoneNumber;
-        this.orderPrice = this.orderPageInfo.bidPrice;
+        this.orderPrice = this.orderPageInfo.bidPrice * this.orderPageInfo.quantity;
 
     },
     components: {
