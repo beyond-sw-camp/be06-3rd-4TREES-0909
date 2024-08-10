@@ -156,7 +156,7 @@ export default {
                 return;
             }
             this.bidStore.registerBid(this.gpbuyIdx, this.productIdx, this.bidPrice);
-            this.$router.push("/seller/bid");
+            this.$router.push("/seller/bid?selectedBid=false");
         },
         getProductInfoList() {
             this.sellerStore.getProductInfoList();
