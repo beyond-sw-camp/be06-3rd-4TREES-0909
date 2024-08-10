@@ -104,7 +104,6 @@ export default {
             }
         },
         async submitForm() {
-            console.log(this.companyName);
             try {
                 const response = await this.sellerStore.registerCompany(
                     this.companyName,
@@ -115,7 +114,6 @@ export default {
                 );
 
                 if (response.isSuccess) {
-                    console.log('업체 등록 성공');
                     // 성공적인 등록 후 추가 로직
                 } else {
                     // 실패 시 코드에 따른 에러 메시지 처리

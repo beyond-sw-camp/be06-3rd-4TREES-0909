@@ -65,9 +65,7 @@ export const useUserStore = defineStore('user', {
             this.roles = [];
         },
         async userSignup(user) {
-            console.log(user);
             let response = await axios.post(backend + "/user/signup", user);
-            console.log(response);
             if (response.status === 200) {
                 if (response.data.isSuccess) {
                     return true;
@@ -79,9 +77,7 @@ export const useUserStore = defineStore('user', {
             }
         },
         async compayRegverify(compayRegverify) {
-            console.log(compayRegverify);
             let response = await axios.post(backend + "/company-reg/verify", compayRegverify);
-            console.log(response);
             if (response.status === 200) {
                 if (response.data.isSuccess) {
                     // uuid 저장
@@ -95,9 +91,7 @@ export const useUserStore = defineStore('user', {
             }
         },
         async sellerSignup(seller) {
-            console.log(seller);
             const response = await axios.post(backend + "/seller/signup", seller);
-            console.log(response);
             if (response.status === 200) {
                 if (response.data.isSuccess) {
                     return true;
@@ -111,12 +105,10 @@ export const useUserStore = defineStore('user', {
         async userDetail(){            
             const response = await axios.get("/api/user/info/detail", {withCredentials: true});
             this.userInfoDetail = response.data.result;
-            console.log(this.userInfoDetail);
         },
         async saveAddr(deliveryAddressRegisterRequest){
           
           const response = await axios.post("/api/user/delivery/register",deliveryAddressRegisterRequest, {withCredentials: true})
-          console.log(response.result);
           this.userDetail();
           
         }
