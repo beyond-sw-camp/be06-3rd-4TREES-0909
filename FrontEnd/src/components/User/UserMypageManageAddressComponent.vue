@@ -201,7 +201,6 @@ export default {
             this.addAddrIsVisible = false;
         },
         handleSaveModal(payload){
-            console.log(payload.detailAddr);
             this.userStore.saveAddr(payload);
             this.userStore.userDetail();
             this.addAddrIsVisible = false;

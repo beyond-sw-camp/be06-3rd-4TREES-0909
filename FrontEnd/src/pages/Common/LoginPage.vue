@@ -40,7 +40,7 @@
             <div class="inputStyle inputPw">
               <label>
                 <input v-model="user.password" type="password" class="inputText pw" name="userPwd" id="userPwd"
-                  placeholder="비밀번호">
+                  placeholder="비밀번호" @keydown.enter="login">
                 <span class="focusLine"></span>
                 <i>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
@@ -112,14 +112,21 @@ export default {
       this.activeOption = option;
     },
     async login() {
-      const result = await this.userStore.login(this.user);
-      if (result) {
-        const redirect = this.$route.query.redirect || '/';
-        this.$router.push(redirect); // 로그인 후 리다이렉트
+      if(this.user.email === null || this.user.email === ""){
+        alert("이메일을 입력해주세요");
+      }else if(this.user.password === null || this. user.password === ""){
+        alert("비밀번호를 입력해주세요");
       }else{
-        alert("로그인에 실패했습니다.");
-        this.$router.push('/login');
+        const result = await this.userStore.login(this.user);
+        if (result) {
+          const redirect = this.$route.query.redirect || '/';
+          this.$router.push(redirect); // 로그인 후 리다이렉트
+        }else{
+          alert("로그인에 실패했습니다.");
+          this.$router.push('/login');
+        }
       }
+      
     }
   },
   computed: {
