@@ -3,7 +3,7 @@
         <div class="css-qdwe4u">
             <header class="css-1s72iaf">
                 <h3 class="css-9fmo7n">나의 입찰 대기 공구 조회</h3>
-                <p class="css-17ti8g7">입챌 대기중인 공구들을 조회할 수 있어요.</p>
+                <p class="css-17ti8g7">입찰 대기중인 공구들을 조회할 수 있어요.</p>
             </header>
             <div v-if="selectGpbuyIdx==null" class="css-8knsro"><button type="button" class="css-16iku8x" style="background-color: gray;">입찰 정보 보기</button></div>
             <div v-else class="css-8knsro"><router-link  :to="`/groupbuy/detail/wait/${selectGpbuyIdx}`">
