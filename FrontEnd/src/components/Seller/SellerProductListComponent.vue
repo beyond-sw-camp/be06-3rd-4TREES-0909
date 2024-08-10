@@ -109,8 +109,8 @@ export default {
         ...mapStores(useSellerStore) // 어떤 저장소랑 연결시켜 주겠다.
     },
     methods: {
-        getProductInfoList() {
-            this.sellerStore.getProductInfoList();
+        async getProductInfoList() {
+            await this.sellerStore.getProductInfoList();
         }
     },
     mounted() {
