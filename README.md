@@ -42,7 +42,7 @@
 <br/><br/>
 
 ## 📌코드 컨벤션
-<a href="https://github.com/beyond-sw-camp/be06-3rd-4TREES-0909/wiki/%EC%BD%94%EB%93%9C%EC%BB%A8%EB%B2%A4%EC%85%98">코드 컨벤션 위키</a>
+<a href="https://github.com/beyond-sw-camp/be06-3rd-4TREES-0909/wiki/%EC%BD%94%EB%93%9C-%EC%BB%A8%EB%B2%A4%EC%85%98">코드 컨벤션 위키</a>
 <br/><br/>
 
 ## 📌화면 설계서
