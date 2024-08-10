@@ -259,7 +259,7 @@
                                         <div class="list-inner">
                                             <span class="tit">상품금액</span>
                                             <p class="price"><strong class="num resetOrderPaySide" id="txt_tot_price">{{
-                                                orderPageInfo.bidPrice*orderPageInfo.quantity }}</strong> 원
+                                                orderPageInfo.bidPrice * orderPageInfo.quantity }}</strong> 원
                                             </p>
                                             <input type="hidden" name="tot_price" class="resetOrderPaySide"
                                                 v-model="orderPageInfo.bidPrice">
@@ -450,9 +450,13 @@ export default {
         getDefaultDelivery() {
             Array.from(this.orderPageInfo.deliveryAddressResponseList).forEach(delivery => {
                 if (delivery.addressDefault) {
-                    this.receiverPostCode = delivery.postCode;
                     this.receiverAddress = delivery.addressInfo.split(",")[0];
                     this.receiverSubAddress = delivery.addressInfo.split(",")[1];
+                    if (delivery.postCode < 10000) {
+                        this.receiverPostCode = "0" + delivery.postCode;
+                    } else {
+                        this.receiverPostCode = delivery.postCode;
+                    }
                     return;
                 }
             });

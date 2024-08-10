@@ -42,7 +42,7 @@
                             <div class="field">
                                 <span class="label">우편번호</span>
                                 <div class="insert">
-                                    <span id="userPostCode">{{ sellerStore.sellerInfoDetail.postCode }}</span>
+                                    <span id="userPostCode">{{ postCode }}</span>
                                 </div>
                             </div>
                             <div class="field">
@@ -105,12 +105,22 @@ import { useSellerStore } from '@/stores/useSellerStore';
 import { mapStores } from 'pinia';
 export default {
     name:"SellerMyPageComponent",
+    data() {
+        return {
+            postCode: ""
+        }
+    },
     computed:{
         ...mapStores(useSellerStore)
     },
     methods: {
-        getSellerInfo() {
-            this.sellerStore.getSellerInfo();
+        async getSellerInfo() {
+            await this.sellerStore.getSellerInfo();
+            if (this.sellerStore.sellerInfoDetail.postCode < 10000){
+                this.postCode = "0"+this.sellerStore.sellerInfoDetail.postCode;
+            } else{
+                this.postCode = this.sellerStore.sellerInfoDetail.postCode;
+            }
         }
     },
     mounted() {

@@ -18,8 +18,8 @@
                                 <label class="css-yhuigj">업종</label>
                                 <div class="css-ay1s">
                                     <input type="text" v-model="companyType" autocomplete="off" required=""
-                                        placeholder="종목명 (30자 내 입력)" name="businessItem" maxlength="30" class="css-11nkng1"
-                                        value="">
+                                        placeholder="종목명 (30자 내 입력)" name="businessItem" maxlength="30"
+                                        class="css-11nkng1" value="">
                                 </div>
                             </div>
                             <div class="css-k9oiqw">
@@ -34,15 +34,16 @@
                                 <label class="css-yhuigj">사업장 우편번호</label>
                                 <div class="css-ay1s">
                                     <input type="text" v-model="companyPostCode" autocomplete="off" required=""
-                                        placeholder="우편번호 (5자 입력)" name="companyPostCode" maxlength="5" class="css-11nkng1"
-                                        readonly>
+                                        placeholder="우편번호 (5자 입력)" name="companyPostCode" maxlength="5"
+                                        class="css-11nkng1" readonly>
                                 </div>
                             </div>
                             <div class="css-k9oiqw">
                                 <label class="css-yhuigj">사업장 소재지</label>
                                 <div class="css-ay1s">
                                     <div>
-                                        <button type="button" class="css-1v0rcng" @click="execDaumPostcode">주소 찾기</button>
+                                        <button type="button" class="css-1v0rcng" @click="execDaumPostcode">주소
+                                            찾기</button>
                                     </div>
                                     <input type="text" v-model="companyAddress" autocomplete="off" required=""
                                         spellcheck="false" placeholder="주소" name="companyAddress" readonly
@@ -139,8 +140,12 @@ export default {
                 this.companyType = companyDetails.companyType;
                 this.companyIntro = companyDetails.companyIntro;
                 this.companyAddress = companyDetails.companyAddress;
-                this.companyPostCode = companyDetails.companyPostCode;
                 this.subAddress = companyDetails.subAddress;
+                if (this.sellerStore.sellerInfoDetail.postCode < 10000) {
+                    this.companyPostCode = "0" + this.sellerStore.sellerInfoDetail.postCode;
+                } else {
+                    this.companyPostCode = this.sellerStore.sellerInfoDetail.postCode;
+                }
             } catch (error) {
                 console.error('Failed to load company detail:', error);
                 alert('업체 정보를 불러오는 중 오류가 발생했습니다.');
