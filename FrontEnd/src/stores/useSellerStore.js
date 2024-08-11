@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios"
 
+const backend = process.env.VUE_APP_BACKEND_URL;
+
 // 전역 저장소 생성
 export const useSellerStore = defineStore("seller", {
   state: () => ({
@@ -69,20 +71,20 @@ export const useSellerStore = defineStore("seller", {
         formData.append("images", file);
       })
 
-      const response = await axios.post("/api/product/register", formData, { withCredentials: true, headers: { "Content-Type": "multipart/form-data" } });
+      const response = await axios.post(backend + "/product/register", formData, { withCredentials: true, headers: { "Content-Type": "multipart/form-data" } });
       this.registeredBid = response.data.result;
       return response.data.isSuccess;
     },
     async getSellerInfo() {
-      const response = await axios.get("/api/seller/info/detail", { withCredentials: true });
+      const response = await axios.get(backend + "/seller/info/detail", { withCredentials: true });
       this.sellerInfoDetail = response.data.result;
     },
     async getProductInfoList() {
-      const response = await axios.get("/api/product/mylist", { withCredentials: true });
+      const response = await axios.get(backend + "/product/mylist", { withCredentials: true });
       this.productInfoList = response.data.result;
     },
     async getBidInfoList(page, selected) {
-      const response = await axios.get("/api/bid/mylist",
+      const response = await axios.get(backend + "/bid/mylist",
         {
           params: {
             page: page,
@@ -95,7 +97,7 @@ export const useSellerStore = defineStore("seller", {
       this.bidInfoList = response.data.result;
     },
     async getWaitGroupbuyList(page, gpbuyTitle, categoryIdx) {
-      const response = await axios.get("/api/bid/gpbuy/status-wait/list", {
+      const response = await axios.get(backend + "/bid/gpbuy/status-wait/list", {
         params: {
           page: page,
           size: 10,
@@ -116,14 +118,14 @@ export const useSellerStore = defineStore("seller", {
         companyIntro: companyIntro
       }
 
-      const response = await axios.post("/api/company/register", request, { withCredentials: true });
+      const response = await axios.post(backend + "/company/register", request, { withCredentials: true });
       this.registeredCompany = response.data.result;
       return response.data;
     },
 
     // 업체 정보 가져오기
     async getCompanyDetail() {
-      const response = await axios.get('/api/company/detail', { withCredentials: true });
+      const response = await axios.get(backend + '/company/detail', { withCredentials: true });
       this.companyDetail = response.data.result;
 
     },
@@ -136,7 +138,7 @@ export const useSellerStore = defineStore("seller", {
         companyType: companyType,
         companyIntro: companyIntro
       }
-      const response = await axios.post('/api/company/modify', request, { withCredentials: true });
+      const response = await axios.post(backend + '/company/modify', request, { withCredentials: true });
       return response.data;
 
     }
