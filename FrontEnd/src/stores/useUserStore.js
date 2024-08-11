@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-const backend = "/api";
+const backend = process.env.VUE_APP_BACKEND_URL;
 
 export const useUserStore = defineStore('user', {
     state: () => ({ isLoggedIn: false, uuid: '', roles: [],
@@ -103,18 +103,37 @@ export const useUserStore = defineStore('user', {
             }
         },
         async userDetail(){            
-            const response = await axios.get("/api/user/info/detail", {withCredentials: true});
+            const response = await axios.get(backend + "/user/info/detail", {withCredentials: true});
             this.userInfoDetail = response.data.result;
         },
         async saveAddr(deliveryAddressRegisterRequest){
           
-          const response = await axios.post("/api/user/delivery/register",deliveryAddressRegisterRequest, {withCredentials: true})
+          const response = await axios.post(backend + "/user/delivery/register",deliveryAddressRegisterRequest, {withCredentials: true})
           if(response.status === 200){         
             this.userDetail();
           }else{
             alert("배송지 등록에 실패했습니다.");
           }
           
-        }
+        },
+        async emailVerify(email, uuid) {
+            console.log(backend);
+            let response = await axios.get(backend + "/user/verify", {
+                params: {
+                    email: email,
+                    uuid: uuid
+                }
+            });
+            console.log(response);
+            if (response.status === 200) {
+                if (response.data.isSuccess) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        },
     }
 });

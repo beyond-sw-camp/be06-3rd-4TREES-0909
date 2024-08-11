@@ -133,8 +133,10 @@ export default {
 
         },
         async getCompanyDetail() {
+            const backend = process.env.VUE_APP_BACKEND_URL;
+
             try {
-                const response = await axios.get('/api/company/detail', { withCredentials: true });
+                const response = await axios.get(backend + '/company/detail', { withCredentials: true });
                 const companyDetails = response.data.result;
                 this.companyName = companyDetails.companyName;
                 this.companyType = companyDetails.companyType;

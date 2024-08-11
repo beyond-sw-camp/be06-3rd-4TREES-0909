@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios"
 
+const backend = process.env.VUE_APP_BACKEND_URL;
+
 // 전역 저장소 생성
 export const useOrderStore = defineStore("order", {
   state: () => ({
@@ -35,7 +37,7 @@ export const useOrderStore = defineStore("order", {
   }),
   actions: {
     async getOrderPageInfo(gpbuyIdx, quantity, bidIdx) {
-      const response = await axios.get("/api/orders/page", { 
+      const response = await axios.get(backend + "/orders/page", { 
         params: {
           gpbuyIdx: gpbuyIdx,
           quantity: quantity,

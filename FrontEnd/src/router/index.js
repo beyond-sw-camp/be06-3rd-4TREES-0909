@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { useUserStore } from "@/stores/useUserStore";
 import LoginPage from "@/pages/Common/LoginPage.vue";
 import LoginRedirect from "@/pages/Common/LoginRedirect.vue";
+import EmailVerifyPage from "@/pages/Common/EmailVerifyPage.vue";
 
 import SignupPage from "@/pages/Common/SignupPage.vue";
 import SignupComponent from "@/components/Common/SignupComponent.vue";
@@ -45,6 +46,7 @@ const router = createRouter({
   routes: [
     { path: "/login", component: LoginPage },
     { path: "/login/redirect", component: LoginRedirect },
+    { path: "/user/verify", component: EmailVerifyPage },
     {
       path: "/signup", component: SignupPage
       , children: [

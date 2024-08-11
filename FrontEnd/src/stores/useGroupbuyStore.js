@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios"
 
+const backend = process.env.VUE_APP_BACKEND_URL;
+
 // 전역 저장소 생성
 export const useGroupbuyStore = defineStore("groupbuy", {
   state: () => ({
@@ -79,7 +81,7 @@ export const useGroupbuyStore = defineStore("groupbuy", {
   }),
   actions: {
     async getGroupbuyList(page) {
-      const response = await axios.get("/api/gpbuy/list", {
+      const response = await axios.get(backend + "/gpbuy/list", {
         params: {
           page: page,
           size: 20
@@ -92,7 +94,7 @@ export const useGroupbuyStore = defineStore("groupbuy", {
       }
     },
     async searchGroupbuyList(page, categoryIdx, minPrice, maxPrice) {
-      const response = await axios.get("/api/gpbuy/search", {
+      const response = await axios.get(backend + "/gpbuy/search", {
         params: {
           page: page,
           size: 20,
@@ -114,23 +116,23 @@ export const useGroupbuyStore = defineStore("groupbuy", {
         categoryIdx: categoryIdx,
         content: content
       }
-      const response = await axios.post("/api/gpbuy/register", registerGroupbuyRequest, { withCredentials: true });
+      const response = await axios.post(backend + "/gpbuy/register", registerGroupbuyRequest, { withCredentials: true });
       this.gpbuyRegisterResponse = response.data.result;
       return this.gpbuyRegisterResponse;
     },
     async getMyWaitGroupbuyList() {
-      const response = await axios.get("/api/gpbuy/list/wait", { withCredentials: true });
+      const response = await axios.get(backend + "/gpbuy/list/wait", { withCredentials: true });
       this.myWaitGroupbuyList = response.data.result;
       return this.gpbuyRegisterResponse;
     },
     async getWaitGroupbuy(idx) {
-      const response = await axios.get("/api/gpbuy/registered/bid/list?gpbuyIdx=" + idx, {
+      const response = await axios.get(backend + "/gpbuy/registered/bid/list?gpbuyIdx=" + idx, {
         withCredentials: true
       });
       this.waitGroupbuy = response.data.result;
     },
     async getProgressGroupbuy(idx) {
-      const response = await axios.get("/api/gpbuy/detail?gpbuyIdx=" + idx);
+      const response = await axios.get(backend + "/gpbuy/detail?gpbuyIdx=" + idx);
       this.progressGroupbuy = response.data.result;
     },
     getCategoryText(categoryIdx) {
@@ -150,7 +152,7 @@ export const useGroupbuyStore = defineStore("groupbuy", {
       return categoryMap[categoryIdx] || '알 수 없는 카테고리';
     },
     async getGroupbuyLikes(idx) {
-      const response = await axios.get("/api/gpbuy/likes/save?gpbuyIdx=" + idx);
+      const response = await axios.get(backend + "/gpbuy/likes/save?gpbuyIdx=" + idx);
       if (response.data.isSuccess) {
         this.isLiked = response.data.result.isLiked;
         return true;
@@ -159,18 +161,18 @@ export const useGroupbuyStore = defineStore("groupbuy", {
       }
     },
     async gpbuySearch(request){            
-      const response = await axios.get("/api/gpbuy/list",request);
+      const response = await axios.get(backend + "/gpbuy/list",request);
       this.gpbuyList = response.data.result;
     },
 
     async myLikesList() {
-        const response = await axios.get("/api/gpbuy/likes/list", { withCredentials: true });
+        const response = await axios.get(backend + "/gpbuy/likes/list", { withCredentials: true });
         this.gpbuyLikesList = response.data.result;
         
     },
 
     async cancleLikes(gpbuyIdx){
-        await axios.get("/api/gpbuy/likes/save?gpbuyIdx="+gpbuyIdx,{withCredentials: true});
+        await axios.get(backend + "/gpbuy/likes/save?gpbuyIdx="+gpbuyIdx,{withCredentials: true});
         this.myLikesList();
     }
   }

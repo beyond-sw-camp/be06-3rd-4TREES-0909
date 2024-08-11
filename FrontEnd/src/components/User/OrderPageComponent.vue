@@ -555,9 +555,11 @@ export default {
                 function (rsp) {
                     console.log(rsp);
                     console.log(rsp.imp_uid);
+                    const backend = process.env.VUE_APP_BACKEND_URL;
+
                     // 백엔드에서 결재를 확인하는 url 호출
                     if (rsp.success) {
-                        axios.get("/api/orders/register?impUid=" + rsp.imp_uid, { withCredentials: true })
+                        axios.get(backend + "/orders/register?impUid=" + rsp.imp_uid, { withCredentials: true })
                             .then((data) => {
                                 console.log(data.data);
                                 if (data.data.isSuccess) {
