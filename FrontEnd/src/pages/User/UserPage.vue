@@ -19,11 +19,6 @@ export default {
     components: {
         HeaderComponent,
         FooterComponent
-    },
-    methods:{
-        handleIsLoading(isLoading){
-            this.isLoading = isLoading;
-        }
     }
 }
 
