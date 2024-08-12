@@ -93,7 +93,7 @@ export const useSellerStore = defineStore("seller", {
             size: 10,
             bidSelect: selected
           },
-          withCredentials: selected
+          withCredentials: true
         }
       );
       this.bidInfoList = response.data.result;
