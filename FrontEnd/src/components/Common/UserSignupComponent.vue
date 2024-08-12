@@ -311,7 +311,7 @@ export default {
     },
     submit() {
       // - 제외
-      this.user.address = this.user.phoneNumber.replace(/-/g, '');
+      this.user.phoneNumber = this.user.phoneNumber.replace(/-/g, '');
       // 상세 주소가 입력된 경우 주소에 추가
       if (this.detailAddress) {
         this.user.address += `, ${this.detailAddress}`; // 콤마로 구분
