@@ -64,10 +64,10 @@
                                         <td class="text-center td-delivery-cell">{{ userStore.userInfoDetail.phoneNumber }}</td>
                                         <td class="text-center">
                                             <ul class="sep-list type4">
-                                                <li><a href="javascript:void(0);" class="btn-upd-delivery">수정</a></li>
+                                                <li><a href="javascript:void(0);" class="btn-upd-delivery" @click="showAlert">수정</a></li>
                                                 <li>
                                                     <a href="javascript:void(0);" class="btn-delt-delivery"
-                                                        data-id="20220424000000577778" data-basic-yn="Y">삭제</a>
+                                                        data-id="20220424000000577778" data-basic-yn="Y" @click="showAlert">삭제</a>
                                                 </li>
                                             </ul>
                                         </td>
@@ -162,10 +162,10 @@
                             
                         </div>
 
-                        <div class="btn-bottom-area">
+                        <!-- <div class="btn-bottom-area">
                             <button type="button" class="btn-basic-lg2 btn-navy btn-basic-delivery"><span>기본 배송지로
                                     설정</span></button>
-                        </div>
+                        </div> -->
                     </div><!--// frame-cnt-inner -->
                 </div>
             
@@ -204,6 +204,9 @@ export default {
             this.userStore.saveAddr(payload);
             this.userStore.userDetail();
             this.addAddrIsVisible = false;
+        },
+        showAlert(){
+            alert("구현중인 기능입니다.");
         }
     },
     components:{
