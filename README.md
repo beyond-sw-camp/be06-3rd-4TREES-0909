@@ -22,8 +22,8 @@
 <a href="https://fourtrees.kro.kr">공구공구 사이트 바로가기</a><br>
 
 테스트 계정 <br>
-<p>일반 회원: sue06004@gmail.com , qwer1234!</p>
-<p>업체 회원: sue06004@naver.com , qwer1234!</p>
+<h4> 일반 회원: sue06004@gmail.com , qwer1234!</h4>
+<h4> 업체 회원: sue06004@naver.com , qwer1234!</h4>
 
 ## 📌기술스택
 ### MarkUp
