@@ -62,32 +62,6 @@
                             </div>
                         </div>
                     </div>
-                    <div id="toast"></div>
-                    <div id="modal"></div>
-                    <div id="fb-root" class=" fb_reset">
-                        <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
-                            <div></div>
-                        </div>
-                    </div><iframe height="0" width="0"
-                        src="https://10260235.fls.doubleclick.net/activityi;src=10260235;type=count0;cat=webal0;ord=9672805217306;npa=0;auiddc=1903304839.1721702006;ps=1;pcor=770753818;uaa=x86;uab=64;uafvl=Not)A%253BBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B127.0.6533.73%7CChromium%3B127.0.6533.73;uamb=0;uam=;uap=Windows;uapv=10.0.0;uaw=0;pscdl=noapi;frm=0;gtm=45fe47t0v9190895669za201;gcd=13l3l3l3l1;dma=0;tag_exp=95250753;epver=2;~oref=https%3A%2F%2Fm.bunjang.co.kr%2Fshop%2F78833557%2Fproducts?"
-                        style="display: none; visibility: hidden;"></iframe><iframe allow="join-ad-interest-group"
-                        data-tagging-id="DC-10260235/count0/webal0+standard" data-load-time="1722357755928" height="0"
-                        width="0"
-                        src="https://td.doubleclick.net/td/fls/rul/activityi;fledge=1;src=10260235;type=count0;cat=webal0;ord=9672805217306;npa=0;auiddc=1903304839.1721702006;ps=1;pcor=770753818;uaa=x86;uab=64;uafvl=Not)A%253BBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B127.0.6533.73%7CChromium%3B127.0.6533.73;uamb=0;uam=;uap=Windows;uapv=10.0.0;uaw=0;pscdl=noapi;frm=0;gtm=45fe47t0v9190895669za201;gcd=13l3l3l3l1;dma=0;tag_exp=95250753;epver=2;~oref=https%3A%2F%2Fm.bunjang.co.kr%2Fshop%2F78833557%2Fproducts?"
-                        style="display: none; visibility: hidden;"></iframe>
-                    <div>
-                        <div class="grecaptcha-badge" data-style="bottomright"
-                            style="width: 256px; height: 60px; display: block; transition: right 0.3s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
-                            <div class="grecaptcha-logo"><iframe title="reCAPTCHA" width="256" height="60"
-                                    role="presentation" name="a-2ygzeqpu1eq0" frameborder="0" scrolling="no"
-                                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation"
-                                    src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LeWvsAZAAAAAAajnRYAbDRG78pOeGL0awRJsgCm&amp;co=aHR0cHM6Ly9tLmJ1bmphbmcuY28ua3I6NDQz&amp;hl=ko&amp;v=Xv-KF0LlBu_a0FJ9I5YSlX5m&amp;size=invisible&amp;cb=5nhfnyukosl8"></iframe>
-                            </div>
-                            <div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000"
-                                name="g-recaptcha-response" class="g-recaptcha-response"
-                                style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
-                        </div><iframe style="display: none;"></iframe>
-                    </div>
                 </div>
             </div>
         </div>
