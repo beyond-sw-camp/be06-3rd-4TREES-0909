@@ -51,33 +51,33 @@ export const useGroupbuyStore = defineStore("groupbuy", {
         gpbuyBidEndedAt: ""
       }
     ],
-    gpbuyList:[
+    gpbuyList: [
       {
-          "gpbuyIdx": 0,
-          "gpbuyQuantity": 0,
-          "gpbuyRemainQuantity": 0,
-          "productThumbnailImg": "",
-          "productName": "",
-          "bidPrice": 0,
-          "companyName": "",
-          "gpbuyStartedAt": "",
-          "gpbuyEndedAt": "",
-          "duration": ""
-        }],
-        gpbuyLikesList:[
-          {
-              "gpbuyIdx": 0,
-              "gpbuyQuantity": 0,
-              "gpbuyRemainQuantity": 0,
-              "productThumbnailImg": "",
-              "productName": "",
-              "bidPrice": 0,
-              "companyName": "",
-              "gpbuyStartedAt": "",
-              "gpbuyEndedAt": "",
-              "duration": ""
-            }
-      ]
+        "gpbuyIdx": 0,
+        "gpbuyQuantity": 0,
+        "gpbuyRemainQuantity": 0,
+        "productThumbnailImg": "",
+        "productName": "",
+        "bidPrice": 0,
+        "companyName": "",
+        "gpbuyStartedAt": "",
+        "gpbuyEndedAt": "",
+        "duration": ""
+      }],
+    gpbuyLikesList: [
+      {
+        "gpbuyIdx": 0,
+        "gpbuyQuantity": 0,
+        "gpbuyRemainQuantity": 0,
+        "productThumbnailImg": "",
+        "productName": "",
+        "bidPrice": 0,
+        "companyName": "",
+        "gpbuyStartedAt": "",
+        "gpbuyEndedAt": "",
+        "duration": ""
+      }
+    ]
   }),
   actions: {
     async getGroupbuyList(page) {
@@ -89,7 +89,7 @@ export const useGroupbuyStore = defineStore("groupbuy", {
         withCredentials: true
       });
       this.groupbuyList = [];
-      if (response.data.result != null){
+      if (response.data.result != null) {
         this.groupbuyList.push(...response.data.result);
       }
     },
@@ -105,7 +105,7 @@ export const useGroupbuyStore = defineStore("groupbuy", {
         withCredentials: true
       });
       this.groupbuyList = [];
-      if (response.data.result != null){
+      if (response.data.result != null) {
         this.groupbuyList.push(...response.data.result);
       }
     },
@@ -132,7 +132,7 @@ export const useGroupbuyStore = defineStore("groupbuy", {
       this.waitGroupbuy = response.data.result;
     },
     async getProgressGroupbuy(idx) {
-      const response = await axios.get(backend + "/gpbuy/detail?gpbuyIdx=" + idx);
+      const response = await axios.get(backend + "/gpbuy/detail?gpbuyIdx=" + idx, { withCredentials: true });
       this.progressGroupbuy = response.data.result;
     },
     getCategoryText(categoryIdx) {
@@ -152,28 +152,29 @@ export const useGroupbuyStore = defineStore("groupbuy", {
       return categoryMap[categoryIdx] || '알 수 없는 카테고리';
     },
     async getGroupbuyLikes(idx) {
-      const response = await axios.get(backend + "/gpbuy/likes/save?gpbuyIdx=" + idx, {withCredentials:true});
+      const response = await axios.get(backend + "/gpbuy/likes/save?gpbuyIdx=" + idx, { withCredentials: true });
       if (response.data.isSuccess) {
         this.isLiked = response.data.result.isLiked;
+        console.log(this.isLiked);
         return true;
       } else {
         return false
       }
     },
-    async gpbuySearch(request){            
-      const response = await axios.get(backend + "/gpbuy/list",request);
+    async gpbuySearch(request) {
+      const response = await axios.get(backend + "/gpbuy/list", request);
       this.gpbuyList = response.data.result;
     },
 
     async myLikesList() {
-        const response = await axios.get(backend + "/gpbuy/likes/list", { withCredentials: true });
-        this.gpbuyLikesList = response.data.result;
-        
+      const response = await axios.get(backend + "/gpbuy/likes/list", { withCredentials: true });
+      this.gpbuyLikesList = response.data.result;
+
     },
 
-    async cancleLikes(gpbuyIdx){
-        await axios.get(backend + "/gpbuy/likes/save?gpbuyIdx="+gpbuyIdx,{withCredentials: true});
-        this.myLikesList();
+    async cancleLikes(gpbuyIdx) {
+      await axios.get(backend + "/gpbuy/likes/save?gpbuyIdx=" + gpbuyIdx, { withCredentials: true });
+      this.myLikesList();
     }
   }
 });
