@@ -1,10 +1,10 @@
 <template>
     <div id="wrapper">
         <header>
-            <h1>거래내역</h1>
+            <router-link to="/"><img class="order-history-logo" src="../../assets/images/market/logo_공동구매.png"></router-link>
             <!--메뉴-->
             <nav class="content_nav">
-                <a href="" class="active">구매</a>
+                <a href="" class="active">구매 내역</a>
             </nav>
         </header>
 
@@ -53,6 +53,11 @@ export default {
 </script>
 
 <style scoped>
+.order-history-logo{
+    margin-top:10px;
+    width: 250px;
+}
+
 /*모달창*/
 div[class^="modal_"] {
     position: fixed;
