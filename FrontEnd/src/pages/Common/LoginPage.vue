@@ -76,7 +76,7 @@
         <div id="snsLogin" class="snsLogin" v-if="activeOption === 'user'" style="display: flex;">
           <ul>
             <li id="kakao_li">
-              <a href="/api/oauth2/authorization/kakao" class="kakao" id="openid_kakao">
+              <a :href="kakaoLoginUrl" class="kakao" id="openid_kakao">
                 <span>카카오톡</span>
               </a>
             </li>
@@ -99,6 +99,7 @@ export default {
   name: "LoginPage",
   data() {
     return {
+      kakaoLoginUrl: process.env.VUE_APP_BACKEND_URL + "/oauth2/authorization/kakao",
       activeOption: 'user',
       user: {
         email: null,
