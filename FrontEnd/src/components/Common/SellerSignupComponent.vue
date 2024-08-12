@@ -472,7 +472,7 @@ export default {
             new daum.Postcode({
                 oncomplete: (data) => {
                     this.seller.address = data.address; // 주소
-                    this.seller.postCode = Number(data.zonecode); // 우편번호
+                    this.seller.postCode = data.zonecode; // 우편번호
                 }
             }).open();
         },
