@@ -5,7 +5,8 @@
                 <h3 class="css-9fmo7n">상품 등록/조회</h3>
                 <p class="css-17ti8g7">등록한 모든 상품을 손쉽게 조회/수정할 수 있어요.</p>
             </header>
-            <div class="css-8knsro"><router-link to="/seller/product/register" href="./상품등록페이지.html"><button type="button" class="css-16iku8x">상품
+            <div class="css-8knsro"><router-link to="/seller/product/register" href="./상품등록페이지.html"><button type="button"
+                        class="css-16iku8x">상품
                         등록하기</button></router-link></div>
             <div class="css-1buehjj">
                 <div class="css-1oucam8">
@@ -13,11 +14,12 @@
                         <div class="css-1m95gdn">
                             <div class="css-ga3b11">
                                 <div class="css-1og3vwv">
-                                    <div class="css-1oxv28r">&nbsp;&nbsp;&nbsp;총 <span class="css-w4x83i">{{sellerStore.productInfoList.length}}</span>개</div>
+                                    <div class="css-1oxv28r">&nbsp;&nbsp;&nbsp;총 <span class="css-w4x83i">{{
+                                        sellerStore.productInfoList.length }}</span>개</div>
                                     <div id="select-12" class="css-bjn8wh">
                                         <div id="trigger-12" aria-controls="option-list-12" aria-haspopup="true"
                                             aria-expanded="false" data-open="false">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +56,8 @@
                                     </tr>
                                 </thead>
                                 <tbody role="rowgroup">
-                                    <SellerProductComponent v-for="(product,idx) in sellerStore.productInfoList" :key="idx" :product="product"></SellerProductComponent>
+                                    <SellerProductComponent v-for="(product, idx) in sellerStore.productInfoList" :key="idx"
+                                        :product="product"></SellerProductComponent>
 
                                 </tbody>
                             </table>
@@ -70,17 +73,17 @@
                                     </div>
                                 </div>
                                 <div class="css-1axnh3m">
-                                    <p>총 {{sellerStore.productInfoList.length}}개<span class="css-zvmrfm">중</span></p>
-                                    <p><span class="css-c6lzdm">-</span>{{sellerStore.productInfoList.length}}</p><button type="button" disabled=""
-                                        class="css-1np6q9z"><svg height="20" viewBox="0 0 20 20"
+                                    <p>총 {{ sellerStore.productInfoList.length }}개<span class="css-zvmrfm">중</span></p>
+                                    <p><span class="css-c6lzdm">-</span>{{ sellerStore.productInfoList.length }}</p><button
+                                        type="button" disabled="" class="css-1np6q9z"><svg height="20" viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <g fill="none" fill-rule="evenodd">
                                                 <path
                                                     d="M12.5937 3.28958L5.84257 9.27254C5.62528 9.46689 5.5 9.73474 5.5 10.0168C5.50135 10.3019 5.62767 10.5702 5.84701 10.7629L12.5961 16.7123C12.8098 16.9001 13.0887 17 13.3753 17C13.6631 17 13.9441 16.8994 14.1567 16.7104L14.2423 16.6254C14.6133 16.2134 14.5836 15.5984 14.1538 15.2196L8.2477 10.0132L14.1562 4.77938C14.6155 4.37104 14.6143 3.69396 14.1538 3.28808C13.7185 2.90339 13.0286 2.90406 12.5937 3.28958Z"
                                                     fill="#999999"></path>
                                             </g>
-                                        </svg></button><button type="button" disabled="" class="css-o20oxp"><svg
-                                            height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        </svg></button><button type="button" disabled="" class="css-o20oxp"><svg height="20"
+                                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <g fill="none" fill-rule="evenodd">
                                                 <path
                                                     d="M7.40633 16.7104L14.1574 10.7275C14.3747 10.5331 14.5 10.2653 14.5 9.98324C14.4987 9.69808 14.3723 9.42979 14.153 9.23707L7.40392 3.28772C7.19025 3.09994 6.91128 3 6.62468 3C6.33695 3 6.05593 3.10061 5.84331 3.28961L5.75767 3.37461C5.38667 3.78656 5.41641 4.40163 5.84622 4.78045L11.7523 9.98685L5.84384 15.2206C5.38446 15.629 5.38571 16.306 5.84622 16.7119C6.28145 17.0966 6.97139 17.0959 7.40633 16.7104Z"
@@ -101,20 +104,30 @@
 import SellerProductComponent from './SellerProductComponent.vue';
 import { useSellerStore } from '@/stores/useSellerStore';
 import { mapStores } from 'pinia';
+
 export default {
     components: {
         SellerProductComponent
     },
-    computed:{
+    computed: {
         ...mapStores(useSellerStore) // 어떤 저장소랑 연결시켜 주겠다.
     },
     methods: {
         async getProductInfoList() {
             await this.sellerStore.getProductInfoList();
-        }
+        },
+        async checkCompanyAndLoadProducts() {
+            const result = await this.sellerStore.getCompanyDetail();
+            if (result) {
+                await this.getProductInfoList();
+            } else {
+                this.$router.push('/seller/company/register');
+            }
+        },
+
     },
     mounted() {
-        this.getProductInfoList();
+        this.checkCompanyAndLoadProducts();
     }
 }
 </script>

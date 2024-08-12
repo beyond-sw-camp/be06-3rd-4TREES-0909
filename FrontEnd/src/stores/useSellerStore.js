@@ -6,6 +6,7 @@ const backend = process.env.VUE_APP_BACKEND_URL;
 // 전역 저장소 생성
 export const useSellerStore = defineStore("seller", {
   state: () => ({
+    companyDetails: {},
     registered: {
       productIdx: 0
     },
@@ -61,6 +62,7 @@ export const useSellerStore = defineStore("seller", {
       }
     ]
   }),
+
   actions: {
     async registerProduct(productInfo, imageFiles) {
       const formData = new FormData();
@@ -122,12 +124,16 @@ export const useSellerStore = defineStore("seller", {
       this.registeredCompany = response.data.result;
       return response.data;
     },
-
-    // 업체 정보 가져오기
     async getCompanyDetail() {
-      const response = await axios.get(backend + '/company/detail', { withCredentials: true });
-      this.companyDetail = response.data.result;
+      try {
+        const response = await axios.get(backend + '/company/detail', { withCredentials: true });
+        this.companyDetails = response.data.result;
+        return true;
+      } catch (error) {
+        alert('업체 정보를 불러오는 중 오류가 발생했습니다.');
+        return false;
 
+      }
     },
     // 업체 정보 수정 업로드
     async modifyCompanyDetail(companyName, companyAddress, companyPostCode, companyType, companyIntro) {
@@ -141,6 +147,7 @@ export const useSellerStore = defineStore("seller", {
       const response = await axios.post(backend + '/company/modify', request, { withCredentials: true });
       return response.data;
 
-    }
+    },
+
   }
 });
