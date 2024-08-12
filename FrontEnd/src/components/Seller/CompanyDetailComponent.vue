@@ -99,10 +99,10 @@ export default {
                 this.companyAddress = companyDetails.companyAddress;
                 this.subAddress = companyDetails.subAddress;
                 
-                if (this.sellerStore.sellerInfoDetail.postCode < 10000) {
-                    this.companyPostCode = "0" + this.sellerStore.sellerInfoDetail.postCode;
+                if (companyDetails.companyPostCode < 10000) {
+                    this.companyPostCode = "0" + companyDetails.companyPostCode;
                 } else {
-                    this.companyPostCode = this.sellerStore.sellerInfoDetail.postCode;
+                    this.companyPostCode = companyDetails.companyPostCode;
                 }
             } catch (error) {
                 alert('업체 정보를 불러오는 중 오류가 발생했습니다.');
