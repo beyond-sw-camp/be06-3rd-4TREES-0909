@@ -302,7 +302,7 @@ export default {
       new daum.Postcode({
         oncomplete: (data) => {
           this.user.address = data.address; // 주소
-          this.user.postCode = Number(data.zonecode); // 우편번호
+          this.user.postCode = data.zonecode; // 우편번호
         }
       }).open();
     },
