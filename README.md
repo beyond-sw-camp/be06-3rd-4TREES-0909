@@ -20,9 +20,11 @@
 
 ## 📌 공구공구 사이트
 <a href="https://fourtrees.kro.kr">공구공구 사이트 바로가기</a><br>
+
 테스트 계정 <br>
-일반 회원: sue06004@gmail.com , qwer1234! <br>
-업체 회원: sue06004@naver.com , qwer1234!
+<p>일반 회원: sue06004@gmail.com , qwer1234!</p>
+<p>업체 회원: sue06004@naver.com , qwer1234!</p>
+
 ## 📌기술스택
 ### MarkUp
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=Html5&logoColor=black"/> <img src="https://img.shields.io/badge/CSS3-1572b6?style=flat&logo=CSS3&logoColor=white"/>
