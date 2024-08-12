@@ -152,7 +152,7 @@ export const useGroupbuyStore = defineStore("groupbuy", {
       return categoryMap[categoryIdx] || '알 수 없는 카테고리';
     },
     async getGroupbuyLikes(idx) {
-      const response = await axios.get(backend + "/gpbuy/likes/save?gpbuyIdx=" + idx);
+      const response = await axios.get(backend + "/gpbuy/likes/save?gpbuyIdx=" + idx, {withCredentials:true});
       if (response.data.isSuccess) {
         this.isLiked = response.data.result.isLiked;
         return true;
